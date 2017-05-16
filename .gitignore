@@ -3,3 +3,8 @@
 *.out
 *.tex.backup
 *.toc
+
+*.bbl
+*.bcf
+*.blg
+*.run.xml

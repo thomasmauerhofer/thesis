@@ -69,7 +69,7 @@ a4paper,     %% defines the paper size: a4paper (default), a5paper, letterpaper,
 
 %%% psfrag: replace PostScript fonts
 \usepackage{psfrag}
-
+\usepackage[table]{xcolor}
 %%% listings: include programming code
 %\usepackage{listings}
 
@@ -245,7 +245,7 @@ Thomas Mauerhofer (1031957)}
 %%% footer - right
 % \ofoot[]{}
 
-
+\definecolor{lightblue}{rgb}{0.93,0.95,1.0}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%
@@ -305,18 +305,24 @@ nicht nur die veröffentlichten Artikel und Bücher, sondern häufig auch alle Q
 Usability der Suchmaschine zu erhöhen und so treffsicherere Ergebnisse zu liefern. Dies geschieht im Hilfe von einfachen search queries Strukuren, durch selbsterklärendes Front End, Spelling Checks und 
 der Bearbeitung und Beurteilung im Back End. 
 
-
 \section{Forschungsstand}
 
-sehr aktuelle Literatur zu 
+Wie bereits in der Einleitung erwähnt befasst sich die geplante Masterarbeit mit der Verbesserung von Suchanfragen und deren Ergebnissen für wissenschaftliche Arbeiten in PDF Format. Laut \cite{SK14} sind 
+alle wissenschaftliche Arbeiten in ähnlichen Strukturen aufgebaut. Diese Strukturen unterteilen sich in capters, sections, subsections and so on, welche sich gut in dem \cite{RBY99} beschriebene 
+Structured Text Retrieval Model anwenden lassen. Dieses Model beschreibt den Umgang von Suchanfragen und deren Ergebnissen für wissenschaftliche Arbeiten, sowie deren Bearbeitung und Beurteilung im 
+Backend durch die Verwendung der Metainformation über die Struktur des Dokuments. Um die Dokumente nach ihrer Priorität zu listen kommen verschiedene Ranking strategies z.B. Jelinek-Mercer smoothing, zum 
+Einsatz. Durch Erweiterungen wie contextualization or aggregation strategies werden die Ergebnisse des rankings noch verbessert.
 
-Verbesserung von Suchanfragen und deren Ergebnissen für wissenschaftliche Arbeiten in PDF Format
-Robuste Gestaltung Suchbegriffes
-Erhöhung Usability 
-einfache search queries Strukuren
-selbsterklärendes Front End
-Spelling Checks und 
-Bearbeitung und Beurteilung im Back End 
+
+%sehr aktuelle Literatur zu 
+
+%Verbesserung von Suchanfragen und deren Ergebnissen für wissenschaftliche Arbeiten in PDF Format CHECK
+%Robuste Gestaltung Suchbegriffes
+%Erhöhung Usability 
+%einfache search queries Strukuren
+%selbsterklärendes Front End
+%Spelling Checks und 
+%Bearbeitung und Beurteilung im Back End CHECK
 
 \section{Aufbau}
 
@@ -326,8 +332,8 @@ Arbeit beziehen
 \section{Gliederung}
 
 \begin{enumerate}
- \item Einleitung
- \item Forschungsstand 
+ \item Introduction
+ \item Related Work
  \begin{enumerate}
   \item Robuste Gestaltung des Suchbegriffes
   \item Search queries Strukturen
@@ -335,29 +341,49 @@ Arbeit beziehen
   \item Spelling Checks
   \item Back End
  \end{enumerate}
-\item Implementierung
-\begin{enumerate}
-\item Model View Controller
- \item Aufbau der Datenbank
- \item ...
-\end{enumerate}
- \item Ergebnisse
+ \item Implementierung
+ \begin{enumerate}
+  \item Basisstruktur
+  \item Aufbau der Datenbank
+  \item Userinterface
+  \item Satisfaction of searchqueries
+  \item Ranking system
+  \item Spelling checks
+ \end{enumerate}
+ \item Result
+ \item Conclusion
 \end{enumerate}
 
 \section{Auswahlbibliografie}
 
-was du Forschungsstand verwendet hast bzw. welche Literatur noch nicht verwendet aber essentiell für die Arbeit!
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%
+%%% bibliography
+%%%
+%%% available styles: abbrv, acm, alpha, apalike, ieeetr, plain, siam, unsrt
+
+\bibliographystyle{alpha}
+\bibliography{literature}
+\nocite{*}
 
 \section{Zeitplan}
 
-Im Zeitplan halten Sie fest, bis wann einzelne Arbeitsetappen abgeschlossen sein werden.
 
-
-
-
-
-
-
+\begin{tabular}{ | l | l | c | }
+  \hline
+  \rowcolor{lightblue}
+  \textbf{Arbeitsschritt} & \textbf{Aufgabe im Detail} & \textbf{Deadline} \\ \hline
+  \textbf{Implementierungsphase} & Erstellen einer Basisstruktur & \\ \hline
+    & Datenbank & \\ \hline
+    & Import von PDFs via pdf-extractor & \\ \hline
+    & Satisfaction of search queries and simple ranking system & \\ \hline
+    & Improve ranking system & \\ \hline
+    & Implement spelling checks & \\ \hline
+    & Improve Userinterface & \\ \hline
+  \textbf{Schreibphase} &  & \\ \hline
+  \textbf{Abschlussarbeit} & Korrektur & Deadline \\ \hline
+    & Druck und Abgabe & Deadline \\ \hline
+\end{tabular}
 
 %%%
 %%% end main document
@@ -365,19 +391,6 @@ Im Zeitplan halten Sie fest, bis wann einzelne Arbeitsetappen abgeschlossen sein
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % \appendix  %% include it, if something (bibliography, index, ...) follows below
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%
-%%% bibliography
-%%%
-%%% available styles: abbrv, acm, alpha, apalike, ieeetr, plain, siam, unsrt
-%%%
-% \bibliographystyle{plain}
-
-%%% name of the bibliography file without .bib
-%%% e.g.: literatur.bib -> \bibliography{literatur}
-% \bibliography{FIXXME}
-
 \end{document}
 %%% }}}
 %%% END OF FILE
