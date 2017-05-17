@@ -1,151 +1,25 @@
-%%% File-Information {{{
-%%% Filename: template_bericht.tex
-%%% Purpose: lab report, technical report, project report
-%%% Time-stamp: <2004-06-30 18:19:32 mp>
-%%% Authors: The LaTeX@TUG-Team [http://latex.tugraz.at/]:
-%%%          Karl Voit (vk), Michael Prokop (mp), Stefan Sollerer (ss)
-%%% History:
-%%%   20050914 (ss) correction of "backref=true" to "backref" due to hyperref documentation
-%%%   20040630 (mp) added comments to foldmethod at end of file
-%%%   20040625 (vk,ss) initial version
-%%%
-%%% Notes:
-%%%
-%%%
-%%%
-%%% }}}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% main document {{{
+\documentclass[a4paper, 12pt]{scrartcl}
 
-\documentclass[
-a4paper,     %% defines the paper size: a4paper (default), a5paper, letterpaper, ...
-% landscape,   %% sets the orientation to landscape
-% twoside,     %% changes to a two-page-layout (alternatively: oneside)
-% twocolumn,   %% changes to a two-column-layout
-% headsepline, %% add a horizontal line below the column title
-% footsepline, %% add a horizontal line above the page footer
-% titlepage,   %% only the titlepage (using titlepage-environment) appears on the first page (alternatively: notitlepage)
-% parskip,     %% insert an empty line between two paragraphs (alternatively: halfparskip, ...)
-% leqno,       %% equation numbers left (instead of right)
-% fleqn,       %% equation left-justified (instead of centered)
-% tablecaptionabove, %% captions of tables are above the tables (alternatively: tablecaptionbelow)
-% draft,       %% produce only a draft version (mark lines that need manual edition and don't show graphics)
-% 10pt         %% set default font size to 10 point
-% 11pt         %% set default font size to 11 point
-12pt         %% set default font size to 12 point
-]{scrartcl}  %% article, see KOMA documentation (scrguide.dvi)
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%
-%%% packages
-%%%
-
-%%%
-%%% encoding and language set
-%%%
-
-%%% ngerman: language set to new-german
 \usepackage{ngerman}
-
-%%% babel: language set (can cause some conflicts with package ngerman)
-%%%        use it only for multi-language documents or non-german ones
-%\usepackage[ngerman]{babel}
-
-%%% inputenc: coding of german special characters
 \usepackage[utf8]{inputenc}
-
-%%% fontenc, ae, aecompl: coding of characters in PDF documents
 \usepackage[T1]{fontenc}
 \usepackage{ae,aecompl}
-
-%%%
-%%% technical packages
-%%%
-
-%%% amsmath, amssymb, amstext: support for mathematics
-%\usepackage{amsmath,amssymb,amstext}
-
-%%% psfrag: replace PostScript fonts
 \usepackage{psfrag}
 \usepackage[table]{xcolor}
-%%% listings: include programming code
-%\usepackage{listings}
-
-%%% units: technical units
-%\usepackage{units}
-
-%%%
-%%% layout
-%%%
-
-%%% scrpage2: KOMA heading and footer
-%%% Note: if you don't use this package, please remove 
-%%%       \pagestyle{scrheadings} and corresponding settings
-%%%       below too.
 \usepackage[automark]{scrpage2}
-
-
-%%%
-%%% PDF
-%%%
-
-\usepackage{ifpdf}
-
-%%% Should be LAST usepackage-call!
-%%% For docu on that, see reference on package ``hyperref''
-\ifpdf%   (definitions for using pdflatex instead of latex)
-
-  %%% graphicx: support for graphics
-  \usepackage[pdftex]{graphicx}
-
-  \pdfcompresslevel=9
-
-  %%% hyperref (hyperlinks in PDF): for more options or more detailed
-  %%%          explanations, see the documentation of the hyperref-package
-  \usepackage[%
-    %%% general options
-    pdftex=true,      %% sets up hyperref for use with the pdftex program
-    %plainpages=false, %% set it to false, if pdflatex complains: ``destination with same identifier already exists''
-    %
-    %%% extension options
-    backref,      %% adds a backlink text to the end of each item in the bibliography
-    pagebackref=false, %% if true, creates backward references as a list of page numbers in the bibliography
-    colorlinks=true,   %% turn on colored links (true is better for on-screen reading, false is better for printout versions)
-    %
-    %%% PDF-specific display options
-    bookmarks=true,          %% if true, generate PDF bookmarks (requires two passes of pdflatex)
-    bookmarksopen=false,     %% if true, show all PDF bookmarks expanded
-    bookmarksnumbered=false, %% if true, add the section numbers to the bookmarks
-    %pdfstartpage={1},        %% determines, on which page the PDF file is opened
-    pdfpagemode=None         %% None, UseOutlines (=show bookmarks), UseThumbs (show thumbnails), FullScreen
+\usepackage[pdftex]{graphicx}
+\pdfcompresslevel=9
+\usepackage[pdftex=true,
+    backref,
+    pagebackref=false,
+    colorlinks=true,
+    bookmarks=true,
+    bookmarksopen=false,
+    bookmarksnumbered=false,
+    pdfpagemode=None
   ]{hyperref}
+\DeclareGraphicsExtensions{.pdf}
 
-
-  %%% provide all graphics (also) in this format, so you don't have
-  %%% to add the file extensions to the \includegraphics-command
-  %%% and/or you don't have to distinguish between generating
-  %%% dvi/ps (through latex) and pdf (through pdflatex)
-  \DeclareGraphicsExtensions{.pdf}
-
-\else %else   (definitions for using latex instead of pdflatex)
-
-  \usepackage[dvips]{graphicx}
-
-  \DeclareGraphicsExtensions{.eps}
-
-  \usepackage[%
-    dvips,           %% sets up hyperref for use with the dvips driver
-    colorlinks=false %% better for printout version; almost every hyperref-extension is eliminated by using dvips
-  ]{hyperref}
-
-\fi
-
-
-%%% sets the PDF-Information options
-%%% (see fields in Acrobat Reader: ``File -> Document properties -> Summary'')
-%%% Note: this method is better than as options of the hyperref-package (options are expanded correctly)
 \hypersetup{
   pdftitle={}, %%
   pdfauthor={}, %%
@@ -155,143 +29,35 @@ a4paper,     %% defines the paper size: a4paper (default), a5paper, letterpaper,
   pdfkeywords={} %%
 }
 
+\title{Use structured text retrieval to search for scientific works}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%
-%%% user defined commands
-%%%
-
-%%% \mygraphics{}{}{}
-%% usage:   \mygraphics{width}{filename_without_extension}{caption}
-%% example: \mygraphics{0.7\textwidth}{rolling_grandma}{This is my grandmother on inlinescates}
-%% requires: package graphicx
-%% provides: including centered pictures/graphics with a boldfaced caption below
-%% 
-\newcommand{\mygraphics}[3]{
-  \begin{center}
-    \includegraphics[width=#1, keepaspectratio=true]{#2} \\
-    \textbf{#3}
-  \end{center}
-}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%
-%%% define the titlepage
-%%%
-
-% \subject{}   %% subject which appears above titlehead
-% \titlehead{} %% special heading for the titlepage
-
-%%% title
-\title{Vorläufiger Arbeitstitel}
-
-%%% author(s)
 \author{Betreuer: \\
 Dipl.-Ing. Dr.techn. Roman Kern \\ \\ \\ \\ \\
 Thomas Mauerhofer (1031957)}
 
-%%% date
 \date{Graz, am \today{}}
 
-% \publishers{}
+\bibliographystyle{plain}
 
-% \thanks{} %% use it instead of footnotes (only on titlepage)
-
-% \dedication{} %% generates a dedication-page after titlepage
-
-
-%%% uncomment following lines, if you want to:
-%%% reuse the maketitle-entries for hyperref-setup
-%\newcommand\org@maketitle{}
-%\let\org@maketitle\maketitle
-%\def\maketitle{%
-%  \hypersetup{
-%    pdftitle={\@title},
-%    pdfauthor={\@author}
-%    pdfsubject={\@subject}
-%  }%
-%  \org@maketitle
-%}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%
-%%% set heading and footer
-%%%
-
-%%% scrheadings default: 
-%%%      footer - middle: page number
 \pagestyle{scrheadings}
-
-%%% user specific
-%%% usage:
-%%% \position[heading/footer for the titlepage]{heading/footer for the rest of the document}
-
-%%% heading - left
-% \ihead[]{}
-
-%%% heading - center
-% \chead[]{}
-
-%%% heading - right
-% \ohead[]{}
-
-%%% footer - left
-% \ifoot[]{}
-
-%%% footer - center
-% \cfoot[]{}
-
-%%% footer - right
-% \ofoot[]{}
 
 \definecolor{lightblue}{rgb}{0.93,0.95,1.0}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%
-%%% begin document
-%%%
-
 \begin{document}
 
-% \pagenumbering{roman} %% small roman page numbers
-
-%%% include the title
-% \thispagestyle{empty}  %% no header/footer (only) on this page
  \maketitle
  
-%%% start a new page and display the table of contents
-% \newpage
-% \tableofcontents
-
-%%% start a new page and display the list of figures
-% \newpage
-% \listoffigures
-
-%%% start a new page and display the list of tables
-% \newpage
-% \listoftables
-
-%%% display the main document on a new page 
-% \newpage
-
-% \pagenumbering{arabic} %% normal page numbers (include it, if roman was used above)
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%
-%%% begin main document
-%%% structure: \section \subsection \subsubsection \paragraph \subparagraph
-%%%
 \newpage
 
 \tableofcontents
 
 \newpage
 
-\section{Einleitung}
+\section{Introduction}
+\label{sec:Introduction}
 
 In der Gegenwart gehört die Suche nach Informationen via Internet und im Besonderen Google, zum Alltag der meisten Menschen. Hatte Google im Jahr 1998 noch 10.000 Suchanfragen am Tag, wurde dieselbe Zahl 
-an Anfragen 2006 in einer Sekunde getätigt. (Quelle: http://www.internetlivestats.com/google-search-statistics/ --> Zugriff am 15.05.2017). Dadurch ist es nur naheliegend, dass auch die Anzahl an zugängichen
+an Anfragen 2006 in einer Sekunde getätigt. (Quelle: \url{http://www.internetlivestats.com/google-search-statistics/} --> Zugriff am 15.05.2017). Dadurch ist es nur naheliegend, dass auch die Anzahl an zugängichen
 Informationen stetig zunimmt. Täglich werden z.B. unzählige neuen Webseiten erstellt, Artikel geschrieben und wissenschaftliche Arbeiten veröffentlicht. Um
 diese Menge an Informationen zu managen und zwischen relevanten und nicht relevanten Quellen zu unterscheiden, verwendet man unterschiedliche Suchmaschinen. 
 Dabei soll die Suche simpel aber dennoch genau sein.
@@ -305,29 +71,35 @@ nicht nur die veröffentlichten Artikel und Bücher, sondern häufig auch alle Q
 Usability der Suchmaschine zu erhöhen und so treffsicherere Ergebnisse zu liefern. Dies geschieht im Hilfe von einfachen search queries Strukuren, durch selbsterklärendes Front End, Spelling Checks und 
 der Bearbeitung und Beurteilung im Back End. 
 
-\section{Forschungsstand}
+\section{Related Work}
 
-Wie bereits in der Einleitung erwähnt befasst sich die geplante Masterarbeit mit der Verbesserung von Suchanfragen und deren Ergebnissen für wissenschaftliche Arbeiten in PDF Format. Laut \cite{SK14} sind 
-alle wissenschaftliche Arbeiten in ähnlichen Strukturen aufgebaut. Diese Strukturen unterteilen sich in capters, sections, subsections and so on, welche sich gut in dem \cite{RBY99} beschriebene 
-Structured Text Retrieval Model anwenden lassen. Dieses Model beschreibt den Umgang von Suchanfragen und deren Ergebnissen für wissenschaftliche Arbeiten, sowie deren Bearbeitung und Beurteilung im 
-Backend durch die Verwendung der Metainformation über die Struktur des Dokuments. Um die Dokumente nach ihrer Priorität zu listen kommen verschiedene Ranking strategies z.B. Jelinek-Mercer smoothing, zum 
+Wie bereits in der \nameref{sec:Introduction} erwähnt befasst sich die geplante Masterarbeit mit der Verbesserung von Suchanfragen und deren Ergebnissen für wissenschaftliche Arbeiten in PDF Format. Laut 
+\cite{KGJK14} sind alle wissenschaftliche Arbeiten in ähnlichen Strukturen aufgebaut. Diese Strukturen unterteilen sich in capters, sections, subsections and so on, welche sich gut in dem \cite{RNBY99} 
+beschriebene Structured Text Retrieval Model anwenden lassen. Dieses Model beschreibt den Umgang von Suchanfragen und deren Ergebnissen für wissenschaftliche Arbeiten, sowie deren Bearbeitung und Beurteilung 
+im Backend durch die Verwendung der Metainformation über die Struktur des Dokuments. Um die Dokumente nach ihrer Priorität zu listen kommen verschiedene Ranking strategies z.B. Jelinek-Mercer smoothing, zum 
 Einsatz. Durch Erweiterungen wie contextualization or aggregation strategies werden die Ergebnisse des rankings noch verbessert.
 
+Um einfache und robuste search queries Strukuren zu gewährleisten wird die Syntax wie in \cite{Coh03} gestaltet. Dabei bestehen die queries aus mehreren Termen, welche in der Form \textit{label}:\textit{keyword} 
+gegliedert sind. Zusätzlich können Termen ein \textit{+} vorangestellt werden, um sie besonders hoch zu priorisieren. Durch diese Struktur wird das user interface dann mit einer erweiteren Suche ausgebaut, um 
+die usability stark zu erhöhen, und ein selbsterklärendes Front End zu schaffen.
 
-%sehr aktuelle Literatur zu 
-
-%Verbesserung von Suchanfragen und deren Ergebnissen für wissenschaftliche Arbeiten in PDF Format CHECK
-%Robuste Gestaltung Suchbegriffes
-%Erhöhung Usability 
-%einfache search queries Strukuren
-%selbsterklärendes Front End
-%Spelling Checks und 
-%Bearbeitung und Beurteilung im Back End CHECK
+Der letzte Punkt um die usability zu verbessern sind spelling checks. Diese können wie in \cite{SPCB13} beschrieben implementiert werden. Hierbei wird mithilfe der Levenshtein Distance ermittelt, ob ein Wort
+korrekt geschrieben wurde. Falls dies nicht der Fall ist werden ähnliche Wörter gesucht, und vorgeschlagen. 
 
 \section{Aufbau}
 
-was im Forschungsstand gefunden wurde --> was man weiter bearbeitet in der Arbeit, was man anders macht, welches Thema in der Literatur noch nicht ausreichend dargestellt wurde --> alles auf die eigene
-Arbeit beziehen 
+Im ersten Schritt wird eine Grundstruktur für das Projekt geschaffen. Durch das microframework Flask (\url{http://flask.pocoo.org/}) lässt sich das Frontend in Javascript, und das Backend in Python schreiben.
+Durch einfache requests lassen sich Eingaben von der Userseite zur Serverseite schicken. Dort wird die Anfrage dann bearbeitet, und ein response versendet. Dies bildet ein solides Grundgerüst für das 
+structured text retrieval model.
+
+Python besitzt eine eigene library um Verbindungen zu MySQL Datenbanken herzustellen. Diese wird verwendet um eine Datenbank wie in \cite{YA94} beschrieben zu erschaffen. Danach wird die Datenbank mihilfe des 
+in \cite{KGJK14} beschriebenen Tools mit wissenschaftlichen Arbeiten befüllt.
+
+Nun sind alle nötigen Teile vorhanden, um effizient in wissenschaftlichen Arbeiten zu suchen, und ein raking system wie in \cite{MRS08, RNBY99} beschrieben zu implementieren.
+
+Als nächster Schritt Spelling checks auf den Suchanfragen 
+
+Zuletzt Userinterface verbessert. Erweiterte Suche, CSS überarbeitung.
 
 \section{Gliederung}
 
@@ -335,11 +107,11 @@ Arbeit beziehen
  \item Introduction
  \item Related Work
  \begin{enumerate}
-  \item Robuste Gestaltung des Suchbegriffes
-  \item Search queries Strukturen
-  \item Front End
-  \item Spelling Checks
-  \item Back End
+  \item Unsupervised document structure analysis
+  \item Structured Text Retrieval
+  \item Structured-Text Retrieval System with an Object-Oriented Database System
+  \item Search queries
+  \item Real-word error detection and correction
  \end{enumerate}
  \item Implementierung
  \begin{enumerate}
@@ -356,13 +128,6 @@ Arbeit beziehen
 
 \section{Auswahlbibliografie}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%
-%%% bibliography
-%%%
-%%% available styles: abbrv, acm, alpha, apalike, ieeetr, plain, siam, unsrt
-
-\bibliographystyle{alpha}
 \bibliography{literature}
 \nocite{*}
 
@@ -376,34 +141,28 @@ Arbeit beziehen
   \textbf{Implementierungsphase} & Erstellen einer Basisstruktur & \\ \hline
     & Datenbank & \\ \hline
     & Import von PDFs via pdf-extractor & \\ \hline
-    & Satisfaction of search queries and simple ranking system & \\ \hline
+    & Satisfaction of search queries & \\ \hline
+    & Simple ranking system & \\ \hline
     & Improve ranking system & \\ \hline
     & Implement spelling checks & \\ \hline
     & Improve Userinterface & \\ \hline
-  \textbf{Schreibphase} &  & \\ \hline
-  \textbf{Abschlussarbeit} & Korrektur & Deadline \\ \hline
-    & Druck und Abgabe & Deadline \\ \hline
+  \textbf{Schreibphase} & Introduction & \\ \hline
+    & Related Work & \\ \hline
+    & Unsupervised document structure analysis & \\ \hline
+    & Structured Text Retrieval & \\ \hline
+    & STR with an Object-Oriented Database System & \\ \hline
+    & Search queries & \\ \hline
+    & Spelling Checks & \\ \hline
+    & Implementierung & \\ \hline
+    & Basisstruktur & \\ \hline
+    & Aufbau der Datenbank & \\ \hline
+    & Userinterface & \\ \hline
+    & Satisfaction of searchqueries & \\ \hline
+    & Ranking system & \\ \hline
+    & Spelling checks & \\ \hline
+    & Result & \\ \hline
+    & Conclusion & \\ \hline
+    & Korrektur & \\ \hline
 \end{tabular}
 
-%%%
-%%% end main document
-%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% \appendix  %% include it, if something (bibliography, index, ...) follows below
 \end{document}
-%%% }}}
-%%% END OF FILE
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% Notice!
-%%% This file uses the outline-mode of emacs and the foldmethod of Vim.
-%%% Press 'zi' to unfold the file in Vim.
-%%% See ':help folding' for more information.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Local Variables:
-%% mode: outline-minor
-%% OPToutline-regexp: "%% .*"
-%% OPTeval: (hide-body)
-%% emerge-set-combine-versions-template: "%a\n%b\n"
-%% End:
-%% vim:foldmethod=marker
