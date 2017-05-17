@@ -29,7 +29,7 @@
   pdfkeywords={} %%
 }
 
-\title{Use structured text retrieval to search for scientific works}
+\title{The use of structured text retrieval to search for scientific work}
 
 \author{Betreuer: \\
 Dipl.-Ing. Dr.techn. Roman Kern \\ \\ \\ \\ \\
@@ -81,25 +81,25 @@ Einsatz. Durch Erweiterungen wie contextualization or aggregation strategies wer
 
 Um einfache und robuste search queries Strukuren zu gewährleisten wird die Syntax wie in \cite{Coh03} gestaltet. Dabei bestehen die queries aus mehreren Termen, welche in der Form \textit{label}:\textit{keyword} 
 gegliedert sind. Zusätzlich können Termen ein \textit{+} vorangestellt werden, um sie besonders hoch zu priorisieren. Durch diese Struktur wird das user interface dann mit einer erweiteren Suche ausgebaut, um 
-die usability stark zu erhöhen, und ein selbsterklärendes Front End zu schaffen.
+die usability stark zu erhöhen und ein selbsterklärendes Front End zu schaffen.
 
 Der letzte Punkt um die usability zu verbessern sind spelling checks. Diese können wie in \cite{SPCB13} beschrieben implementiert werden. Hierbei wird mithilfe der Levenshtein Distance ermittelt, ob ein Wort
-korrekt geschrieben wurde. Falls dies nicht der Fall ist werden ähnliche Wörter gesucht, und vorgeschlagen. 
+korrekt geschrieben wurde. Falls dies nicht der Fall ist werden ähnliche Wörter gesucht und vorgeschlagen. 
 
 \section{Aufbau}
 
-Im ersten Schritt wird eine Grundstruktur für das Projekt geschaffen. Durch das microframework Flask (\url{http://flask.pocoo.org/}) lässt sich das Frontend in Javascript, und das Backend in Python schreiben.
-Durch einfache requests lassen sich Eingaben von der Userseite zur Serverseite schicken. Dort wird die Anfrage dann bearbeitet, und ein response versendet. Dies bildet ein solides Grundgerüst für das 
+Zu Beginn der Arbeit wird eine Grundstruktur für das Projekt geschaffen. Durch das microframework Flask (\url{http://flask.pocoo.org/}) werden das Frontend in Javascript, und das Backend in Python geschrieben.
+Durch einfache requests lassen sich Eingaben von der Userseite zur Serverseite schicken. Dort wird die Anfrage dann bearbeitet und ein response versendet. Dies bildet ein solides Grundgerüst für das 
 structured text retrieval model.
 
-Python besitzt eine eigene library um Verbindungen zu MySQL Datenbanken herzustellen. Diese wird verwendet um eine Datenbank wie in \cite{YA94} beschrieben zu erschaffen. Danach wird die Datenbank mihilfe des 
-in \cite{KGJK14} beschriebenen Tools mit wissenschaftlichen Arbeiten befüllt.
+Python besitzt eine eigene library um Verbindungen zu MySQL Datenbanken herzustellen. Letzere wird verwendet um eine Datenbank wie in \cite{YA94} beschrieben, zu generieren. Die Befüllung mit 
+wissenschaftlichen Arbeiten in der Datenbank erfolgt mit den in \cite{KGJK14} beschriebenen Tool.
 
-Nun sind alle nötigen Teile vorhanden, um effizient in wissenschaftlichen Arbeiten zu suchen, und ein raking system wie in \cite{MRS08, RNBY99} beschrieben zu implementieren.
+Daran anschließend kann ein ranking system nach \cite{MRS08, RNBY99} implementiert werden. 
 
-Als nächster Schritt Spelling checks auf den Suchanfragen 
+Als nächster Schritt folgt die Anwendung der spelling check auf die search queries um die Usability zu erhöhen.
 
-Zuletzt Userinterface verbessert. Erweiterte Suche, CSS überarbeitung.
+Zur Verbesserung des Userinterface, wird zuletzt eine erweiterte Suche angewendet. Dadurch muss man den Syntax der search queries nicht mehr kennen, was ein selbsterklärendes Userinterface zur Folge hat. 
 
 \section{Gliederung}
 
@@ -145,7 +145,7 @@ Zuletzt Userinterface verbessert. Erweiterte Suche, CSS überarbeitung.
     & Simple ranking system & \\ \hline
     & Improve ranking system & \\ \hline
     & Implement spelling checks & \\ \hline
-    & Improve Userinterface & \\ \hline
+    & Improve Userinterface & \\ \hline \hline
   \textbf{Schreibphase} & Introduction & \\ \hline
     & Related Work & \\ \hline
     & Unsupervised document structure analysis & \\ \hline
