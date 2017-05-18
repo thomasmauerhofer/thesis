@@ -1,6 +1,7 @@
 \documentclass[a4paper, 12pt]{scrartcl}
 
-\usepackage{ngerman}
+
+\usepackage[english]{babel} 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{ae,aecompl}
@@ -29,7 +30,7 @@
   pdfkeywords={} %%
 }
 
-\title{The use of structured text retrieval to search for scientific work}
+\title{The Use of Structured Text Retrieval to Search for Scientific Publications}
 
 \author{Betreuer: \\
 Dipl.-Ing. Dr.techn. Roman Kern \\ \\ \\ \\ \\
@@ -45,7 +46,7 @@ Thomas Mauerhofer (1031957)}
 
 \begin{document}
 
- \maketitle
+\maketitle
  
 \newpage
 
@@ -56,52 +57,54 @@ Thomas Mauerhofer (1031957)}
 \section{Introduction}
 \label{sec:Introduction}
 
-In der Gegenwart gehört die Suche nach Informationen via Internet und im Besonderen Google, zum Alltag der meisten Menschen. Hatte Google im Jahr 1998 noch 10.000 Suchanfragen am Tag, wurde dieselbe Zahl 
-an Anfragen 2006 in einer Sekunde getätigt. (Quelle: \url{http://www.internetlivestats.com/google-search-statistics/} --> Zugriff am 15.05.2017). Dadurch ist es nur naheliegend, dass auch die Anzahl an zugängichen
-Informationen stetig zunimmt. Täglich werden z.B. unzählige neuen Webseiten erstellt, Artikel geschrieben und wissenschaftliche Arbeiten veröffentlicht. Um
-diese Menge an Informationen zu managen und zwischen relevanten und nicht relevanten Quellen zu unterscheiden, verwendet man unterschiedliche Suchmaschinen. 
-Dabei soll die Suche simpel aber dennoch genau sein.
+In modern society searching for information via the Internet and specifically via Google's search engine has become a regular part of
+day-to-day life. While Google registered 10,000 searches a day in 1998, the same number of queries was sent per second in 2006 \cite{Google}.
+Therefore it stands to reason that the amount of accessible information is increasing steadily. On a daily basis, new websites are created,
+articles are written and scientific papers are published. To manage this amount of data and in order to distinguish between relevant and non-relevant
+sources various search engines are used. In this regard, searches should be simple and yet precise.
 
-Betrachtet man Suchmaschinen für wissenschaftliche Arbeit und Forschung existiert eine große Auswahl an Möglichkeiten. Eine der bekanntesten Suchmaschinen im wissenschaftlichen Bereich ist wohl Google
-Scholar, welches eine einfache Eingabe zur Suche verwendet und die gefundenen Arbeiten entsprechend ihrer Relevanz listet. Diese Listungen enthalten verschiedene Dateiformate aus unterschiedlichen Jahren zu 
-diversen Themen, die nicht immer die Kriterien der Suchanfrage wiedergeben. Gerade für wissenschaftliche Arbeiten und Forschung ist es allerdings wichtig, ein präzises Suchergebnis zu erhalten. 
+Looking at search engines for scientific publications and research there exists a broad selection of possibilities. One of the best known engines is
+Google Scholar. It uses a simple input interface and lists the results with respect to their relevance. These listings contain data
+in various formats from different years covering a variety of topics which do not necessarily reflect the search criteria. However, especially
+while working on a scientific paper it is vital to obtain precise results.
 
-Diese Arbeit befasst sich mit der Verbesserung von Suchanfragen und deren Ergebnissen für wissenschaftliche Arbeiten in PDF Format. Recherchiert man z.B. einen Autor, erhält man mit den gängigen Suchmaschinen
-nicht nur die veröffentlichten Artikel und Bücher, sondern häufig auch alle Quellen in welchen dieser zitiert wurde. Ziel dieser Arbeit ist es die Eingabe des Suchbegriffes robuster zu gestalten, die 
-Usability der Suchmaschine zu erhöhen und so treffsicherere Ergebnisse zu liefern. Dies geschieht im Hilfe von einfachen search queries Strukuren, durch selbsterklärendes Front End, Spelling Checks und 
-der Bearbeitung und Beurteilung im Back End. 
+This paper is concerned with improving the quality of search queries and their results for scientific publications in the Portable Document
+Format (PDF). A common problem while searching for a specific author, for example, is that the most popular search engines often do not only list all of
+his or her articles and books but also sources that cite these publications. The objective of this paper is to provide measures which enhance the stability of the search
+terms and optimize the usability in order to deliver more concise results. To do so, simple search query structures, an intuitive front end, spell checks
+and post-processing in the back end will be implemented.
 
 \section{Related Work}
 
-Wie bereits in der \nameref{sec:Introduction} erwähnt befasst sich die geplante Masterarbeit mit der Verbesserung von Suchanfragen und deren Ergebnissen für wissenschaftliche Arbeiten in PDF Format. Laut 
-\cite{KGJK14} sind alle wissenschaftliche Arbeiten in ähnlichen Strukturen aufgebaut. Diese Strukturen unterteilen sich in capters, sections, subsections and so on, welche sich gut in dem \cite{RNBY99} 
-beschriebene Structured Text Retrieval Model anwenden lassen. Dieses Model beschreibt den Umgang von Suchanfragen und deren Ergebnissen für wissenschaftliche Arbeiten, sowie deren Bearbeitung und Beurteilung 
-im Backend durch die Verwendung der Metainformation über die Struktur des Dokuments. Um die Dokumente nach ihrer Priorität zu listen kommen verschiedene Ranking strategies z.B. Jelinek-Mercer smoothing, zum 
-Einsatz. Durch Erweiterungen wie contextualization or aggregation strategies werden die Ergebnisse des rankings noch verbessert.
+As stated in the \nameref{sec:Introduction} this intended master's thesis is concerned with improving the quality of search queries and their results for scientific
+publications in PDF. According to \cite{KGJK14} all academic publications consist of similar structures. These structures are divided into chapters,
+sections, subsections and so on. The Structured Text Retrieval Model, as proposed in \cite{RNBY99}, can be applied to these documents very well.
+The model describes the handling of search queries and their corresponding results as well as the post-processing in the back end using structural meta information. 
+In order to sort the documents with respect to their relevance, various ranking strategies such as the Jelenik-Mercer smoothing are used. Through extensions like the 
+contextualization strategy and aggregation strategy the ranking will be refined further.
 
-Um einfache und robuste search queries Strukuren zu gewährleisten wird die Syntax wie in \cite{Coh03} gestaltet. Dabei bestehen die queries aus mehreren Termen, welche in der Form \textit{label}:\textit{keyword} 
-gegliedert sind. Zusätzlich können Termen ein \textit{+} vorangestellt werden, um sie besonders hoch zu priorisieren. Durch diese Struktur wird das user interface dann mit einer erweiteren Suche ausgebaut, um 
-die usability stark zu erhöhen und ein selbsterklärendes Front End zu schaffen.
+To ensure simple and stable search query structures the syntax will be constructed as described in \cite{Coh03}. Thereby the queries consist of multiple terms
+which are structured according to \textit{label}:\textit{keyword}. Furthermore, the terms can be prefixed with \textit{+} to prioritize them specifically high. By means
+of this structure the user interface will be extended with an advanced search in order to improve usability and therefore create an intuitive front end.
 
-Der letzte Punkt um die usability zu verbessern sind spelling checks. Diese können wie in \cite{SPCB13} beschrieben implementiert werden. Hierbei wird mithilfe der Levenshtein Distance ermittelt, ob ein Wort
-korrekt geschrieben wurde. Falls dies nicht der Fall ist werden ähnliche Wörter gesucht und vorgeschlagen. 
+The final usability improvement is the achieved through spell checks. These can be implemented as described in \cite{SPCB13}. In it the Levenshtein Distance is used to verify 
+that a word is spelled correctly.
 
-\section{Aufbau}
+\section{Structure}
 
-Zu Beginn der Arbeit wird eine Grundstruktur für das Projekt geschaffen. Durch das microframework Flask (\url{http://flask.pocoo.org/}) werden das Frontend in Javascript, und das Backend in Python geschrieben.
-Durch einfache requests lassen sich Eingaben von der Userseite zur Serverseite schicken. Dort wird die Anfrage dann bearbeitet und ein response versendet. Dies bildet ein solides Grundgerüst für das 
-structured text retrieval model.
+At the beginning the fundamental structure for the project will be implemented. The micro framework Flask requires the front end to be coded in JavaScript and the back end in Python. 
+Via simple requests inputs from the user side are sent to the server side. There the query is processed and a response is generated. These components form a solid ground work 
+for the Text Retrieval Model.
 
-Python besitzt eine eigene library um Verbindungen zu MySQL Datenbanken herzustellen. Letzere wird verwendet um eine Datenbank wie in \cite{YA94} beschrieben, zu generieren. Die Befüllung mit 
-wissenschaftlichen Arbeiten in der Datenbank erfolgt mit den in \cite{KGJK14} beschriebenen Tool.
+Python provides a native library to connect to MySQL databases. It will be used to generate a database as proposed in \cite{YA94}. This database will
+be filled with scientific publications via the tool described in \cite{KGJK14}. Then a ranking system, according to \cite{MRS08, RNBY99} can be implemented.
 
-Daran anschließend kann ein ranking system nach \cite{MRS08, RNBY99} implementiert werden. 
+The next step is to apply spell checking to the search queries in order to enhance the usability.
 
-Als nächster Schritt folgt die Anwendung der spelling check auf die search queries um die Usability zu erhöhen.
+Finally, an advanced search will be added that allows the user to formulate searches without having to know about the syntax of the queries, which will result in
+an intuitive and simple user interface.
 
-Zur Verbesserung des Userinterface, wird zuletzt eine erweiterte Suche angewendet. Dadurch muss man den Syntax der search queries nicht mehr kennen, was ein selbsterklärendes Userinterface zur Folge hat. 
-
-\section{Gliederung}
+\section{Outline}
 
 \begin{enumerate}
  \item Introduction
@@ -113,54 +116,54 @@ Zur Verbesserung des Userinterface, wird zuletzt eine erweiterte Suche angewende
   \item Search queries
   \item Real-word error detection and correction
  \end{enumerate}
- \item Implementierung
+ \item Implementation
  \begin{enumerate}
-  \item Basisstruktur
-  \item Aufbau der Datenbank
+  \item Fundamental Structure
+  \item Setup of the Database
   \item Userinterface
   \item Satisfaction of searchqueries
   \item Ranking system
   \item Spelling checks
  \end{enumerate}
- \item Result
+ \item Results
  \item Conclusion
 \end{enumerate}
 
-\section{Auswahlbibliografie}
+\section{Selected Bibliography}
 
 \bibliography{literature}
 \nocite{*}
 
-\section{Zeitplan}
+\section{Schedule}
 
 
 \begin{tabular}{ | l | l | c | }
   \hline
   \rowcolor{lightblue}
-  \textbf{Arbeitsschritt} & \textbf{Aufgabe im Detail} & \textbf{Deadline} \\ \hline
-  \textbf{Implementierungsphase} & Erstellen einer Basisstruktur & \\ \hline
-    & Datenbank & \\ \hline
-    & Import von PDFs via pdf-extractor & \\ \hline
+  \textbf{Step} & \textbf{Task in Detail} & \textbf{Deadline} \\ \hline
+  \textbf{Implementation Process} & Creation of the Fundamental Structure & \\ \hline
+    & Database & \\ \hline
+    & Import of PDFs via pdf-extractor & \\ \hline
     & Satisfaction of search queries & \\ \hline
-    & Simple ranking system & \\ \hline
-    & Improve ranking system & \\ \hline
-    & Implement spelling checks & \\ \hline
+    & Simple Ranking System & \\ \hline
+    & Improved Ranking System & \\ \hline
+    & Implement Spell Checks & \\ \hline
     & Improve Userinterface & \\ \hline \hline
-  \textbf{Schreibphase} & Introduction & \\ \hline
+  \textbf{Writing Process} & Introduction & \\ \hline
     & Related Work & \\ \hline
     & Unsupervised document structure analysis & \\ \hline
     & Structured Text Retrieval & \\ \hline
     & STR with an Object-Oriented Database System & \\ \hline
     & Search queries & \\ \hline
     & Spelling Checks & \\ \hline
-    & Implementierung & \\ \hline
-    & Basisstruktur & \\ \hline
-    & Aufbau der Datenbank & \\ \hline
+    & Implementation & \\ \hline
+    & Fundamental Structure & \\ \hline
+    & Setup of the Database & \\ \hline
     & Userinterface & \\ \hline
     & Satisfaction of searchqueries & \\ \hline
     & Ranking system & \\ \hline
     & Spelling checks & \\ \hline
-    & Result & \\ \hline
+    & Results & \\ \hline
     & Conclusion & \\ \hline
     & Korrektur & \\ \hline
 \end{tabular}
