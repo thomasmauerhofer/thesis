@@ -36,7 +36,7 @@
 Dipl.-Ing. Dr.techn. Roman Kern \\ \\ \\ \\ \\
 Thomas Mauerhofer (1031957)}
 
-\date{Graz, am \today{}}
+\date{Graz, \today{}}
 
 \bibliographystyle{plain}
 
@@ -59,16 +59,16 @@ Thomas Mauerhofer (1031957)}
 
 In modern society searching for information via the Internet and specifically via Google's search engine has become a regular part of
 day-to-day life. While Google registered 10,000 searches a day in 1998, the same number of queries was sent per second in 2006 \cite{Google}.
-Therefore it stands to reason that the amount of accessible information is increasing steadily. On a daily basis, new websites are created,
-articles are written and scientific papers are published. To manage this amount of data and in order to distinguish between relevant and non-relevant
-sources various search engines are used. In this regard, searches should be simple and yet precise.
+This shows that searching for data becomes more and more important. On a daily basis, new websites are created,
+articles are written and scientific papers are published. In order to manage this amount of data and to distinguish between relevant and non-relevant
+sources various search engines are used. Therefore, searches should be simple and precise.
 
-Looking at search engines for scientific publications and research there exists a broad selection of possibilities. One of the best known engines is
-Google Scholar. It uses a simple input interface and lists the results with respect to their relevance. These listings contain data
+Looking at search engines for scientific publications and research there is a broad selection of possibilities. One of the best-known engines is
+Google Scholar. It uses a simple input interface and lists the results with regards to their relevance. These listings contain data
 in various formats from different years covering a variety of topics which do not necessarily reflect the search criteria. However, especially
 while working on a scientific paper it is vital to obtain precise results.
 
-This paper is concerned with improving the quality of search queries and their results for scientific publications in the Portable Document
+This paper is concerned with improving the quality of search queries and their results of different scientific publications in the Portable Document
 Format (PDF). A common problem while searching for a specific author, for example, is that the most popular search engines often do not only list all of
 his or her articles and books but also sources that cite these publications. The objective of this paper is to provide measures which enhance the stability of the search
 terms and optimize the usability in order to deliver more concise results. To do so, simple search query structures, an intuitive front end, spell checks
@@ -76,32 +76,32 @@ and post-processing in the back end will be implemented.
 
 \section{Related Work}
 
-As stated in the \nameref{sec:Introduction} this intended master's thesis is concerned with improving the quality of search queries and their results for scientific
+As stated in the \nameref{sec:Introduction} this master's thesis is concerned with improving the quality of search queries and their results for scientific
 publications in PDF. According to \cite{KGJK14} all academic publications consist of similar structures. These structures are divided into chapters,
-sections, subsections and so on. The Structured Text Retrieval Model, as proposed in \cite{RNBY99}, can be applied to these documents very well.
+sections, subsections and so on. The Structured Text Retrieval Model, as proposed in \cite{RNBY99}, can be applied to these documents perfectly.
 The model describes the handling of search queries and their corresponding results as well as the post-processing in the back end using structural meta information. 
-In order to sort the documents with respect to their relevance, various ranking strategies such as the Jelenik-Mercer smoothing are used. Through extensions like the 
+In order to sort the documents with regards to their relevance, various ranking strategies such as the Jelenik-Mercer smoothing are used. Through extensions such as the 
 contextualization strategy and aggregation strategy the ranking will be refined further.
 
 To ensure simple and stable search query structures the syntax will be constructed as described in \cite{Coh03}. Thereby the queries consist of multiple terms
-which are structured according to \textit{label}:\textit{keyword}. Furthermore, the terms can be prefixed with \textit{+} to prioritize them specifically high. By means
-of this structure the user interface will be extended with an advanced search in order to improve usability and therefore create an intuitive front end.
+which are structured according to \textit{label}:\textit{keyword} format. Furthermore, the terms can be prefixed with \textit{+} to increase their priority. Due to
+this structure, the user interface will be extended with an advanced search in order to improve usability and therefore create an intuitive front end.
 
-The final usability improvement is the achieved through spell checks. These can be implemented as described in \cite{SPCB13}. In it the Levenshtein Distance is used to verify 
+The final usability improvement is achieved through spell checks. These can be implemented as described in \cite{SPCB13}, where the Levenshtein Distance is used to verify 
 that a word is spelled correctly.
 
 \section{Structure}
 
-At the beginning the fundamental structure for the project will be implemented. The micro framework Flask requires the front end to be coded in JavaScript and the back end in Python. 
-Via simple requests inputs from the user side are sent to the server side. There the query is processed and a response is generated. These components form a solid ground work 
+In the first stage the fundamental structure for the project will be implemented. The micro framework Flask requires the front end to be coded in JavaScript and the back end to be in Python. 
+Via simple requests inputs from the user side queries are sent to the server side. There the query is processed and a response is generated. These components form a solid ground work 
 for the Text Retrieval Model.
 
-Python provides a native library to connect to MySQL databases. It will be used to generate a database as proposed in \cite{YA94}. This database will
-be filled with scientific publications via the tool described in \cite{KGJK14}. Then a ranking system, according to \cite{MRS08, RNBY99} can be implemented.
+Python provides a native library to connect to MySQL databases. In the next Stage it will be used to generate a database as proposed in \cite{YA94}. To fill up the database with data a Util to classify 
+the document structure, as descripted in \cite{KGJK14}, is used. Then a ranking system, according to \cite{MRS08, RNBY99} can be implemented.
 
-The next step is to apply spell checking to the search queries in order to enhance the usability.
+Thereafter spell checking of the search terms, as proposed in \cite{SPCB13}, is aplied in order to enhance the usability.
 
-Finally, an advanced search will be added that allows the user to formulate searches without having to know about the syntax of the queries, which will result in
+Finally, an advanced search will be added that allows the user to formulate searches without prior knowledge regarding the syntax of the queries, which will result in
 an intuitive and simple user interface.
 
 \section{Outline}
@@ -110,20 +110,20 @@ an intuitive and simple user interface.
  \item Introduction
  \item Related Work
  \begin{enumerate}
-  \item Unsupervised document structure analysis
+  \item Unsupervised Document Structure Analysis
   \item Structured Text Retrieval
   \item Structured-Text Retrieval System with an Object-Oriented Database System
-  \item Search queries
-  \item Real-word error detection and correction
+  \item Search Queries
+  \item Real-Word Error Detection and Correction
  \end{enumerate}
  \item Implementation
  \begin{enumerate}
   \item Fundamental Structure
   \item Setup of the Database
-  \item Userinterface
-  \item Satisfaction of searchqueries
+  \item User Interface
+  \item Satisfaction of Search Queries
   \item Ranking system
-  \item Spelling checks
+  \item Spell Checks
  \end{enumerate}
  \item Results
  \item Conclusion
@@ -141,31 +141,31 @@ an intuitive and simple user interface.
   \hline
   \rowcolor{lightblue}
   \textbf{Step} & \textbf{Task in Detail} & \textbf{Deadline} \\ \hline
-  \textbf{Implementation Process} & Creation of the Fundamental Structure & \\ \hline
-    & Database & \\ \hline
-    & Import of PDFs via pdf-extractor & \\ \hline
-    & Satisfaction of search queries & \\ \hline
-    & Simple Ranking System & \\ \hline
-    & Improved Ranking System & \\ \hline
-    & Implement Spell Checks & \\ \hline
-    & Improve Userinterface & \\ \hline \hline
-  \textbf{Writing Process} & Introduction & \\ \hline
-    & Related Work & \\ \hline
-    & Unsupervised document structure analysis & \\ \hline
-    & Structured Text Retrieval & \\ \hline
-    & STR with an Object-Oriented Database System & \\ \hline
-    & Search queries & \\ \hline
-    & Spelling Checks & \\ \hline
-    & Implementation & \\ \hline
-    & Fundamental Structure & \\ \hline
-    & Setup of the Database & \\ \hline
-    & Userinterface & \\ \hline
-    & Satisfaction of searchqueries & \\ \hline
-    & Ranking system & \\ \hline
-    & Spelling checks & \\ \hline
-    & Results & \\ \hline
-    & Conclusion & \\ \hline
-    & Korrektur & \\ \hline
+  \textbf{Implementation Process} & Creation of the Fundamental Structure & 2017-05-31 \\ \hline
+    & Database & 2017-06-30 \\ \hline
+    & Import of PDFs via PDF-Extractor & 2017-06-30 \\ \hline
+    & Satisfaction of Search Queries & 2017-07-31 \\ \hline
+    & Simple Ranking System & 2017-07-31 \\ \hline
+    & Improved Ranking System & 2017-08-31 \\ \hline
+    & Implement Spell Checks & 2017-09-30 \\ \hline
+    & Improve User Interface & 2017-10-31 \\ \hline \hline
+  \textbf{Writing Process} & Introduction & 2017-10-31 \\ \hline
+    & Related Work & 2017-11-30 \\ \hline
+    & Unsupervised Document Structure Analysis & 2017-11-30 \\ \hline
+    & Structured Text Retrieval & 2017-11-30 \\ \hline
+    & STR with an Object-Oriented Database System & 2017-12-31 \\ \hline
+    & Search Queries & 2017-12-31 \\ \hline
+    & Spelling Checks & 2018-01-31 \\ \hline
+    & Implementation & 2018-01-31 \\ \hline
+    & Fundamental Structure & 2018-02-28 \\ \hline
+    & Setup of the Database & 2018-02-28 \\ \hline
+    & User Interface & 2018-03-31 \\ \hline
+    & Satisfaction of Search Queries & 2018-03-31 \\ \hline
+    & Ranking System & 2018-03-31 \\ \hline
+    & Spell Checks & 2018-04-30 \\ \hline
+    & Results & 2018-04-30  \\ \hline
+    & Conclusion & 2018-04-30 \\ \hline
+    & Correction & 2018-05-31 \\ \hline
 \end{tabular}
 
 \end{document}
