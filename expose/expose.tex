@@ -60,7 +60,7 @@ Thomas Mauerhofer (1031957)}
 In modern society searching for information via the Internet and specifically via Google's search engine has become a regular part of
 day-to-day life. While Google registered 10,000 searches a day in 1998, the same number of queries was sent per second in 2006 \cite{Google}.
 This shows that searching for data becomes more and more important. On a daily basis, new websites are created,
-articles are written and scientific papers are published. In order to manage this amount of data and to distinguish between relevant and non-relevant
+articles are written and scientific papers are published. In order to manage this amount of data and to distinguish between relevant and irrelevant
 sources various search engines are used. Therefore, searches should be simple and precise.
 
 Looking at search engines for scientific publications and research there is a broad selection of possibilities. One of the best-known engines is
@@ -69,8 +69,8 @@ in various formats from different years covering a variety of topics which do no
 while working on a scientific paper it is vital to obtain precise results.
 
 This paper is concerned with improving the quality of search queries and their results of different scientific publications in the Portable Document
-Format (PDF). A common problem while searching for a specific author, for example, is that the most popular search engines often do not only list all of
-his or her articles and books but also sources that cite these publications. The objective of this paper is to provide measures which enhance the stability of the search
+Format (PDF). A common problem when searching for a specific author, for example, is that the most popular search engines often do not only list all of
+the author's articles and books but also sources that cite their publications. The objective of this paper is to provide measures which enhance the stability of the search
 terms and optimize the usability in order to deliver more concise results. To do so, simple search query structures, an intuitive front end, spell checks
 and post-processing in the back end will be implemented.
 
@@ -78,7 +78,7 @@ and post-processing in the back end will be implemented.
 
 As stated in the \nameref{sec:Introduction} this master's thesis is concerned with improving the quality of search queries and their results for scientific
 publications in PDF. According to \cite{KGJK14} all academic publications consist of similar structures. These structures are divided into chapters,
-sections, subsections and so on. The Structured Text Retrieval Model, as proposed in \cite{RNBY99}, can be applied to these documents perfectly.
+sections, subsections and so on. The Structured Text Retrieval Model, as proposed in \cite{RNBY99}, can be perfectly applied to these documents.
 The model describes the handling of search queries and their corresponding results as well as the post-processing in the back end using structural meta information. 
 In order to sort the documents with regards to their relevance, various ranking strategies such as the Jelenik-Mercer smoothing are used. Through extensions such as the 
 contextualization strategy and aggregation strategy the ranking will be refined further.
@@ -92,14 +92,14 @@ that a word is spelled correctly.
 
 \section{Structure}
 
-In the first stage the fundamental structure for the project will be implemented. The micro framework Flask requires the front end to be coded in JavaScript and the back end to be in Python. 
+In the first stage the fundamental structure for the project will be implemented. The micro framework Flask requires the front end to be coded in JavaScript and the back end to be in Python.  % link zu flask
 Via simple requests inputs from the user side queries are sent to the server side. There the query is processed and a response is generated. These components form a solid ground work 
 for the Text Retrieval Model.
 
-Python provides a native library to connect to MySQL databases. In the next Stage it will be used to generate a database as proposed in \cite{YA94}. To fill up the database with data a Util to classify 
+Python provides a native library to connect to MySQL databases. In the next stage it will be used to generate a database as proposed in \cite{YA94}. To fill up the database with data a util to classify 
 the document structure, as descripted in \cite{KGJK14}, is used. Then a ranking system, according to \cite{MRS08, RNBY99} can be implemented.
 
-Thereafter spell checking of the search terms, as proposed in \cite{SPCB13}, is aplied in order to enhance the usability.
+Thereafter, in order to enhance the usability spell checking of the search terms, as proposed in \cite{SPCB13}, is applied.
 
 Finally, an advanced search will be added that allows the user to formulate searches without prior knowledge regarding the syntax of the queries, which will result in
 an intuitive and simple user interface.
@@ -122,7 +122,7 @@ an intuitive and simple user interface.
   \item Setup of the Database
   \item User Interface
   \item Satisfaction of Search Queries
-  \item Ranking system
+  \item Ranking System
   \item Spell Checks
  \end{enumerate}
  \item Results
