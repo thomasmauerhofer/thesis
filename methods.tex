@@ -5,6 +5,19 @@
 \label{sec:dataset}
 
 Describe the used Dataset, and how it looks like.
+The Dataset contains 659 papers in PDF format.
+
+For the bag of words and the neural network a dataset was generated. This dataset contains all chapter names, and the corresponding class. 
+At a preprocessing step... stopwords and symbols removed, stemmed, and lower case... Few examples are:
+
+\begin{itemize}[label={}]
+  \item introduct: INDRODUCTION
+  \item relat work: BACKGROUND
+  \item conclus futur work: DISCUSSION
+  \item result discuss: RESULTS DISCUSSION
+\end{itemize}
+
+Overall the dataset has 1897 enties. The chapter names contain 359 different word tokens.
 
 \section{Preprocessing}
 \label{sec:preprocessing}
@@ -23,6 +36,57 @@ Describe the Data Structure from the Tool Output. How it was changed in the prep
 \section{Chapters to IMRaD mapping}
 \label{sec:chapters-to-imrad-mapping}
 
+Descripe general idea
+
+\subsection{Creating the Feature Vector}
+\label{subsec:creating-feature-vector}
+
+\begin{tabular}{| c | c | c |}
+\hline
+\rowcolor{lightblue}
+\textbf{word} & \textbf{counted in datase}t & \textbf{feature} \\ \hline
+introduct & 457 & yes \\ \hline
+conclus & 451 & yes \\ \hline
+work & 324 & yes \\ \hline
+relat & 193 & yes \\ \hline
+result & 182 & yes \\ \hline
+experi & 147 & yes \\ \hline
+evalu & 143 & yes \\ \hline
+futur & 117 & yes \\ \hline
+abstract & 117 & yes \\ \hline
+discuss & 115 & yes \\ \hline
+experiment & 98 & yes \\ \hline
+acknowledg & 72 & yes \\ \hline
+analysi & 48 & yes \\ \hline
+background & 37 & yes \\ \hline
+summari & 24 & yes \\ \hline
+methodolog & 24 & yes \\ \hline
+setup & 18 & yes \\ \hline
+dataset & 18 & yes \\ \hline
+previou & 17 & yes \\ \hline
+data & 16 & yes \\ \hline
+empir & 14 & yes \\ \hline
+vi & 14 & no \\ \hline
+method & 14 & yes \\ \hline
+comparison & 14 & yes \\ \hline
+model & 12 & yes \\ \hline
+vii & 12 & no \\ \hline
+resourc & 11 & yes \\ \hline
+iii & 10 & no \\ \hline
+gener & 10 & yes \\ \hline
+iv & 10 & no \\ \hline
+system & 10 & yes \\ \hline
+research & 9 & yes \\ \hline
+set & 9 & yes \\ \hline
+task & 8 & yes \\ \hline
+propos & 8 & yes \\ \hline
+outlook & 7 & yes \\ \hline
+measur & 7 & yes \\ \hline
+\end{tabular}
+
+\subsection{Classify Chapters via a Neural Network}
+\label{subsec:creating-feature-vector}
+
 Describe how the Neural Network is used to label the Capters.
 
 \myfig{accuracy_nn}
@@ -36,13 +100,19 @@ Describe how the Neural Network is used to label the Capters.
       {Loss during the training of the neural network. Categorical Crossentropy is used as loss function}
       {Loss during the training of the neural network}
       {fig:loss_nn}
-      
-      
-loss: 0.055154 \\
-acc: 0.988930 \\
-recall: 0.971540 \\
-precision: 0.998419 \\
-f1: 0.984600 \\
+
+loss: 0.060084        \\
+acc: 0.989071         \\
+recall: 0.971722      \\
+precision: 0.998510   \\
+f1: 0.984738
+
+
+
+
+
+
+
 
 
 %\chapter{Information Retrieval}
