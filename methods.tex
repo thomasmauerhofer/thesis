@@ -17,7 +17,7 @@ At a preprocessing step... stopwords and symbols removed, stemmed, and lower cas
   \item result discuss: RESULTS DISCUSSION
 \end{itemize}
 
-Overall the dataset has 1897 enties. The chapter names contain 359 different word tokens.
+Overall the dataset has 2013 enties. The chapter names contain 359 different word tokens.
 
 \section{Preprocessing}
 \label{sec:preprocessing}
@@ -41,47 +41,29 @@ Descripe general idea
 \subsection{Creating the Feature Vector}
 \label{subsec:creating-feature-vector}
 
-\begin{tabular}{| c | c | c |}
+\begin{tabular}{| c | c | c || c | c | c |}
 \hline
 \rowcolor{lightblue}
-\textbf{word} & \textbf{counted in datase}t & \textbf{feature} \\ \hline
-introduct & 457 & yes \\ \hline
-conclus & 451 & yes \\ \hline
-work & 324 & yes \\ \hline
-relat & 193 & yes \\ \hline
-result & 182 & yes \\ \hline
-experi & 147 & yes \\ \hline
-evalu & 143 & yes \\ \hline
-futur & 117 & yes \\ \hline
-abstract & 117 & yes \\ \hline
-discuss & 115 & yes \\ \hline
-experiment & 98 & yes \\ \hline
-acknowledg & 72 & yes \\ \hline
-analysi & 48 & yes \\ \hline
-background & 37 & yes \\ \hline
-summari & 24 & yes \\ \hline
-methodolog & 24 & yes \\ \hline
-setup & 18 & yes \\ \hline
-dataset & 18 & yes \\ \hline
-previou & 17 & yes \\ \hline
-data & 16 & yes \\ \hline
-empir & 14 & yes \\ \hline
-vi & 14 & no \\ \hline
-method & 14 & yes \\ \hline
-comparison & 14 & yes \\ \hline
-model & 12 & yes \\ \hline
-vii & 12 & no \\ \hline
-resourc & 11 & yes \\ \hline
-iii & 10 & no \\ \hline
-gener & 10 & yes \\ \hline
-iv & 10 & no \\ \hline
-system & 10 & yes \\ \hline
-research & 9 & yes \\ \hline
-set & 9 & yes \\ \hline
-task & 8 & yes \\ \hline
-propos & 8 & yes \\ \hline
-outlook & 7 & yes \\ \hline
-measur & 7 & yes \\ \hline
+\textbf{word} & \textbf{counted in datase}t & \textbf{feature} & \textbf{word} & \textbf{counted in datase}t & \textbf{feature} \\ \hline
+introduct & 457 & yes & data & 16 & yes \\ \hline
+conclus & 451 & yes & empir & 14 & yes \\ \hline
+work & 324 & yes & vi & 14 & no \\ \hline
+relat & 193 & yes & method & 14 & yes \\ \hline
+result & 182 & yes & comparison & 14 & yes \\ \hline
+experi & 147 & yes & model & 12 & yes \\ \hline
+evalu & 143 & yes & vii & 12 & no \\ \hline
+futur & 117 & yes & resourc & 11 & yes \\ \hline
+abstract & 117 & yes & iii & 10 & no \\ \hline
+discuss & 115 & yes & gener & 10 & yes \\ \hline
+experiment & 98 & yes & iv & 10 & no \\ \hline
+acknowledg & 72 & yes & system & 10 & yes \\ \hline
+analysi & 48 & yes & research & 9 & yes \\ \hline
+background & 37 & yes & set & 9 & yes \\ \hline
+summari & 24 & yes & task & 8 & yes \\ \hline
+methodolog & 24 & yes & propos & 8 & yes \\ \hline
+setup & 18 & yes & outlook & 7 & yes \\ \hline
+dataset & 18 & yes & measur & 7 & yes \\ \hline
+previou & 17 & yes & & &\\ \hline
 \end{tabular}
 
 \subsection{Classify Chapters via a Neural Network}
@@ -100,6 +82,8 @@ Describe how the Neural Network is used to label the Capters.
       {Loss during the training of the neural network. Categorical Crossentropy is used as loss function}
       {Loss during the training of the neural network}
       {fig:loss_nn}
+      
+Trainingset with 1610 entries, Testset with 403 entries
 
 loss: 0.060084        \\
 acc: 0.989071         \\
