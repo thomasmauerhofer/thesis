@@ -1,0 +1,13 @@
+eval:
+
+Simple Approach - without importance to sections:
+Mean: 79.91666666666667 | 0.18858743765918443
+Standard Deviation: 116.76201460901382 | 0.2746176323969689
+
+Simple Approach - only background:
+Mean: 86.56382978723404 | 0.2176710224976904
+Standard Deviation: 109.86070082305469 | 0.2743257182094717
+
+Simple Approach - importance to sections:
+Mean: 82.70370370370371 | 0.21529020766660684
+Standard Deviation: 117.85201480539051 | 0.29780301481041277
