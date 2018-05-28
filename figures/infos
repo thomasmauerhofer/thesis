@@ -11,3 +11,16 @@ Standard Deviation: 109.86070082305469 | 0.2743257182094717
 Simple Approach - importance to sections:
 Mean: 82.70370370370371 | 0.21529020766660684
 Standard Deviation: 117.85201480539051 | 0.29780301481041277
+
+
+Ranked Boolean - without importance to sections:
+Mean: 67.15625 | 0.15907802442432753
+Standard Deviation: 101.44819368822772 | 0.23870741825435768
+
+Ranked Boolean - only background:
+Mean: 105.38297872340425 | 0.26671101592932134
+Standard Deviation: 111.85316232919881 | 0.27534951346866726
+
+Ranked Boolean - importance to sections:
+Mean: 97.9074074074074 | 0.25721568164035236
+Standard Deviation: 119.1930069596924 | 0.3019222099766743
