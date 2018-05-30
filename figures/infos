@@ -1,18 +1,30 @@
 eval:
 
-Simple Approach - without importance to sections:
+tf - without importance to sections:
 Mean: 79.91666666666667 | 0.18858743765918443
 Standard Deviation: 116.76201460901382 | 0.2746176323969689
 
-Simple Approach - only background:
+tf - only background:
 Mean: 86.56382978723404 | 0.2176710224976904
 Standard Deviation: 109.86070082305469 | 0.2743257182094717
 
-Simple Approach - importance to sections:
+tf - importance to sections:
 Mean: 82.70370370370371 | 0.21529020766660684
 Standard Deviation: 117.85201480539051 | 0.29780301481041277
 
+tf-idf - without importance to sections:
+Mean: 79.45833333333333 | 0.1881213432197483
+Standard Deviation: 112.4162574121535 | 0.26541707569457057
 
+tf-idf - only background:
+Mean: 73.7872340425532 | 0.18500970012222812
+Standard Deviation: 99.13529035856574 | 0.249403107379056
+
+tf-idf - importance to sections:
+Mean: 70.77777777777777 | 0.18284317162446848
+Standard Deviation: 99.60508440589857 | 0.2514706221250783
+
+Params in evaluate...
 Ranked Boolean - without importance to sections:
 Mean: 67.64583333333333 | 0.16021550897248252
 Standard Deviation: 103.132699628386 | 0.2426430929895734
@@ -24,3 +36,17 @@ Standard Deviation: 112.06593036177277 | 0.2759834882047072
 Ranked Boolean - importance to sections:
 Mean: 95.25925925925925 | 0.25052700902911285
 Standard Deviation: 119.92763021230842 | 0.304026091136194
+
+
+Ranked Boolean extended - without importance to sections:
+Mean: 70.96875 | 0.16759966586549102
+Standard Deviation: 110.51173138376532 | 0.2599079755504878
+
+Ranked Boolean extended - only background:
+Mean: 101.40425531914893 | 0.2562722313611938
+Standard Deviation: 108.80993766694174 | 0.26795933718420933
+
+Ranked Boolean extended - importance to sections:
+Mean: 94.81481481481481 | 0.24917635997840742
+Standard Deviation: 116.52643541656818 | 0.2957591271470727
+
