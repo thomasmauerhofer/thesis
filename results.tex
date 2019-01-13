@@ -1,2 +1,121 @@
 \chapter{Evaluation Results}
 \label{cha:evaluation-results}
+Mean Average Precision is used to compare the search algorithms.
+
+
+\section{Leveraging chapter features}
+Does it make sense to use aditional information about the chapter in the search step?
+\subsection{Explicit Search - N-Gram}
+\begin{center}
+  \begin{tabular}{ | c | c | c | c | c | c | }
+    \hline
+    \rowcolor{lightblue}
+    \textbf{n} & \textbf{\# queries} & \textbf{env} & \textbf{TF} & \textbf{Tf-idf} & \textbf{RBR} \\ \hline
+    \multirow{2}{*}{2} & \multirow{2}{*}{2433} & without & 0.1346 & 0.1585 & 0.1649 \\ \cline{3-6}
+                                              && with    & 0.1255 & 0.1453 & 0.1179 \\ \hline \hline
+    \multirow{2}{*}{3} & \multirow{2}{*}{2213} & without & 0.149  & 0.1775 & 0.1796 \\ \cline{3-6}
+                                              && with    & 0.1311 & 0.1569 & 0.12   \\ \hline \hline
+    \multirow{2}{*}{4} & \multirow{2}{*}{1851} & without & 0.1735 & 0.1991 & 0.1992 \\ \cline{3-6}
+                                              && with    & 0.1431 & 0.1706 & 0.1341 \\ \hline
+  \end{tabular}
+\end{center}
+
+
+\subsection{Full Papers - More Like This}
+\begin{center}
+  \begin{tabular}{ | c | c | c | c | c | }
+    \hline
+    \rowcolor{lightblue}
+    \textbf{\# papers} & \textbf{env} & \textbf{Tf} & \textbf{Tf-idf} & \textbf{RBR} \\ \hline
+    \multirow{2}{*}{332} & without & 0.1431 & 0.1532 & 0.0703 \\ \cline{2-5}
+                         & with   & 0.1806 & 0.1993 & 0.0672 \\ \hline
+  \end{tabular}
+\end{center}
+
+
+\section{TODO: Meaningful chapter name...}
+Does the search result improve if only a single chapter is used for searching? \\
+Which chapter has the most influence?
+
+\subsection{Explicit Search - N-Gram}
+\begin{center}
+  \begin{tabular}{ | c | c | c | c | c | c |}
+    \hline
+    \rowcolor{lightblue}
+    \textbf{n} & \textbf{\# queries} & \textbf{chapter} & \textbf{Tf} & \textbf{Tf-idf} & \textbf{RBR} \\ \hline
+    \multirow{5}{*}{2} & \multirow{5}{*}{1261} & introduction & 0.1714 & 0.2095 & 0.1396 \\ \cline{3-6}
+                                              && background   & 0.1484 & 0.1757 & 0.1680 \\ \cline{3-6}
+                                              && methods      & 0.1563 & 0.1957 & 0.1526 \\ \cline{3-6}
+                                              && results      & 0.1733 & 0.1966 & 0.1632 \\ \cline{3-6}
+                                              && discussion   & 0.1865 & 0.1983 & 0.1737 \\ \hline \hline
+    \multirow{5}{*}{3} & \multirow{5}{*}{1349} & introduction & 0.1732 & 0.2164 & 0.1495 \\ \cline{3-6}
+                                              && background   & 0.1368 & 0.1752 & 0.1608 \\ \cline{3-6}
+                                              && methods      & 0.1482 & 0.1857 & 0.1453 \\ \cline{3-6}
+                                              && results      & 0.1585 & 0.2048 & 0.1604 \\ \cline{3-6}
+                                              && discussion   & 0.177  & 0.2044 & 0.1807 \\ \hline \hline
+    \multirow{5}{*}{4} & \multirow{5}{*}{1248} & introduction & 0.1861 & 0.2315 & 0.1680 \\ \cline{3-6}
+                                              && background   & 0.1435 & 0.1830 & 0.1811 \\ \cline{3-6}
+                                              && methods      & 0.1589 & 0.1871 & 0.1439 \\ \cline{3-6}
+                                              && results      & 0.1697 & 0.2154 & 0.1706 \\ \cline{3-6}
+                                              && discussion   & 0.1769 & 0.2058 & 0.1817 \\ \hline
+  \end{tabular}
+\end{center}
+
+
+\subsection{Full Papers - More Like This}
+\begin{center}
+  \begin{tabular}{ | c | c | c | c | c | }
+    \hline
+    \rowcolor{lightblue}
+    \textbf{chapter} & \textbf{\# papers} & \textbf{Tf} & \textbf{Tf-idf} & \textbf{RBR} \\ \hline
+    introduction & 332 & 0.1599 & 0.1891 & 0.0905 \\ \hline
+    background   & 332 & 0.1378 & 0.1767 & 0.0819 \\ \hline
+    methods      & 295 & 0.1319 & 0.148  & 0.0678 \\ \hline
+    results      & 230 & 0.1066 & 0.1226 & 0.0727 \\ \hline
+    discussion   & 276 & 0.1085 & 0.1465 & 0.0591 \\ \hline
+  \end{tabular}
+\end{center}
+
+
+\section{TODO:Implicit search - unclassified Chapters}
+When using a paper to search for other papers, should unclassified chapters also be used in the search request?
+\begin{center}
+  \begin{tabular}{ | c | c | c | c | c | }
+    \hline
+    \rowcolor{lightblue}
+    \textbf{\# papers} & \textbf{env} & \textbf{Tf} & \textbf{Tf-idf} & \textbf{RBR} \\ \hline
+    \multirow{2}{*}{332} & without & 0.1806 & 0.1993 & 0.0672 \\ \cline{2-5}
+                         & with    & 0.1801 & 0.1994 & 0.0533 \\ \hline
+  \end{tabular}
+\end{center}
+
+
+\section{Extended Versions of Ranked Boolean Retrieval}
+Can the result of the Ranked Boolean Retrieval be improved?
+% TODO: For shure it can be... Better formulation of what has been done to improve the result.
+
+\subsection{Explicit Search - N-Gram}
+\begin{center}
+  \begin{tabular}{ | c | c | c | c | c | }
+    \hline
+    \rowcolor{lightblue}
+    \textbf{n} & \textbf{\# queries} & \textbf{env} & \textbf{RBR}  & \textbf{Extended RBR} \\ \hline
+    \multirow{2}{*}{2} & \multirow{2}{*}{2433} & without & 0.1649 & 0.1703 \\ \cline{3-5}
+                                              && with    & 0.1179 & 0.1141 \\ \hline \hline
+    \multirow{2}{*}{3} & \multirow{2}{*}{2213} & without & 0.1796 & 0.1954 \\ \cline{3-5}
+                                              && with    & 0.12   & 0.1167 \\ \hline \hline
+    \multirow{2}{*}{4} & \multirow{2}{*}{1851} & without & 0.1992 & 0.2236 \\ \cline{3-5}
+                                              && with    & 0.1341 & 0.1267 \\ \hline
+  \end{tabular}
+\end{center}
+
+\subsection{Full Papers - More Like This}
+\begin{center}
+  \begin{tabular}{ | c | c | c | c | }
+    \hline
+    \rowcolor{lightblue}
+    \textbf{\# papers} & \textbf{env} & \textbf{RBR} & \textbf{Extended RBR} \\ \hline
+    \multirow{2}{*}{332} & without & 0.0703 & 0.0338 \\ \cline{2-4}
+                         & with    & 0.0672 & 0.062  \\ \hline
+  \end{tabular}
+\end{center}
