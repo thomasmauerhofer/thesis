@@ -7,112 +7,65 @@
 Describe the used Dataset, and how it looks like.
 The Dataset contains 659 papers in PDF format.
 
-For the bag of words and the neural network a dataset was generated. This dataset contains all chapter names, and the corresponding class. 
-At a preprocessing step... stopwords and symbols removed, stemmed, and lower case... Few examples are:
+\subsection{Analysis}
+\label{sec:analysis}
 
-\begin{itemize}[label={}]
-  \item introduct: INDRODUCTION
-  \item relat work: BACKGROUND
-  \item conclus futur work: DISCUSSION
-  \item result discuss: RESULTS DISCUSSION
-\end{itemize}
+\subsubsection{Paper Network as an directed Graph}
+\label{sec:undirected_graph}
 
-Overall the dataset has 2013 enties. The chapter names contain 359 different word tokens.
+\myfig{dataset_generall}
+      {width=0.50\textwidth}
+      {General Structure of a Paper Network}
+      {General Structure of a Paper Network}
+      {fig:dataset_generall}
 
-\section{Preprocessing}
-\label{sec:preprocessing}
+\begin{center}
+  \begin{tabular}{ | c | c | }
+    \hline
+    \textbf{Number of Nodes} & 821 \\ \hline
+    \textbf{Number of Edges} & 1716 \\ \hline
+    \textbf{Number of Components} & 1 \\ \hline
+    \textbf{Number of Cycles} & 0 \\ \hline
+    \textbf{Longest Path} & 12 \\ \hline
+    \textbf{Number of Root Nodes} & 107 \\ \hline
+  \end{tabular}
+\end{center}
 
-\subsection{Stop Words}
-\label{subsec:stop-words}
 
-\subsection{Stemming}
-\label{subsec:stemming}
-
-\section{Data Representation}
-\label{sec:data-representation}
-
-Describe the Data Structure from the Tool Output. How it was changed in the preprocessing step. It is stored in the Database. It was used for search queries.  
-
-\section{Chapters to IMRaD mapping}
-\label{sec:chapters-to-imrad-mapping}
-
-Descripe general idea
-
-\subsection{Creating the Feature Vector}
-\label{subsec:creating-feature-vector}
-
-\begin{tabular}{| c | c | c || c | c | c |}
-\hline
-\rowcolor{lightblue}
-\textbf{word} & \textbf{counted in datase}t & \textbf{feature} & \textbf{word} & \textbf{counted in datase}t & \textbf{feature} \\ \hline
-introduct & 457 & yes & data & 16 & yes \\ \hline
-conclus & 451 & yes & empir & 14 & yes \\ \hline
-work & 324 & yes & vi & 14 & no \\ \hline
-relat & 193 & yes & method & 14 & yes \\ \hline
-result & 182 & yes & comparison & 14 & yes \\ \hline
-experi & 147 & yes & model & 12 & yes \\ \hline
-evalu & 143 & yes & vii & 12 & no \\ \hline
-futur & 117 & yes & resourc & 11 & yes \\ \hline
-abstract & 117 & yes & iii & 10 & no \\ \hline
-discuss & 115 & yes & gener & 10 & yes \\ \hline
-experiment & 98 & yes & iv & 10 & no \\ \hline
-acknowledg & 72 & yes & system & 10 & yes \\ \hline
-analysi & 48 & yes & research & 9 & yes \\ \hline
-background & 37 & yes & set & 9 & yes \\ \hline
-summari & 24 & yes & task & 8 & yes \\ \hline
-methodolog & 24 & yes & propos & 8 & yes \\ \hline
-setup & 18 & yes & outlook & 7 & yes \\ \hline
-dataset & 18 & yes & measur & 7 & yes \\ \hline
-previou & 17 & yes & & &\\ \hline
-\end{tabular}
-
-\subsection{Classify Chapters via a Neural Network}
-\label{subsec:creating-feature-vector}
-
-Describe how the Neural Network is used to label the Capters.
-
-\myfig{accuracy_nn}
+\myfig{in-degree_distribution}
       {width=0.80\textwidth}
-      {Accuracy during the training of the neural network -- More Description}
-      {Accuracy during the training of the neural network}
-      {fig:accuracy_nn}
+      {In-Degree Distribution of the used Dataset}
+      {In-Degree Distribution of the used Dataset}
+      {fig:in-degree_distribution}
 
-\myfig{loss_nn}
+    \begin{center}
+      \begin{tabular}{ | c | c | }
+        \hline
+        \textbf{Max Degree} & 98 \\ \hline
+        \textbf{Mean Degree} & 5.8767 \\ \hline
+        \textbf{Median Degree} & 2 \\ \hline
+      \end{tabular}
+    \end{center}
+
+\myfig{out-degree_distribution}
       {width=0.80\textwidth}
-      {Loss during the training of the neural network. Categorical Crossentropy is used as loss function}
-      {Loss during the training of the neural network}
-      {fig:loss_nn}
-      
-Trainingset with 1610 entries, Testset with 403 entries
+      {Out-Degree Distribution of the used Dataset}
+      {Out-Degree Distribution of the used Dataset}
+      {fig:out-degree_distribution}
 
-loss: 0.060084        \\
-acc: 0.989071         \\
-recall: 0.971722      \\
-precision: 0.998510   \\
-f1: 0.984738
+    \begin{center}
+      \begin{tabular}{ | c | c | }
+        \hline
+        \textbf{Max Degree} & 13 \\ \hline
+        \textbf{Mean Degree} & 2.4034 \\ \hline
+        \textbf{Median Degree} & 2 \\ \hline
+      \end{tabular}
+    \end{center}
 
-
-
-
-
-
-
+\subsubsection{Cycles - TODO: Title}
+\label{subsubsec:cycles}
+Write something about the cycles in the network. cite each other
 
 
-%\chapter{Information Retrieval}
-%\label{cha:information-retrieval}
-
-\section{Explicit Search}
-\label{sec:explicit-search}
-
-Search with Search Queries
-
-\section{More Like This} %TODO: rename
-\label{sec:more-like-this}
-
-Search with a single PDF
-
-\section{Recommender Search}
-\label{sec:recommender-search}
-
-Search with a Set of PDFs
+\subsection{Structure of an node}
+\label{sec:analysis}
