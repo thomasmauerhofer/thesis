@@ -1,0 +1,162 @@
+/usr/bin/python3.6 /home/thomas11/git/search-engine/src/evaluation/evaluate.py --all
+Using TensorFlow backend.
+BM25 - b: 0.75, k1: 1.2
+N =  2
+ & #queries & MAP
+Percent: [------------------->] 100%
+without importance to sections & 8770 & 0.0441795335928575
+importance to sections & 8770 & 0.045018048278867996
+N =  3
+ & #queries & MAP
+Percent: [------------------->] 100%
+without importance to sections & 7070 & 0.0640919544759089
+importance to sections & 7070 & 0.0628204386186181
+N =  4
+ & #queries & MAP
+Percent: [------------------->] 100%
+without importance to sections & 5589 & 0.07386290996848378
+importance to sections & 5589 & 0.07341366810499837
+Full queries
+ & #queries & MAP
+Percent: [------------------->] 100%
+without importance to sections & 1888 & 0.0937858270659186
+importance to sections & 1888 & 0.1008368669488758
+More Like This
+ & # queries & MAP
+Percent: [------------------->] 100%
+without importance to sections & 714 & 0.0554
+Next line don't use unclassified chapters
+Percent: [------------------->] 100%
+importance to sections & 714 & 0.0882
+Next line use unclassified chapters
+Percent: [------------------->] 100%
+importance to sections & 714 & 0.0886
+
+BM25 - b: 0.75, k1: 2.0
+N =  2
+ & #queries & MAP
+Percent: [------------------->] 100%
+without importance to sections & 8770 & 0.044214561420981714
+importance to sections & 8770 & 0.044928210897286686
+N =  3
+ & #queries & MAP
+Percent: [------------------->] 100%
+without importance to sections & 7070 & 0.0640066136913265
+importance to sections & 7070 & 0.06264475285666495
+N =  4
+ & #queries & MAP
+Percent: [------------------->] 100%
+without importance to sections & 5589 & 0.07360495290444012
+importance to sections & 5589 & 0.07315372358822121
+Full queries
+ & #queries & MAP
+Percent: [------------------->] 100%
+without importance to sections & 1888 & 0.09342776358643028
+importance to sections & 1888 & 0.09957539587177128
+More Like This
+ & # queries & MAP
+Percent: [------------------->] 100%
+without importance to sections & 714 & 0.055
+Next line don't use unclassified chapters
+Percent: [------------------->] 100%
+importance to sections & 714 & 0.0852
+Next line use unclassified chapters
+Percent: [------------------->] 100%
+importance to sections & 714 & 0.0853
+
+Term Frequency
+N =  2
+ & #queries & MAP
+Percent: [------------------->] 100%
+without importance to sections & 8770 & 0.0881540868126923
+importance to sections & 8770 & 0.06960050075075598
+N =  3
+ & #queries & MAP
+Percent: [------------------->] 100%
+without importance to sections & 7070 & 0.10380108749427874
+importance to sections & 7070 & 0.07851292861157529
+N =  4
+ & #queries & MAP
+Percent: [------------------->] 100%
+without importance to sections & 5589 & 0.1196525239164242
+importance to sections & 5589 & 0.08936351291381224
+Full queries
+ & #queries & MAP
+Percent: [------------------->] 100%
+without importance to sections & 1888 & 0.15863798561960724
+importance to sections & 1888 & 0.1164381043421521
+More Like This
+ & # queries & MAP
+Percent: [------------------->] 100%
+without importance to sections & 714 & 0.1186
+Next line don't use unclassified chapters
+Percent: [------------------->] 100%
+importance to sections & 714 & 0.1463
+Next line use unclassified chapters
+Percent: [------------------->] 100%
+importance to sections & 714 & 0.1465
+
+Term Frequency-Inverse Document Frequency
+N =  2
+ & #queries & MAP
+Percent: [------------------->] 100%
+without importance to sections & 8770 & 0.11283798598929604
+importance to sections & 8770 & 0.08969063991885724
+N =  3
+ & #queries & MAP
+Percent: [------------------->] 100%
+without importance to sections & 7070 & 0.13818268237274928
+importance to sections & 7070 & 0.1042385301271853
+N =  4
+ & #queries & MAP
+Percent: [------------------->] 100%
+without importance to sections & 5589 & 0.15473200616959573
+importance to sections & 5589 & 0.11671343428257663
+Full queries
+ & #queries & MAP
+Percent: [------------------->] 100%
+without importance to sections & 1888 & 0.18847591509829484
+importance to sections & 1888 & 0.1533054321262269
+More Like This
+ & # queries & MAP
+Percent: [------------------->] 100%
+without importance to sections & 714 & 0.1163
+Next line don't use unclassified chapters
+Percent: [------------------->] 100%
+importance to sections & 714 & 0.1613
+Next line use unclassified chapters
+Percent: [------------------->] 100%
+importance to sections & 714 & 0.1612
+
+Ranked Boolean Retrieval
+N =  2
+ & #queries & MAP
+Percent: [>                   ] 1%Traceback (most recent call last):
+  File "/home/thomas11/git/search-engine/src/evaluation/evaluate.py", line 94, in <module>
+    evaluate_ranked_boolean()
+  File "/home/thomas11/git/search-engine/src/evaluation/evaluate.py", line 61, in evaluate_ranked_boolean
+    evaluate_algorithm(settings)
+  File "/home/thomas11/git/search-engine/src/evaluation/evaluate.py", line 19, in evaluate_algorithm
+    explicit_evaluation.calculate_ranking(settings, N)
+  File "/home/thomas11/git/search-engine/src/evaluation/utils/explicit_evaluation.py", line 141, in calculate_ranking
+    self.calculate_overall_ranking(raw_queries, settings)
+  File "/home/thomas11/git/search-engine/src/evaluation/utils/explicit_evaluation.py", line 68, in calculate_overall_ranking
+    ranked_papers_sec = api.get_papers({query["imrad"]: query["search_query"]}, settings_sec)
+  File "/home/thomas11/git/search-engine/src/engine/api.py", line 134, in get_papers
+    return self.__get_ratings(papers, queries_proceed, settings)
+  File "/home/thomas11/git/search-engine/src/engine/api.py", line 46, in __get_ratings
+    element = self.get_ranking_info(paper, queries_proceed, settings)
+  File "/home/thomas11/git/search-engine/src/engine/api.py", line 64, in get_ranking_info
+    return {"paper": paper, "rank": rank, "info": combine_info(info, ignored)}
+  File "/home/thomas11/git/search-engine/src/engine/utils/ranking_utils.py", line 48, in combine_info
+    ret = copy.deepcopy(dict1)
+  File "/usr/lib/python3.6/copy.py", line 150, in deepcopy
+    y = copier(x, memo)
+  File "/usr/lib/python3.6/copy.py", line 240, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+  File "/usr/lib/python3.6/copy.py", line 184, in deepcopy
+    memo[d] = y
+KeyboardInterrupt
+
+Process finished with exit code 1
+

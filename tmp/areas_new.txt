@@ -1,0 +1,76 @@
+Input: Area.Introduction ,Search: Area.Introduction
+Percent: [------------------->] 100%
+areas & 714 & 0.1242
+Input: Area.Introduction ,Search: Area.Background
+Percent: [------------------->] 100%
+areas & 714 & 0.1226
+Input: Area.Introduction ,Search: Area.Method
+Percent: [------------------->] 100%
+areas & 714 & 0.1095
+Input: Area.Introduction ,Search: Area.Result
+Percent: [------------------->] 100%
+areas & 714 & 0.1092
+Input: Area.Introduction ,Search: Area.Discussion
+Percent: [------------------->] 100%
+areas & 714 & 0.1049
+Input: Area.Background ,Search: Area.Introduction
+Percent: [------------------->] 100%
+areas & 714 & 0.1454
+Input: Area.Background ,Search: Area.Background
+Percent: [------------------->] 100%
+areas & 714 & 0.1249
+Input: Area.Background ,Search: Area.Method
+Percent: [------------------->] 100%
+areas & 714 & 0.1331
+Input: Area.Background ,Search: Area.Result
+Percent: [------------------->] 100%
+areas & 714 & 0.1255
+Input: Area.Background ,Search: Area.Discussion
+Percent: [------------------->] 100%
+areas & 714 & 0.1106
+Input: Area.Method ,Search: Area.Introduction
+Percent: [------------------->] 100%
+areas & 714 & 0.0947
+Input: Area.Method ,Search: Area.Background
+Percent: [------------------->] 100%
+areas & 714 & 0.0857
+Input: Area.Method ,Search: Area.Method
+Percent: [------------------->] 100%
+areas & 714 & 0.1017
+Input: Area.Method ,Search: Area.Result
+Percent: [------------------->] 100%
+areas & 714 & 0.0897
+Input: Area.Method ,Search: Area.Discussion
+Percent: [------------------->] 100%
+areas & 714 & 0.0668
+Input: Area.Result ,Search: Area.Introduction
+Percent: [------------------->] 100%
+areas & 714 & 0.0877
+Input: Area.Result ,Search: Area.Background
+Percent: [------------------->] 100%
+areas & 714 & 0.0783
+Input: Area.Result ,Search: Area.Method
+Percent: [------------------->] 100%
+areas & 714 & 0.0815
+Input: Area.Result ,Search: Area.Result
+Percent: [------------------->] 100%
+areas & 714 & 0.0783
+Input: Area.Result ,Search: Area.Discussion
+Percent: [------------------->] 100%
+areas & 714 & 0.0631
+Input: Area.Discussion ,Search: Area.Introduction
+Percent: [------------------->] 100%
+areas & 714 & 0.1188
+Input: Area.Discussion ,Search: Area.Background
+Percent: [------------------->] 100%
+areas & 714 & 0.1078
+Input: Area.Discussion ,Search: Area.Method
+Percent: [------------------->] 100%
+areas & 714 & 0.0957
+Input: Area.Discussion ,Search: Area.Result
+Percent: [------------------->] 100%
+areas & 714 & 0.0914
+Input: Area.Discussion ,Search: Area.Discussion
+Percent: [------------------->] 100%
+areas & 714 & 0.084
+
