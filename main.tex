@@ -1,23 +1,8 @@
-%%%% Time-stamp: <2017-02-05 16:13:04 vk>
-%% ========================================================================
-%%%% Disclaimer
-%% ========================================================================
-%%
-%% created by
-%%
-%%      Karl Voit
-%%
-
-%% ========================================================================
-%%%% Basic settings
-%% ========================================================================
-%% (idea of using newcommands for basic documentclass settings from: Thomas Schlager)
-
 \newcommand{\mypapersize}{A4}
 %% e.g., "A4", "letter", "legal", "executive", ...
 %% The size of the paper of the resulting PDF file.
 
-\newcommand{\mylaterality}{twoside}
+\newcommand{\mylaterality}{oneside}
 %% "oneside" or "twoside"
 %% Either you are creating a document which is printed on both, left pages
 %% and right pages (twoside) or you create a document which is printed
@@ -29,7 +14,7 @@
 %% rectangles (of same size) and overfull boxes (in margin space) are
 %% marked with black box (-> easy to spot!)
 
-\newcommand{\myparskip}{half}
+\newcommand{\myparskip}{full}
 %% e.g., "no", "full", "half", ...
 %% How to separate paragraphs: indention ("no") or spacing ("half",
 %% "full", ...).
@@ -52,12 +37,11 @@
 %% font was designed for it.
 
 \newcommand{\mylanguage}{ngerman,american}
-%% "english,ngerman", "ngerman,english", ...
 %% NOTE: The *last* language is the active one!
 %% See babel documentation for further details.
 
 %% BibLaTeX-settings: (see biblatex reference for further description)
-\newcommand{\mybiblatexstyle}{authoryear}
+\newcommand{\mybiblatexstyle}{alphabetic}
 %% e.g., "alphabetic", "authoryear", ...
 %% The biblatex style which is being used for referencing. See
 %% biblatex documentation for further details and more values.
@@ -104,7 +88,7 @@
 %%             see https://github.com/novoid/LaTeX-KOMA-template/issues/5
 %% "template/title_VWA": titlepage for Vorwissenschaftliche Arbeit
 
-\newcommand{\mytodonotesoptions}{}
+\newcommand{\mytodonotesoptions}{disable}
 %% e.g., "" (empty), "disable", ...
 %% Options for the todonotes-package. If "disable", all todonotes will
 %% be hidden (including listoftodos).
@@ -118,7 +102,7 @@
 %% Please do not set to "false" without a good reason. The colophon
 %% helps your readers to get in touch with LaTeX and to find this template.
 
-\setboolean{myaddlistoftodos}{false}  %% "true" or "false"
+\setboolean{myaddlistoftodos}{true}  %% "true" or "false"
 %% If set to "true": the current list of open todos is added after the
 %% table of contents. If \mytodonotesoptions is set to "disable", no
 %% list of todos is added, independent of this setting here.
