@@ -1,42 +1,95 @@
 \chapter{Related Work}
 \label{cha:related_work}
 
-\section{Underlying Framework - todo name}
-\label{sec:underlying-framework}
+\section{Extract document structure of digital scientific articles}
+\label{sec:extract_document_structure}
 
-Write about the framework created in \textit{Unsupervised document structure analysis of digital scientific articles}
+Write about the underlying framework. Created within ~\cite{KlampflGJK14}
 
-\section{Preprocessing}
-\label{sec:preprocessing}
-
-\subsection{Stop words}
+\section{Stop words}
 \label{sec:stop_words}
 
-\subsection{Stemming}
+\section{Stemming}
 \label{sec:stemming}
 
 \section{IMRaD Model}
-\label{sec:imrad-model}
-
+\label{sec:imrad_model}
 
 \section{Ranking Algorithms}
 \label{sec:ranking_algorithms}
 
+Describe basics like term frequency, document frequency ...
+
 \subsection{Ranked Boolean Retrieval}
 \label{sec:ranked_boolean_retrieval}
+
+Described in ~\cite{manning2008} page 103
+
+\begin{equation}
+  \sum_{i = 1}^{l}g_i s_i
+\end{equation}
 
 \subsection{Tf-idf}
 \label{sec:tfidf}
 
+Described in ~\cite{manning2008} page 109 and ~\cite{ModernInvormationRetrieval1999} page 72
+\begin{equation}
+  \begin{split}
+    \text{idf}_t & = log \frac{N}{df_t} \\
+    \text{tf-idf}_{t, d} & = \text{tf}_{t, d} \cdot \text{idf}_t \\
+    \text{Score}(q, d) & = \sum_{t \in q}\text{tf-idf}_{t, d}
+  \end{split}
+\end{equation}
+
 \subsection{Okapi BM25}
 \label{sec:okapi_bm25}
-as descriped in 214(new) and 105 ~\cite{ModernInvormationRetrieval1999} \\
+as descriped in ~\cite{manning2008} page 214 and in ~\cite{ModernInvormationRetrieval1999} page 105
 \begin{equation}
-  B_{i,j} = {(1)}/{K1}
+  \begin{split}
+    \text{idf}_t & = log \frac{N - \text{df}_t + 0.5}{\text{df}_t + 0.5} \\
+    \text{bm25}_{t, d} & = \text{idf}_t \cdot \frac{\text{tf}_{t, d} \cdot (k_1 + 1)}{\text{tf}_{t, d} + k_1 \cdot \bigl(1 - b \cdot \frac{|G|}{\text{avgdl}}\bigr)}  \\
+    \text{Score}(q, d) & = \sum_{t \in q}\text{bm25}_{t, d}
+  \end{split}
 \end{equation}
 
 \subsection{Divergence from Randomness}
 \label{sec:divergence_from_randomness}
 
+as descriped in ~\cite{ModernInvormationRetrieval1999} page 113
+\begin{equation}
+  w_{i, j} = (- \log P(k_i | C)) \cdot (1 - P(k_i | d_j))
+\end{equation}
+\begin{equation}
+  \text{Score}(d_j, q) = \sum_{k_i \in q} f_{i, q} \cdot w_{i, j}
+\end{equation}
+\begin{equation}
+  P(k_i | C) = \binom{F_i}{f_{i, j}}p^{f_{i, j}} \cdot (1 - p)^{F_i - f_{i, j}}
+\end{equation}
+\begin{equation}
+  \lambda_i = p \cdot F_i
+\end{equation}
+\begin{equation}
+  P(k_i | C) = \frac{e^{-\lambda_i}\lambda_i^{f_{i, j}}}{f_{i, j}!}
+\end{equation}
+\begin{equation}
+  \begin{split}
+    - \log P(k_i | C) & = -\log\Biggl(\frac{e^{-\lambda_i}\lambda_i^{f_{i, j}}}{f_{i, j}!}\Biggr) \\
+    & \approx -f_{i,j} \log \lambda_i + \lambda_i \log e + log(f_{i,j}!) \\
+    & \approx f_{i, j} \log \Bigl( \frac{f_{i, j}}{\lambda_i} \Bigr) + \Bigl( \lambda_i + \frac{1}{12 f_{i, j} + 1} - f_{i, j}\Bigr) \log e + \frac{1}{2} \log(2 \pi f_{i, j})
+  \end{split}
+\end{equation}
+\begin{equation}
+  1 - P(k_i | d_j) = \frac{1}{f_{i, j} + 1}
+\end{equation}
+\begin{equation}
+  f^{\prime}_{i, j} = f_{i, j} \cdot \frac{avgdl}{len(d_j)}
+\end{equation}
+
+
 \section{Retrieval Evaluation}
 \label{sec:retrieval_evaluation}
+
+\subsection{Mean Average Precision}
+\label{sec:mean_average_precision}
+
+as descriped in ~\cite{manning2008} page 147 and in ~\cite{ModernInvormationRetrieval1999} page 140

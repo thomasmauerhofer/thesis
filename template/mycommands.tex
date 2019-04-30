@@ -1,24 +1,15 @@
-%% Time-stamp: <2015-04-30 17:19:58 vk>
-%%%% === Disclaimer: =======================================================
-%% created by
-%%
-%%      Karl Voit
-%%
-%% using GNU/Linux, GNU Emacs & LaTeX 2e
-%%
-
 %doc%
 %doc% \section{\texttt{mycommands.tex} --- various definitions}\myinteresting
 %doc% \label{sec:mycommands}
 %doc%
 %doc% In file \verb#template/mycommands.tex# many useful commands are being
-%doc% defined. 
-%doc% 
-%doc% \paragraph{What should I do with this file?} Please take a look at its 
+%doc% defined.
+%doc%
+%doc% \paragraph{What should I do with this file?} Please take a look at its
 %doc% content to get the most out of your document.
-%doc% 
+%doc%
 
-%doc% 
+%doc%
 %doc% One of the best advantages of \LaTeX{} compared to \myacro{WYSIWYG} software products is
 %doc% the possibility to define and use macros within text. This empowers the user to
 %doc% a great extend.  Many things can be defined using \verb#\newcommand{}# and
@@ -31,15 +22,15 @@
 %doc% like \verb#\myfig#\footnote{See below for a detailed description}. Using a
 %doc% macro for including graphics enables you to modify the position caption on only
 %doc% \emph{one} place: at the definition of the macro.
-%doc% 
+%doc%
 %doc% The following section describes some macros that came with this document template
 %doc% from \myLaT and you are welcome to modify or extend them or to create
 %doc% your own macros!
-%doc% 
+%doc%
 
-%doc% 
+%doc%
 %doc% \subsection{\texttt{myfig} --- including graphics made easy}
-%doc% 
+%doc%
 %doc% The classic: you can easily add graphics to your document with \verb#\myfig#:
 %doc% \begin{verbatim}
 %doc%  \myfig{flower}%% filename w/o extension in the folder figures
@@ -48,7 +39,7 @@
 %doc%        {Home town flower}%% optional (short) caption for list of figures
 %doc%        {fig:flower}%% label
 %doc% \end{verbatim}
-%doc% 
+%doc%
 %doc% There are many advantages of this command (compared to manual
 %doc% \texttt{figure} environments and \texttt{includegraphics} commands:
 %doc% \begin{itemize}
@@ -57,8 +48,8 @@
 %doc% \item much less characters to type (faster, error prone)
 %doc% \item less visual clutter in the \TeX{}-files
 %doc% \end{itemize}
-%doc% 
-%doc% 
+%doc%
+%doc%
 \newcommand{\myfig}[5]{
 %% example:
 % \myfig{}%% filename in figures folder
@@ -75,16 +66,16 @@
 }
 
 
-%doc% 
+%doc%
 %doc% \subsection{\texttt{myclone} --- repeat things!}
-%doc% 
+%doc%
 %doc% Using \verb#\myclone[42]{foobar}# results the text \enquote{foobar} printed 42 times.
-%doc% But you can not only repeat text output with \texttt{myclone}. 
+%doc% But you can not only repeat text output with \texttt{myclone}.
 %doc%
 %doc% Default argument
-%doc% for the optional parameter \enquote{number of times} (like \enquote{42} in the example above) 
+%doc% for the optional parameter \enquote{number of times} (like \enquote{42} in the example above)
 %doc% is set to two.
-%doc% 
+%doc%
 %% \myclone[x]{text}
 \newcounter{myclonecnt}
 \newcommand{\myclone}[2][2]{%
@@ -92,9 +83,9 @@
   \whiledo{\value{myclonecnt}>0}{#2\addtocounter{myclonecnt}{-1}}%
 }
 
-%old% %d oc% 
+%old% %d oc%
 %old% %d oc% \subsection{\texttt{fixxme} --- sidemark something as unfinished}
-%old% %d oc% 
+%old% %d oc%
 %old% %d oc% You know it: something has to be fixed and you can not do it right
 %old% %d oc% now. In order to \texttt{not} forget about it, you might want to add a
 %old% %d oc% note like \verb+\fixxme{check again}+ which inserts a note on the page
@@ -105,7 +96,7 @@
 %old% }
 
 
-%%%% End 
+%%%% End
 %%% Local Variables:
 %%% mode: latex
 %%% mode: auto-fill
