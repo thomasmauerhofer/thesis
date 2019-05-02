@@ -7,8 +7,8 @@
 Describe the used Dataset, and how it looks like.
 The Dataset contains 659 papers in PDF format.
 
-\subsection{Analysis}
-\label{sec:analysis}
+\subsection{Structure of the Graph}
+\label{sec:structure_of_the_graph}
 
 \subsubsection{Paper Network as an directed Graph}
 \label{sec:undirected_graph}
@@ -19,7 +19,8 @@ The Dataset contains 659 papers in PDF format.
       {General Structure of a Paper Network}
       {fig:dataset_generall}
 
-\begin{center}
+\begin{table}
+  \centering
   \begin{tabular}{ | c | c | }
     \hline
     \textbf{Number of Nodes} & 821 \\ \hline
@@ -29,7 +30,9 @@ The Dataset contains 659 papers in PDF format.
     \textbf{Longest Path} & 12 \\ \hline
     \textbf{Number of Root Nodes} & 107 \\ \hline
   \end{tabular}
-\end{center}
+  \caption[General Properties about the graph in the used dataset]{General Properties about the graph}
+  \label{tbl:general_properties_about_the_graph}
+\end{table}
 
 
 \myfig{in-degree_distribution}
@@ -38,14 +41,17 @@ The Dataset contains 659 papers in PDF format.
       {In-Degree Distribution of the used Dataset}
       {fig:in-degree_distribution}
 
-    \begin{center}
-      \begin{tabular}{ | c | c | }
-        \hline
-        \textbf{Max Degree} & 98 \\ \hline
-        \textbf{Mean Degree} & 5.8767 \\ \hline
-        \textbf{Median Degree} & 2 \\ \hline
-      \end{tabular}
-    \end{center}
+\begin{table}
+  \centering
+  \begin{tabular}{ | c | c | }
+    \hline
+    \textbf{Max Degree} & 98 \\ \hline
+    \textbf{Mean Degree} & 5.8767 \\ \hline
+    \textbf{Median Degree} & 2 \\ \hline
+  \end{tabular}
+  \caption[Properties of the ingoing edges in the used dataset]{Properties of the ingoing edges}
+  \label{tbl:properties_ingoing_edges}
+\end{table}
 
 \myfig{out-degree_distribution}
       {width=0.80\textwidth}
@@ -53,14 +59,17 @@ The Dataset contains 659 papers in PDF format.
       {Out-Degree Distribution of the used Dataset}
       {fig:out-degree_distribution}
 
-    \begin{center}
-      \begin{tabular}{ | c | c | }
-        \hline
-        \textbf{Max Degree} & 13 \\ \hline
-        \textbf{Mean Degree} & 2.4034 \\ \hline
-        \textbf{Median Degree} & 2 \\ \hline
-      \end{tabular}
-    \end{center}
+\begin{table}
+  \centering
+  \begin{tabular}{ | c | c | }
+    \hline
+    \textbf{Max Degree} & 13 \\ \hline
+    \textbf{Mean Degree} & 2.4034 \\ \hline
+    \textbf{Median Degree} & 2 \\ \hline
+  \end{tabular}
+  \caption[Properties of the outgoing edges in the used dataset]{Properties of the outgoing edges}
+  \label{tbl:properties_outgoing_edges}
+\end{table}
 
 \subsection{Data cleaning}
 \label{subsec:data_cleaning}
@@ -72,7 +81,16 @@ Write something about the cycles in the network. preprints cite each other
       {Cyclic dependency in a directed graph}
       {fig:preprint_problem}
 
-
-\subsection{Structure}
+\subsection{Structure of a Paper}
 \label{sec:analysis}
 Write how they are stored with plotly
+
+
+\section{Preprocessing}
+\label{sec:preprocessing}
+
+Write how the underlying framework was used, stemming, remove stopwords, classify chapters...
+
+\section{Introducing IMRaD Structure Features into Weighing Schemes}
+
+Write how the algorithms described in \cref{sec:ranking_algorithms} are modified for imrad structure features.

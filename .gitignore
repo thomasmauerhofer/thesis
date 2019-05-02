@@ -3,6 +3,7 @@
 *.out
 *.tex.backup
 *.toc
+*.lot
 
 *.bbl
 *.bcf
