@@ -3,142 +3,66 @@
 Mean Average Precision is used to compare the search algorithms.
 
 
-\section{Leveraging chapter features}
+\section{Leveraging IMRaD Structure Features}
 Does it make sense to use aditional information about the chapter in the search step?
 \subsection{Explicit Search using N-Grams}
 
 \begin{table}
   \begin{adjustwidth}{-2cm}{}
-  \begin{tabular}{ | c | C{1.5cm} | C{2.1cm} || C{2.1cm} | C{2.1cm} | C{2.1cm} | C{2.1cm} | C{2.1cm} |}
-    \hline
-    \rowcolor{lightblue}
-    \textbf{n} & \textbf{\# queries} & \textbf{Using IMRaD Chapter Features} & \textbf{Term Frequency} & \textbf{Tf-idf} & \textbf{Ranked Boolean Retrieval} & \textbf{Okapi BM25} & \textbf{Divergence from Randomness} \\ \hline
-    \multirow{2}{*}{2} & \multirow{2}{*}{8770} & No  & 0.0882 & 0.1128 & 0.1035 & 0.0442 & 0.0  \\ \cline{3-8}
-                                              && Yes & 0.0696 & 0.0897 & 0.0638 & 0.045  & 0.0  \\ \hline \hline
-    \multirow{2}{*}{3} & \multirow{2}{*}{7070} & No  & 0.1038 & 0.1382 & 0.1198 & 0.064  & 0.0  \\ \cline{3-8}
-                                              && Yes & 0.0785 & 0.1042 & 0.0713 & 0.0628 & 0.0  \\ \hline \hline
-    \multirow{2}{*}{4} & \multirow{2}{*}{5589} & No  & 0.1197 & 0.1547 & 0.1336 & 0.0739 & 0.0  \\ \cline{3-8}
-                                              && Yes & 0.0894 & 0.1167 & 0.0787 & 0.0734 & 0.0  \\ \hline
-  \end{tabular}
-  \caption[Ranking results with explicit search]{Ranking results of the used weigthing schemes with explicit search}
+    \begin{tabular}{ | c | C{1.5cm} | C{2.1cm} || C{2.1cm} | C{2.1cm} | C{2.1cm} | C{2.1cm} | C{2.1cm} |}
+      \hline
+      \rowcolor{lightblue}
+      \textbf{n} & \textbf{\# queries} & \textbf{Using IMRaD Chapter Features} & \textbf{Term Frequency} & \textbf{Tf-idf} & \textbf{Ranked Boolean Retrieval} & \textbf{Okapi BM25} & \textbf{Divergence from Randomness} \\ \hline
+      \multirow{2}{*}{2} & \multirow{2}{*}{8770} & No  & 0.0882 & 0.1128 & 0.1035 & 0.0442 & 0.0  \\ \cline{3-8}
+                                                && Yes & 0.0696 & 0.0897 & 0.0638 & 0.045  & 0.0  \\ \hline \hline
+      \multirow{2}{*}{3} & \multirow{2}{*}{7070} & No  & 0.1038 & 0.1382 & 0.1198 & 0.064  & 0.0  \\ \cline{3-8}
+                                                && Yes & 0.0785 & 0.1042 & 0.0713 & 0.0628 & 0.0  \\ \hline \hline
+      \multirow{2}{*}{4} & \multirow{2}{*}{5589} & No  & 0.1197 & 0.1547 & 0.1336 & 0.0739 & 0.0  \\ \cline{3-8}
+                                                && Yes & 0.0894 & 0.1167 & 0.0787 & 0.0734 & 0.0  \\ \hline
+    \end{tabular}
+  \caption[Ranking results with explicit search]{Ranking results of the used weigthing schemes using explicit search}
   \label{tbl:ranking_result_explicit}
   \end{adjustwidth}
 \end{table}
 
+TODO: Okapi - Better param search, increase n
 
-
-\subsection{Full Papers Search}
+\subsection{Implicit Search using Scientific Articles}
 
 ... more like this.
 
 \begin{table}
-  \centering
-  \begin{tabular}{ | c | c | c | c | c | }
-    \hline
-    \rowcolor{lightblue}
-    \textbf{\# papers} & \textbf{env} & \textbf{Tf} & \textbf{Tf-idf} & \textbf{RBR} \\ \hline
-    \multirow{2}{*}{332} & without & 0.1431 & 0.1532 & 0.0703 \\ \cline{2-5}
-                         & with   & 0.1806 & 0.1993 & 0.0672 \\ \hline
-  \end{tabular}
-  \caption[Ranking results with full paper search]{Ranking results of the used weigthing schemes with full paper search}
+  \begin{adjustwidth}{-2cm}{}
+    \begin{tabular}{ | C{2.1cm} | C{2.1cm} | C{2.1cm} | C{2.1cm} | C{2.1cm} | C{2.1cm} | C{2.1cm} | }
+      \hline
+      \rowcolor{lightblue}
+      \textbf{\# Scientific Articles} & \textbf{Using IMRaD Chapter Features} & \textbf{Term Frequency} & \textbf{Tf-idf} & \textbf{Ranked Boolean Retrieval} & \textbf{Okapi BM25} & \textbf{Divergence from Randomness} \\ \hline
+      \multirow{2}{*}{714} & No  & 0.1186 & 0.1163 & 0.0466 & 0.0554 & 0.0 \\ \cline{2-7}
+                           & Yes & 0.1463 & 0.1613 & 0.0506 & 0.0882 & 0.0 \\ \hline
+    \end{tabular}
+  \caption[Ranking results using scientific articles]{Ranking results of the used weigthing schemes using scientific articles}
   \label{tbl:ranking_result_full}
+  \end{adjustwidth}
 \end{table}
 
 
-
-
-
-
-
-
-
-
-
-
-
-\section{TODO: Meaningful chapter name...}
+\section{Chapter Based Search}
 Does the search result improve if only a single chapter is used for searching? \\
 Which chapter has the most influence?
 
-\subsection{Explicit Search - N-Gram}
-\begin{center}
-  \begin{tabular}{ | c | c | c | c | c | c |}
+Number of scientific articles: 714
+
+\begin{table}
+  \centering
+  \begin{tabular}{ | c | c | c | c | c | c | }
     \hline
-    \rowcolor{lightblue}
-    \textbf{n} & \textbf{\# queries} & \textbf{chapter} & \textbf{Tf} & \textbf{Tf-idf} & \textbf{RBR} \\ \hline
-    \multirow{5}{*}{2} & \multirow{5}{*}{1261} & introduction & 0.1714 & 0.2095 & 0.1396 \\ \cline{3-6}
-                                              && background   & 0.1484 & 0.1757 & 0.1680 \\ \cline{3-6}
-                                              && methods      & 0.1563 & 0.1957 & 0.1526 \\ \cline{3-6}
-                                              && results      & 0.1733 & 0.1966 & 0.1632 \\ \cline{3-6}
-                                              && discussion   & 0.1865 & 0.1983 & 0.1737 \\ \hline \hline
-    \multirow{5}{*}{3} & \multirow{5}{*}{1349} & introduction & 0.1732 & 0.2164 & 0.1495 \\ \cline{3-6}
-                                              && background   & 0.1368 & 0.1752 & 0.1608 \\ \cline{3-6}
-                                              && methods      & 0.1482 & 0.1857 & 0.1453 \\ \cline{3-6}
-                                              && results      & 0.1585 & 0.2048 & 0.1604 \\ \cline{3-6}
-                                              && discussion   & 0.177  & 0.2044 & 0.1807 \\ \hline \hline
-    \multirow{5}{*}{4} & \multirow{5}{*}{1248} & introduction & 0.1861 & 0.2315 & 0.1680 \\ \cline{3-6}
-                                              && background   & 0.1435 & 0.1830 & 0.1811 \\ \cline{3-6}
-                                              && methods      & 0.1589 & 0.1871 & 0.1439 \\ \cline{3-6}
-                                              && results      & 0.1697 & 0.2154 & 0.1706 \\ \cline{3-6}
-                                              && discussion   & 0.1769 & 0.2058 & 0.1817 \\ \hline
+     & \textbf{Introduction} & \textbf{Background} & \textbf{Methods} & \textbf{Results} & \textbf{Discussion} \\ \hline
+    \textbf{Introduction} & 0.1242 & 0.1226 & 0.1095 & 0.1092 & 0.1049 \\ \hline
+    \textbf{Background}   & 0.1454 & 0.1249 & 0.1331 & 0.1255 & 0.1106 \\ \hline
+    \textbf{Methods}      & 0.0947 & 0.0857 & 0.1017 & 0.0897 & 0.0668 \\ \hline
+    \textbf{Results}      & 0.0877 & 0.0783 & 0.0815 & 0.0783 & 0.0631 \\ \hline
+    \textbf{Discussion}   & 0.1188 & 0.1078 & 0.0957 & 0.0914 & 0.084  \\ \hline
   \end{tabular}
-\end{center}
-
-
-\subsection{Full Papers - More Like This}
-\begin{center}
-  \begin{tabular}{ | c | c | c | c | c | }
-    \hline
-    \rowcolor{lightblue}
-    \textbf{chapter} & \textbf{\# papers} & \textbf{Tf} & \textbf{Tf-idf} & \textbf{RBR} \\ \hline
-    introduction & 332 & 0.1599 & 0.1891 & 0.0905 \\ \hline
-    background   & 332 & 0.1378 & 0.1767 & 0.0819 \\ \hline
-    methods      & 295 & 0.1319 & 0.148  & 0.0678 \\ \hline
-    results      & 230 & 0.1066 & 0.1226 & 0.0727 \\ \hline
-    discussion   & 276 & 0.1085 & 0.1465 & 0.0591 \\ \hline
-  \end{tabular}
-\end{center}
-
-
-\section{TODO:Implicit search - unclassified Chapters}
-When using a paper to search for other papers, should unclassified chapters also be used in the search request?
-\begin{center}
-  \begin{tabular}{ | c | c | c | c | c | }
-    \hline
-    \rowcolor{lightblue}
-    \textbf{\# papers} & \textbf{env} & \textbf{Tf} & \textbf{Tf-idf} & \textbf{RBR} \\ \hline
-    \multirow{2}{*}{332} & without & 0.1806 & 0.1993 & 0.0672 \\ \cline{2-5}
-                         & with    & 0.1801 & 0.1994 & 0.0533 \\ \hline
-  \end{tabular}
-\end{center}
-
-
-\section{Extended Versions of Ranked Boolean Retrieval}
-Can the result of the Ranked Boolean Retrieval be improved?
-% TODO: For shure it can be... Better formulation of what has been done to improve the result.
-
-\subsection{Explicit Search - N-Gram}
-\begin{center}
-  \begin{tabular}{ | c | c | c | c | c | }
-    \hline
-    \rowcolor{lightblue}
-    \textbf{n} & \textbf{\# queries} & \textbf{env} & \textbf{RBR}  & \textbf{Extended RBR} \\ \hline
-    \multirow{2}{*}{2} & \multirow{2}{*}{2433} & without & 0.1649 & 0.1703 \\ \cline{3-5}
-                                              && with    & 0.1179 & 0.1141 \\ \hline \hline
-    \multirow{2}{*}{3} & \multirow{2}{*}{2213} & without & 0.1796 & 0.1954 \\ \cline{3-5}
-                                              && with    & 0.12   & 0.1167 \\ \hline \hline
-    \multirow{2}{*}{4} & \multirow{2}{*}{1851} & without & 0.1992 & 0.2236 \\ \cline{3-5}
-                                              && with    & 0.1341 & 0.1267 \\ \hline
-  \end{tabular}
-\end{center}
-
-\subsection{Full Papers - More Like This}
-\begin{center}
-  \begin{tabular}{ | c | c | c | c | }
-    \hline
-    \rowcolor{lightblue}
-    \textbf{\# papers} & \textbf{env} & \textbf{RBR} & \textbf{Extended RBR} \\ \hline
-    \multirow{2}{*}{332} & without & 0.0703 & 0.0338 \\ \cline{2-4}
-                         & with    & 0.0672 & 0.062  \\ \hline
-  \end{tabular}
-\end{center}
+  \caption[Chapter based Serch using Tf-idf]{Chapter based Serch using Tf-idf}
+  \label{tbl:ranking_result_full}
+\end{table}
