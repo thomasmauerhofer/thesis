@@ -83,17 +83,10 @@
   \whiledo{\value{myclonecnt}>0}{#2\addtocounter{myclonecnt}{-1}}%
 }
 
-%old% %d oc%
-%old% %d oc% \subsection{\texttt{fixxme} --- sidemark something as unfinished}
-%old% %d oc%
-%old% %d oc% You know it: something has to be fixed and you can not do it right
-%old% %d oc% now. In order to \texttt{not} forget about it, you might want to add a
-%old% %d oc% note like \verb+\fixxme{check again}+ which inserts a note on the page
-%old% %d oc% margin such as this\fixxme{check again} example.
-%old% %d oc%
-%old% \newcommand{\fixxme}[1]{%%
-%old% \textcolor{red}{FIXXME}\marginpar{\textcolor{red}{#1}}%%
-%old% }
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 
 
 %%%% End

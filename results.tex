@@ -5,24 +5,34 @@ Mean Average Precision is used to compare the search algorithms.
 
 \section{Leveraging chapter features}
 Does it make sense to use aditional information about the chapter in the search step?
-\subsection{Explicit Search - N-Gram}
-\begin{center}
-  \begin{tabular}{ | c | c | c | c | c | c | }
+\subsection{Explicit Search using N-Grams}
+
+\begin{table}
+  \begin{adjustwidth}{-2cm}{}
+  \begin{tabular}{ | c | C{1.5cm} | C{2.1cm} || C{2.1cm} | C{2.1cm} | C{2.1cm} | C{2.1cm} | C{2.1cm} |}
     \hline
     \rowcolor{lightblue}
-    \textbf{n} & \textbf{\# queries} & \textbf{env} & \textbf{TF} & \textbf{Tf-idf} & \textbf{RBR} \\ \hline
-    \multirow{2}{*}{2} & \multirow{2}{*}{2433} & without & 0.1346 & 0.1585 & 0.1649 \\ \cline{3-6}
-                                              && with    & 0.1255 & 0.1453 & 0.1179 \\ \hline \hline
-    \multirow{2}{*}{3} & \multirow{2}{*}{2213} & without & 0.149  & 0.1775 & 0.1796 \\ \cline{3-6}
-                                              && with    & 0.1311 & 0.1569 & 0.12   \\ \hline \hline
-    \multirow{2}{*}{4} & \multirow{2}{*}{1851} & without & 0.1735 & 0.1991 & 0.1992 \\ \cline{3-6}
-                                              && with    & 0.1431 & 0.1706 & 0.1341 \\ \hline
+    \textbf{n} & \textbf{\# queries} & \textbf{Using IMRaD Chapter Features} & \textbf{Term Frequency} & \textbf{Tf-idf} & \textbf{Ranked Boolean Retrieval} & \textbf{Okapi BM25} & \textbf{Divergence from Randomness} \\ \hline
+    \multirow{2}{*}{2} & \multirow{2}{*}{8770} & No  & 0.0882 & 0.1128 & 0.1035 & 0.0442 & 0.0  \\ \cline{3-8}
+                                              && Yes & 0.0696 & 0.0897 & 0.0638 & 0.045  & 0.0  \\ \hline \hline
+    \multirow{2}{*}{3} & \multirow{2}{*}{7070} & No  & 0.1038 & 0.1382 & 0.1198 & 0.064  & 0.0  \\ \cline{3-8}
+                                              && Yes & 0.0785 & 0.1042 & 0.0713 & 0.0628 & 0.0  \\ \hline \hline
+    \multirow{2}{*}{4} & \multirow{2}{*}{5589} & No  & 0.1197 & 0.1547 & 0.1336 & 0.0739 & 0.0  \\ \cline{3-8}
+                                              && Yes & 0.0894 & 0.1167 & 0.0787 & 0.0734 & 0.0  \\ \hline
   \end{tabular}
-\end{center}
+  \caption[Ranking results with explicit search]{Ranking results of the used weigthing schemes with explicit search}
+  \label{tbl:ranking_result_explicit}
+  \end{adjustwidth}
+\end{table}
 
 
-\subsection{Full Papers - More Like This}
-\begin{center}
+
+\subsection{Full Papers Search}
+
+... more like this.
+
+\begin{table}
+  \centering
   \begin{tabular}{ | c | c | c | c | c | }
     \hline
     \rowcolor{lightblue}
@@ -30,7 +40,20 @@ Does it make sense to use aditional information about the chapter in the search 
     \multirow{2}{*}{332} & without & 0.1431 & 0.1532 & 0.0703 \\ \cline{2-5}
                          & with   & 0.1806 & 0.1993 & 0.0672 \\ \hline
   \end{tabular}
-\end{center}
+  \caption[Ranking results with full paper search]{Ranking results of the used weigthing schemes with full paper search}
+  \label{tbl:ranking_result_full}
+\end{table}
+
+
+
+
+
+
+
+
+
+
+
 
 
 \section{TODO: Meaningful chapter name...}
