@@ -4,14 +4,37 @@
 \section{Dataset}
 \label{sec:dataset}
 
-Describe the used Dataset, and how it looks like.
-The Dataset contains 659 papers in PDF format.
+\subsection{Creation}
+The used dataset was created from approximately 3000 scientific articles in pdf format. An important point was that those articles contained various information, and thereby it was ensured that they come from different scientific fields.
 
-\subsection{Structure of the Graph}
-\label{sec:structure_of_the_graph}
+A text mining pre-processing technique as introduced by Vijayarani et al.~\cite{Vijayarani2015} was used to separate the data from the pdf, and store it into a database.
+This technique consists of three key steps, which are called the extraction-, the stopwords removal-, and the stemming-step. At first the article structure, and the raw text was seperated from the pdf. For those a framework descriped in \cref{sec:extract_document_structure} was used. The stopwords removal-, and the stemming step was done as descriped in \cref{sec:stop_words} and \cref{sec:stemming} (TODO: more detailed).
 
-\subsubsection{Paper Network as an directed Graph}
-\label{sec:undirected_graph}
+TODO: Write about the imrad type of an chapter
+
+To link the references of the scientific articles with others, and vice versa, a semi-automated annotation was performed. Thereby similarities about the references of an article and the titles of all other articles are compared as described in \cref{sec:text_similarities}, and if they exceed a given threshold a recommentation to create a link between those two was given.
+
+Each data record was created in such a way that it can be transferred directly to the database schema showen in \cref{fig:database_schema}.
+
+\myfig{database_schema}
+      {width=0.70\textwidth}
+      {Database Schema for the used Dataset}
+      {Database Schema for the used Dataset}
+      {fig:database_schema}
+
+\subsection{Structure}
+\label{sec:structure}
+
+
+
+\myfig{scientific_articles_tree}
+      {width=0.90\textwidth}
+      {Scientific Writing represended as a Tree}
+      {Scientific Writing represended as a Tree}
+      {fig:scientific_articles_tree}
+
+\subsection{Scientific Articles as a Network}
+\label{sec:scientific_articles_as_a_network}
 
 \myfig{dataset_generall}
       {width=0.50\textwidth}
@@ -80,10 +103,6 @@ Write something about the cycles in the network. preprints cite each other
       {Cyclic dependency in a directed graph}
       {Cyclic dependency in a directed graph}
       {fig:preprint_problem}
-
-\subsection{Structure of a Paper}
-\label{sec:analysis}
-Write how they are stored with plotly
 
 
 \section{Preprocessing}
