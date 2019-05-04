@@ -26,7 +26,11 @@ Each data record was created in such a way that it can be transferred directly t
 \subsection{Structure of a Scientific Article}
 \label{sec:structure_scientific_article}
 
-Write about the generall structure
+When looking at the scientific article in the database schema in \Cref{fig:database_schema} there are various member attributes. The first important point is that all text values are available raw and processed. The term raw stands for the text being saved as it was separated. Processed text is the raw text after the stopword removal-, and the stemming step.
+
+The author text attribute contains the names and e-mail adresses of all authors. Noch das der complette text, und eine extra liste mit autoren gespeichert werden...
+
+section - member... imrad - section type, and subsections - text list und subsections list
 
 \myfig{scientific_articles_tree}
       {width=0.90\textwidth}
@@ -35,6 +39,10 @@ Write about the generall structure
       {fig:scientific_articles_tree}
 
 \Cref{fig:scientific_articles_tree} showes the scientific article with regard to the individual sections. It is easy to see that the article itself is the root node, chapters are non-leaf nodes, and text areas are the leaf nodes.
+
+word hist
+
+references, cited by
 
 \subsection{Citation Network}
 \label{sec:citation_network}
@@ -47,14 +55,15 @@ Write about the generall structure
 
 \begin{table}
   \centering
-  \begin{tabular}{ | c | c | }
-    \hline
-    \textbf{Number of Nodes} & 821 \\ \hline
-    \textbf{Number of Edges} & 1716 \\ \hline
-    \textbf{Number of Components} & 1 \\ \hline
-    \textbf{Number of Cycles} & 0 \\ \hline
-    \textbf{Longest Path} & 12 \\ \hline
-    \textbf{Number of Root Nodes} & 107 \\ \hline
+  \begin{tabular}{ l c }
+    \toprule
+    \textbf{Number of Nodes} & 821 \\ \midrule
+    \textbf{Number of Edges} & 1716 \\ \midrule
+    \textbf{Number of Components} & 1 \\ \midrule
+    \textbf{Number of Cycles} & 0 \\ \midrule
+    \textbf{Longest Path} & 12 \\ \midrule
+    \textbf{Number of Root Nodes} & 107 \\
+    \bottomrule
   \end{tabular}
   \caption[General Properties about the graph in the used dataset]{General Properties about the graph}
   \label{tbl:general_properties_about_the_graph}
@@ -69,11 +78,12 @@ Write about the generall structure
 
 \begin{table}
   \centering
-  \begin{tabular}{ | c | c | }
-    \hline
-    \textbf{Max Degree} & 98 \\ \hline
-    \textbf{Mean Degree} & 5.8767 \\ \hline
-    \textbf{Median Degree} & 2 \\ \hline
+  \begin{tabular}{ l c }
+    \toprule
+    \textbf{Max Degree} & 98 \\ \midrule
+    \textbf{Mean Degree} & 5.8767 \\ \midrule
+    \textbf{Median Degree} & 2 \\
+    \bottomrule
   \end{tabular}
   \caption[Properties of the ingoing edges in the used dataset]{Properties of the ingoing edges}
   \label{tbl:properties_ingoing_edges}
@@ -87,11 +97,12 @@ Write about the generall structure
 
 \begin{table}
   \centering
-  \begin{tabular}{ | c | c | }
-    \hline
-    \textbf{Max Degree} & 13 \\ \hline
-    \textbf{Mean Degree} & 2.4034 \\ \hline
-    \textbf{Median Degree} & 2 \\ \hline
+  \begin{tabular}{ l c }
+    \toprule
+    \textbf{Max Degree} & 13 \\ \midrule
+    \textbf{Mean Degree} & 2.4034 \\ \midrule
+    \textbf{Median Degree} & 2 \\
+    \bottomrule
   \end{tabular}
   \caption[Properties of the outgoing edges in the used dataset]{Properties of the outgoing edges}
   \label{tbl:properties_outgoing_edges}
@@ -113,6 +124,9 @@ Write something about the cycles in the network. preprints cite each other
 Write general about information retrieval models as descriped in ~\cite{ModernInvormationRetrieval1999} page 57
 
 \subsection{Query Structure}
+
+Write how a query looks like - explizit and implizit
+
 \subsection{Introducing IMRaD Structure Features into Weighing Schemes}
 
 Write how the algorithms described in \cref{sec:ranking_algorithms} are modified for imrad structure features.
