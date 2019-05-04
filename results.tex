@@ -1,24 +1,23 @@
-\chapter{Evaluation Results}
-\label{cha:evaluation-results}
+\chapter{Evaluation}
+\label{cha:evaluation}
 Mean Average Precision is used to compare the search algorithms.
 
-
 \section{Leveraging IMRaD Structure Features}
-Does it make sense to use aditional information about the chapter in the search step?
+
 \subsection{Explicit Search using N-Grams}
 
 \begin{table}
   \begin{adjustwidth}{-2cm}{}
-    \begin{tabular}{ | c | C{1.5cm} | C{2.1cm} || C{2.1cm} | C{2.1cm} | C{2.1cm} | C{2.1cm} | C{2.1cm} |}
-      \hline
-      \rowcolor{lightblue}
-      \textbf{n} & \textbf{\# queries} & \textbf{Using IMRaD Chapter Features} & \textbf{Term Frequency} & \textbf{Tf-idf} & \textbf{Ranked Boolean Retrieval} & \textbf{Okapi BM25} & \textbf{Divergence from Randomness} \\ \hline
-      \multirow{2}{*}{2} & \multirow{2}{*}{8770} & No  & 0.0882 & 0.1128 & 0.1035 & 0.0442 & 0.0  \\ \cline{3-8}
-                                                && Yes & 0.0696 & 0.0897 & 0.0638 & 0.045  & 0.0  \\ \hline \hline
-      \multirow{2}{*}{3} & \multirow{2}{*}{7070} & No  & 0.1038 & 0.1382 & 0.1198 & 0.064  & 0.0  \\ \cline{3-8}
-                                                && Yes & 0.0785 & 0.1042 & 0.0713 & 0.0628 & 0.0  \\ \hline \hline
-      \multirow{2}{*}{4} & \multirow{2}{*}{5589} & No  & 0.1197 & 0.1547 & 0.1336 & 0.0739 & 0.0  \\ \cline{3-8}
-                                                && Yes & 0.0894 & 0.1167 & 0.0787 & 0.0734 & 0.0  \\ \hline
+    \begin{tabular}{ c C{1.5cm} C{2.1cm} C{2.1cm} C{2.1cm} C{2.1cm} C{2.1cm} C{2.1cm} }
+      \toprule
+      \textbf{n} & \textbf{\# queries} & \textbf{Using IMRaD Chapter Features} & \textbf{Term Frequency} & \textbf{Tf-idf} & \textbf{Ranked Boolean Retrieval} & \textbf{Okapi BM25} & \textbf{Divergence from Randomness} \\ \midrule
+      \multirow{2}{*}{$2$} & \multirow{2}{*}{$8770$} & No  & $0.0882$ & $0.1128$ & $0.1035$ & $0.0442$ & $0.0$  \\
+                                                    && Yes & $0.0696$ & $0.0897$ & $0.0638$ & $0.045$  & $0.0$  \\ \midrule
+      \multirow{2}{*}{$3$} & \multirow{2}{*}{$7070$} & No  & $0.1038$ & $0.1382$ & $0.1198$ & $0.064$  & $0.0$  \\
+                                                    && Yes & $0.0785$ & $0.1042$ & $0.0713$ & $0.0628$ & $0.0$  \\ \midrule
+      \multirow{2}{*}{$4$} & \multirow{2}{*}{$5589$} & No  & $0.1197$ & $0.1547$ & $0.1336$ & $0.0739$ & $0.0$  \\
+                                                    && Yes & $0.0894$ & $0.1167$ & $0.0787$ & $0.0734$ & $0.0$  \\
+      \bottomrule
     \end{tabular}
   \caption[Ranking results with explicit search]{Ranking results of the used weigthing schemes using explicit search}
   \label{tbl:ranking_result_explicit}
@@ -31,14 +30,16 @@ TODO: Okapi - Better param search, increase n
 
 ... more like this.
 
+Number of scientific articles: 714
+
 \begin{table}
-  \begin{adjustwidth}{-2cm}{}
-    \begin{tabular}{ | C{2.1cm} | C{2.1cm} | C{2.1cm} | C{2.1cm} | C{2.1cm} | C{2.1cm} | C{2.1cm} | }
-      \hline
-      \rowcolor{lightblue}
-      \textbf{\# Scientific Articles} & \textbf{Using IMRaD Chapter Features} & \textbf{Term Frequency} & \textbf{Tf-idf} & \textbf{Ranked Boolean Retrieval} & \textbf{Okapi BM25} & \textbf{Divergence from Randomness} \\ \hline
-      \multirow{2}{*}{714} & No  & 0.1186 & 0.1163 & 0.0466 & 0.0554 & 0.0 \\ \cline{2-7}
-                           & Yes & 0.1463 & 0.1613 & 0.0506 & 0.0882 & 0.0 \\ \hline
+    \begin{adjustwidth}{-1.9cm}{}
+    \begin{tabular}{ C{2.5cm} C{2.5cm} C{2.5cm} C{2.5cm} C{2.5cm} C{2.5cm} }
+      \toprule
+      \textbf{Using IMRaD Chapter Features} & \textbf{Term Frequency} & \textbf{Tf-idf} & \textbf{Ranked Boolean Retrieval} & \textbf{Okapi BM25} & \textbf{Divergence from Randomness} \\ \midrule
+      No  & $0.1186$ & $0.1163$ & $0.0466$ & $0.0554$ & $0.0$ \\
+      Yes & $0.1463$ & $0.1613$ & $0.0506$ & $0.0882$ & $0.0$ \\
+      \bottomrule
     \end{tabular}
   \caption[Ranking results using scientific articles]{Ranking results of the used weigthing schemes using scientific articles}
   \label{tbl:ranking_result_full}
@@ -47,22 +48,37 @@ TODO: Okapi - Better param search, increase n
 
 
 \section{Chapter Based Search}
-Does the search result improve if only a single chapter is used for searching? \\
-Which chapter has the most influence?
 
 Number of scientific articles: 714
 
 \begin{table}
   \centering
-  \begin{tabular}{ | c | c | c | c | c | c | }
-    \hline
-     & \textbf{Introduction} & \textbf{Background} & \textbf{Methods} & \textbf{Results} & \textbf{Discussion} \\ \hline
-    \textbf{Introduction} & 0.1242 & 0.1226 & 0.1095 & 0.1092 & 0.1049 \\ \hline
-    \textbf{Background}   & 0.1454 & 0.1249 & 0.1331 & 0.1255 & 0.1106 \\ \hline
-    \textbf{Methods}      & 0.0947 & 0.0857 & 0.1017 & 0.0897 & 0.0668 \\ \hline
-    \textbf{Results}      & 0.0877 & 0.0783 & 0.0815 & 0.0783 & 0.0631 \\ \hline
-    \textbf{Discussion}   & 0.1188 & 0.1078 & 0.0957 & 0.0914 & 0.084  \\ \hline
+  \begin{tabular}{ c c c c c c }
+    \toprule
+     & \textbf{Introduction} & \textbf{Background} & \textbf{Methods} & \textbf{Results} & \textbf{Discussion} \\
+    \textbf{Introduction} & $0.1242$ & $0.1226$ & $0.1095$ & $0.1092$ & $0.1049$ \\
+    \textbf{Background}   & $0.1454$ & $0.1249$ & $0.1331$ & $0.1255$ & $0.1106$ \\
+    \textbf{Methods}      & $0.0947$ & $0.0857$ & $0.1017$ & $0.0897$ & $0.0668$ \\
+    \textbf{Results}      & $0.0877$ & $0.0783$ & $0.0815$ & $0.0783$ & $0.0631$ \\
+    \textbf{Discussion}   & $0.1188$ & $0.1078$ & $0.0957$ & $0.0914$ & $0.084$  \\
+    \bottomrule
   \end{tabular}
   \caption[Chapter based Serch using Tf-idf]{Chapter based Serch using Tf-idf}
+  \label{tbl:ranking_result_full}
+\end{table}
+
+\begin{table}
+  \centering
+  \begin{tabular}{ c c c c c c }
+    \toprule
+     & \textbf{Introduction} & \textbf{Background} & \textbf{Methods} & \textbf{Results} & \textbf{Discussion} \\
+    \textbf{Introduction} & $0.0884$ & $0.0686$ & $0.0631$ & $0.061$  & $0.0708$ \\
+    \textbf{Background}   & $0.0909$ & $0.0715$ & $0.076$  & $0.0618$ & $0.0751$ \\
+    \textbf{Methods}      & $0.0565$ & $0.0417$ & $0.0593$ & $0.0379$ & $0.0403$ \\
+    \textbf{Results}      & $0.0438$ & $0.0426$ & $0.0433$ & $0.0461$ & $0.0443$ \\
+    \textbf{Discussion}   & $0.0799$ & $0.0682$ & $0.0587$ & $0.0595$ & $0.0616$ \\
+    \bottomrule
+  \end{tabular}
+  \caption[Chapter based Serch using Okapi BM25]{Chapter based Serch using Okapi BM25}
   \label{tbl:ranking_result_full}
 \end{table}
