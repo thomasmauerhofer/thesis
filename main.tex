@@ -165,6 +165,11 @@
 \usepackage{color, colortbl}
 \usepackage{multirow}
 \usepackage{booktabs}
+\usepackage{subfig}
+\usepackage{floatrow}
+\newfloatcommand{capbtabbox}{table}[][\FBwidth]
+\newcommand\MyBox[2][red!70!black]{{%
+  \setlength\fboxsep{0pt}\fcolorbox{#1}{white}{#2}}}
 
 
 %% ========================================================================

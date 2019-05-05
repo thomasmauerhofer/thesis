@@ -65,60 +65,68 @@ Citation networks represent the relationships inside a set of scientific article
     \textbf{Number of Root Nodes} & $107$  \\
     \bottomrule
   \end{tabular}
-  \caption[General Properties about the citation network in the used dataset]{General Properties about the citation network}
+  \caption[General Properties about the citation network]{General Properties about the citation network}
   \label{tbl:general_properties_about_the_graph}
 \end{table}
 
-The main properties of our citation network are shown at \Cref{tbl:general_properties_about_the_graph}. Three important points about the network
+The main properties of our citation network are shown at \Cref{tbl:general_properties_about_the_graph}(TODO: describe importat points).
+
+%Three important points about the network
+%One important point is that there are no cycles, which can be also seen by the number of strongly connected components. The longest citation chain over the timeline is defined by the longest path.%
+
+\begin{figure}
+  \begin{floatrow}
+
+    \capbtabbox[4.6cm][6cm]{
+      \begin{tabular}{ l c }
+        \toprule
+        \textbf{Max Degree}    & $98$     \\ \midrule
+        \textbf{Mean Degree}   & $5.8767$ \\ \midrule
+        \textbf{Median Degree} & $2$      \\
+        \bottomrule
+      \end{tabular}
+    }{
+      \label{tbl:properties_ingoing_edges}
+      \caption[Properties of the Citation Networks In-Degree Distribution]{Properties of the In-Degree Distribution}
+    }
+
+    \ffigbox[12cm][5.5cm]{
+      {\includegraphics[width=0.70\textwidth]{figures/in-degree_distribution}}
+    }{
+      \label{fig:indegree_distribution}
+      \caption[In-Degree Distribution in the Citation Network]{In-Degree Distribution}
+    }
+  \end{floatrow}
+\end{figure}
 
 
-One important point is that there are no cycles, which can be also seen by the number of strongly connected components. The longest citation chain over the timeline is defined by the longest path.
+The in-degree distribution and their properties How is it represented (citations to papers)
 
-\myfig{in-degree_distribution}
-      {width=0.80\textwidth}
-      {In-Degree Distribution of the used Dataset}
-      {In-Degree Distribution of the used Dataset}
-      {fig:in-degree_distribution}
+\begin{figure}
+  \begin{floatrow}
+    \capbtabbox[4.8cm][6cm]{
+      \begin{tabular}{ l c }
+        \toprule
+        \textbf{Max Degree}    & $13$     \\ \midrule
+        \textbf{Mean Degree}   & $2.4034$ \\ \midrule
+        \textbf{Median Degree} & $2$      \\
+        \bottomrule
+      \end{tabular}
+    }{
+      \label{tbl:properties_ingoing_edges}
+      \caption[Properties of the Citation Networks Out-Degree Distribution]{Properties of the Out-Degree Distribution}
+    }
 
-Descripe the in degree distribution. How is it represented (papers to citations)
+    \ffigbox[12cm][5.5cm]{
+      {\includegraphics[width=0.7\textwidth]{figures/out-degree_distribution}}
+    }{
+      \label{fig:outdegree_distribution}
+      \caption[Out-Degree Distribution in the Citation Network]{Out-Degree Distribution}
+    }
+  \end{floatrow}
+\end{figure}
 
-\begin{table}
-  \centering
-  \begin{tabular}{ l c }
-    \toprule
-    \textbf{Max Degree}    & $98$     \\ \midrule
-    \textbf{Mean Degree}   & $5.8767$ \\ \midrule
-    \textbf{Median Degree} & $2$      \\
-    \bottomrule
-  \end{tabular}
-  \caption[Properties of the ingoing edges in the used dataset]{Properties of the ingoing edges}
-  \label{tbl:properties_ingoing_edges}
-\end{table}
-
-Descripe the ingoing properties
-
-\myfig{out-degree_distribution}
-      {width=0.80\textwidth}
-      {Out-Degree Distribution of the used Dataset}
-      {Out-Degree Distribution of the used Dataset}
-      {fig:out-degree_distribution}
-
-Descripe the in degree distribution. How is it represented (citations to papers)
-
-\begin{table}
-  \centering
-  \begin{tabular}{ l c }
-    \toprule
-    \textbf{Max Degree}    & $13$     \\ \midrule
-    \textbf{Mean Degree}   & $2.4034$ \\ \midrule
-    \textbf{Median Degree} & $2$      \\
-    \bottomrule
-  \end{tabular}
-  \caption[Properties of the outgoing edges in the used dataset]{Properties of the outgoing edges}
-  \label{tbl:properties_outgoing_edges}
-\end{table}
-
-Descripe the outgoung properties
+The out-degree distribution and their properties How is it represented (citations to papers)
 
 \subsubsection{Data cleaning}
 \label{subsubsec:data_cleaning}
