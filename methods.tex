@@ -5,17 +5,17 @@
 \label{sec:dataset}
 
 \subsection{Creation}
-\label{sec:creation}
+\label{subsec:creation}
 
 We created our used dataset from approximately 3000 scientific articles in pdf format. An important point was that these articles contained various information, and thereby we ensured that they come from different scientific fields. To be able to use the data we had to separate them from the pdfs and add additional information first.
 
 We used a text mining pre-processing technique as introduced by Vijayarani et al.~\cite{Vijayarani2015} to separate the data from the pdf. This technique consists of three key steps, which are called the extraction-, the stopwords removal-, and the stemming-step. At first we seperated the article structure, and the raw text from the pdf. For those we used a framework descriped in \Cref{subsec:extract_document_structure}. The stopwords removal-, and the stemming step was done as descriped in \cref{subsec:stop_words} and \Cref{subsec:stemming} (TODO: more detailed).
 
-TODO: Write about the imrad type of an chapter
+TODO: Write about the imrad type of an chapter - describe why each section can have severeal imrad types
 
 At last we performed a semi-automated annotation to link the references of the scientific articles. Thereby similarities about the references of an article and the titles of all other articles are compared as described in \Cref{sec:text_similarities}, and if they exceed a given threshold a recommentation to create a link between those two was given.
 
-Each data record was created in such a way that it can be transferred directly to the database schema showen in \Cref{fig:database_schema}.
+We created each data record in such a way that it can be transferred directly to the database schema showen in \Cref{fig:database_schema}. To reduce noise during the evaluation we removed all articles without any connection to other articles, so we had 821 scientific articles in our final dataset. 
 
 \myfig{database_schema}
       {width=0.70\textwidth}
@@ -32,13 +32,11 @@ The author text attribute contains the names and email adresses of all authors. 
 
 \myfig{scientific_articles_tree}
       {width=0.90\textwidth}
-      {Scientific Writing represended as a Tree}
-      {Scientific Writing represended as a Tree}
+      {Scientific Article represended as a Tree}
+      {Scientific Article represended as a Tree}
       {fig:scientific_articles_tree}
 
-One of the most important characteristics are the sections, and the underlying structure that comes with it. \Cref{fig:scientific_articles_tree} showes that scientific articles are structured like a tree. chapters are non-leaf nodes, and text areas are the leaf nodes.
-
-section - member... imrad - section type, and subsections - text list und subsections list
+One of the most important characteristics are the sections, and the underlying structure that comes with it. \Cref{fig:scientific_articles_tree} showes that scientific articles are structured like a tree. It is easy to see that the chapters are non-leaf nodes, and text areas are the leaf nodes. This is reflected in database schema with two lists. One for the subsections, and one for text areas. In addition to the lists, each section itself has a section type. This attribute reflects whether the section is a section, subsection, or subsubsection. The IMRaD structure information is stored as the IMRaD type. As described in \Cref{subsec:creation}, each section can have several IMRaD types, and each type of section holds its own list of these types.
 
 word hist
 
@@ -49,8 +47,8 @@ references, cited by
 
 \myfig{dataset_generall}
       {width=0.50\textwidth}
-      {General Structure of a Paper Network}
-      {General Structure of a Paper Network}
+      {General Structure of a Citation Network}
+      {General Structure of a Citation Network}
       {fig:dataset_generall}
 
 \begin{table}
