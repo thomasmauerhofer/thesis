@@ -9,7 +9,7 @@
 
 We created our used dataset from approximately 3000 scientific articles in pdf format. An important point was that these articles contained various information, and thereby we ensured that they come from different scientific fields. To be able to use the data we had to separate them from the pdfs and add additional information first.
 
-We used a text mining pre-processing technique as introduced by Vijayarani et al.~\cite{Vijayarani2015} to separate the data from the pdf. This technique consists of three key steps, which are called the extraction-, the stopwords removal-, and the stemming-step. At first we seperated the article structure, and the raw text from the pdf. For those we used a framework descriped in \Cref{sec:extract_document_structure}. The stopwords removal-, and the stemming step was done as descriped in \cref{sec:stop_words} and \Cref{sec:stemming} (TODO: more detailed).
+We used a text mining pre-processing technique as introduced by Vijayarani et al.~\cite{Vijayarani2015} to separate the data from the pdf. This technique consists of three key steps, which are called the extraction-, the stopwords removal-, and the stemming-step. At first we seperated the article structure, and the raw text from the pdf. For those we used a framework descriped in \Cref{subsec:extract_document_structure}. The stopwords removal-, and the stemming step was done as descriped in \cref{subsec:stop_words} and \Cref{subsec:stemming} (TODO: more detailed).
 
 TODO: Write about the imrad type of an chapter
 
@@ -28,9 +28,7 @@ Each data record was created in such a way that it can be transferred directly t
 
 When looking at the scientific article in the database schema in \Cref{fig:database_schema} there are various member attributes. The first important point is that all text values are available raw and processed. The term raw stands for the text being saved as it was separated. Processed text is the raw text after the stopword removal-, and the stemming step.
 
-The author text attribute contains the names and e-mail adresses of all authors. Noch das der complette text, und eine extra liste mit autoren gespeichert werden...
-
-section - member... imrad - section type, and subsections - text list und subsections list
+The author text attribute contains the names and email adresses of all authors. Thereby this attribute has three values. The complete text, the text reduced to emails, and a list of all authors. This part of the article is the only one that is not preprocessed.
 
 \myfig{scientific_articles_tree}
       {width=0.90\textwidth}
@@ -38,7 +36,9 @@ section - member... imrad - section type, and subsections - text list und subsec
       {Scientific Writing represended as a Tree}
       {fig:scientific_articles_tree}
 
-\Cref{fig:scientific_articles_tree} showes the scientific article with regard to the individual sections. It is easy to see that the article itself is the root node, chapters are non-leaf nodes, and text areas are the leaf nodes.
+One of the most important characteristics are the sections, and the underlying structure that comes with it. \Cref{fig:scientific_articles_tree} showes that scientific articles are structured like a tree. chapters are non-leaf nodes, and text areas are the leaf nodes.
+
+section - member... imrad - section type, and subsections - text list und subsections list
 
 word hist
 
@@ -57,12 +57,12 @@ references, cited by
   \centering
   \begin{tabular}{ l c }
     \toprule
-    \textbf{Number of Nodes} & 821 \\ \midrule
-    \textbf{Number of Edges} & 1716 \\ \midrule
-    \textbf{Number of Components} & 1 \\ \midrule
-    \textbf{Number of Cycles} & 0 \\ \midrule
-    \textbf{Longest Path} & 12 \\ \midrule
-    \textbf{Number of Root Nodes} & 107 \\
+    \textbf{Number of Nodes}      & $821$  \\ \midrule
+    \textbf{Number of Edges}      & $1716$ \\ \midrule
+    \textbf{Number of Components} & $1$    \\ \midrule
+    \textbf{Number of Cycles}     & $0$    \\ \midrule
+    \textbf{Longest Path}         & $12$   \\ \midrule
+    \textbf{Number of Root Nodes} & $107$  \\
     \bottomrule
   \end{tabular}
   \caption[General Properties about the graph in the used dataset]{General Properties about the graph}
@@ -80,9 +80,9 @@ references, cited by
   \centering
   \begin{tabular}{ l c }
     \toprule
-    \textbf{Max Degree} & 98 \\ \midrule
-    \textbf{Mean Degree} & 5.8767 \\ \midrule
-    \textbf{Median Degree} & 2 \\
+    \textbf{Max Degree}    & $98$     \\ \midrule
+    \textbf{Mean Degree}   & $5.8767$ \\ \midrule
+    \textbf{Median Degree} & $2$      \\
     \bottomrule
   \end{tabular}
   \caption[Properties of the ingoing edges in the used dataset]{Properties of the ingoing edges}
@@ -99,9 +99,9 @@ references, cited by
   \centering
   \begin{tabular}{ l c }
     \toprule
-    \textbf{Max Degree} & 13 \\ \midrule
-    \textbf{Mean Degree} & 2.4034 \\ \midrule
-    \textbf{Median Degree} & 2 \\
+    \textbf{Max Degree}    & $13$     \\ \midrule
+    \textbf{Mean Degree}   & $2.4034$ \\ \midrule
+    \textbf{Median Degree} & $2$      \\
     \bottomrule
   \end{tabular}
   \caption[Properties of the outgoing edges in the used dataset]{Properties of the outgoing edges}
