@@ -50,18 +50,19 @@
 %doc% \end{itemize}
 %doc%
 %doc%
-\newcommand{\myfig}[5]{
+\newcommand{\myfig}[6]{
 %% example:
 % \myfig{}%% filename in figures folder
 %       {width=0.5\textwidth,height=0.5\textheight}%% maximum width/height, aspect ratio will be kept
 %       {}%% caption
 %       {}%% optional (short) caption for list of figures
 %       {}%% label
-\begin{figure}%[htp]
+%       {}%% position (h (here), t (top), b(bottom) + ! (force))
+\begin{figure}[#6]
   \centering
   \includegraphics[keepaspectratio,#2]{figures/#1}
   \caption[#4]{#3}
-  \label{#5} %% NOTE: always label *after* caption!
+  \label{#5}
 \end{figure}
 }
 
