@@ -74,7 +74,17 @@ The last two attributes of the article are the reference-, and the cited-by-list
       {General Structure of a Citation Network}
       {fig:structure_citation_network}
 
-A Citation networks represents the relationship between scientific articles. \Cref{fig:structure_citation_network} shows the structure, and the properties ~\cite{kas2011} of such a network. Therby the articles regards as nodes, and an edge from node i to node j is added if i cites j. The network involves ofer time. ie. new articles cites existing onses. The timeline indicates that new articles citing existing articles, and thus there can not be cyclic dependencies.
+A Citation networks represents the relationship between scientific articles. \Cref{fig:structure_citation_network} shows the structure of such a network. Scientific articles are nodes, and citations are directed edges between these nodes. The timeline indicates that new articles citing existing articles, and thus there can not be cyclic dependencies. ~\cite{kas2011} defined the basic properties of citation networks in their work. In our case the most important ones are:
+
+\begin{itemize}
+  \item Directed.
+  \item Acyclic.
+  \item All edges point backwards in time
+  \item Edges are permanent
+  \item The existing part is mostly constant. Only the leading edges changes
+\end{itemize}
+
+The network is directed and acyclic because each article has a unique publication date and can only cite previously published articles. Due to these properties edges can only point back in time. The edges of the network have to be permanent because the references of the existing articles never chages. When a new node is added it generates edges to existing articles. This means that all other nodes and edges stays constant.
 
 \begin{table}[!b]
   \centering
@@ -87,20 +97,12 @@ A Citation networks represents the relationship between scientific articles. \Cr
     \textbf{Number of Root Nodes} & $107$  \\
     \bottomrule
   \end{tabular}
-  \caption[General Properties about the citation network]{General Properties about the citation network}
+  \caption[General Properties about the citation network]{\textbf{General Properties about the citation network.} The citation network represents the relationship between our used scientific articles. The number of nodes indicates the number of articles, and the number of edges citiation between the articles. There are no cycles inside the graph, and the longest citation chain consists of 12 articles. There are 107 articles which has no outgoing edges. That means that none of their refered articles are part of our dataset.}
   \label{tbl:general_properties_about_the_graph}
 \end{table}
 
-Warum keine cyles, und der connection der zeitlichen abhengigkeit
+The main properties of our citation network are shown in \Cref{tbl:general_properties_about_the_graph}. Scientific articles are the nodes, and citations are the edges between these nodes. This means that our network consists of 821 articles, and 1,716 citations between these articles. As described in \Cref{fig:structure_citation_network} and the associated timeline there can not be circles inside the graph. During the generation of our dataset we found an exception via preprints, where circles can appear and have to be handled. Preprints are versions of scentific articles which are not peer reviewed, and published in a scentific journal. In our case we removed all preprints from the dataset. The longest path length indicates that the longest citation chain of our network consists of 12 articles. The root nodes are nodes without any outgoing edges. In our network are 107 articles which cite no other article, which means that none of their refered articles are part of our dataset.
 
-eine exception sind preprints - (paper before sie peer reviewed werden) - hatte 5 drinnen, removed...
-
-longest path - was heißt es in context of citation graph, es gibt einen ausblick über die zeitspanne da nacheinander. Diese paper sind related...
-
-The main properties of our citation network are shown at \Cref{tbl:general_properties_about_the_graph}(TODO: describe importat points).
-Write something about the cycles in the network. preprints cite each other, and why they are removed for the network.
-%Three important points about the network
-%One important point is that there are no cycles, which can be also seen by the number of strongly connected components. The longest citation chain over the timeline is defined by the longest path.%
 \begin{minipage}[!t]{\textwidth}
   \begin{minipage}[b]{0.39\textwidth}
     \centering
