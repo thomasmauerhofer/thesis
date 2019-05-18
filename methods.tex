@@ -11,6 +11,30 @@ We created our used dataset from approximately 3000 scientific articles in PDF f
 
 We used a text mining pre-processing technique as introduced by Vijayarani et al.~\cite{Vijayarani2015} to separate the data from the PDF. This technique consists of three key steps, which are called the extraction-, the stopwords removal-, and the stemming-step. At first we seperated the article structure, and the raw text from the PDF. For those we used a framework descriped in \Cref{subsec:extract_document_structure}. The stopwords removal-, and the stemming step was done as descriped in \cref{subsec:stop_words} and \Cref{subsec:stemming}.
 
+\begin{table}
+  \centering
+  \begin{tabular}{C{2.6cm} C{0.0cm} C{2.6cm} C{1.5cm} C{1.5cm} C{0.0cm} C{1.5cm} C{1.5cm}}
+    \toprule
+    && \multicolumn{3}{c}{\textbf{per Section Name}} && \multicolumn{2}{c}{\textbf{Overall}} \\
+    \textbf{IMRaD Type} && \textbf{Name} & \textbf{\# Paper} & \textbf{Percent} && \textbf{\# Paper} & \textbf{Percent} \\ \midrule
+    Introduction && Introduction & $822$ & $100\%$ && $822$ & $100\%$ \\ \midrule
+    \multirow{2}{*}{Related Work} && Related Work & $465$ & $56.57\%$ && \multirow{2}{*}{$499$} & \multirow{2}{*}{$60.71\%$} \\
+    && Background & $34$ & $4.14\%$ \\ \midrule
+    \multirow{3}{*}{Methods} && Method & $97$ & $11.8\%$ && \multirow{3}{*}{$312$} & \multirow{3}{*}{$37.96\%$} \\
+    && Model & 134 & $16.3\%$ \\
+    && Approach & 81 & $9.85\%$ \\ \midrule
+    \multirow{3}{*}{Result} && Experience & $396$ & $48.18\%$ && \multirow{3}{*}{$687$} & \multirow{3}{*}{$83.58\%$} \\
+    && Result & 163 & $19.83\%$ \\
+    && Evaluation & 128 & $15.57\%$ \\ \midrule
+    \multirow{3}{*}{Discussion} && Conclusion & $581$ & $70.68\%$ && \multirow{3}{*}{$773$} & \multirow{3}{*}{$94.04\%$} \\
+    && Discussion & 179 & $21.78\%$ \\
+    && Future Work & 13 & $1.58\%$ \\
+    \bottomrule
+  \end{tabular}
+  \caption[Mapping of the Section Names to IMRAD-Types]{\textbf{Mapping of the Section Names to IMRAD-Types} write something}
+  \label{tbl:mapping_section_names}
+\end{table}
+
 One of the additional details we had to add was IMRaD structure information. The IMRaD structure provides related work to be part of the introduction. Since most of our papers had an own section named related work we chose to add an additional type for it. We were able to classifify the introduction, related work, results, and discussion with simple keyword detection. (todo add keyword table). Because methods are  ... describe why each section can have severeal imrad types
 
 At last we performed a semi-automated annotation to link the references of the scientific articles. Thereby similarities about the references of an article and the titles of all other articles are compared as described in \Cref{sec:text_similarities}, and if they exceed a given threshold a recommentation to create a link between those two was given.
@@ -22,7 +46,6 @@ We created each data record in such a way that it can be transferred directly to
       {Database Schema for the used Dataset}
       {Database Schema for the used Dataset}
       {fig:database_schema}
-      {t}
 
 \subsection{Structure of a Scientific Article}
 \label{sec:structure_scientific_article}
@@ -36,7 +59,6 @@ The author text attribute contains the names and email adresses of all authors. 
       {\textbf{Scientific Article Tree.} In this figure we highlight the hiracical structure of an typical scientific article. For example it can be composed into multiple sections.}
       {Scientific Article represended as a Tree}
       {fig:scientific_articles_tree}
-      {t}
 
 One of the most important characteristics are the sections, and the underlying structure that comes with it. \Cref{fig:scientific_articles_tree} showes that scientific articles are structured like a tree. It is easy to see that the chapters are non-leaf nodes, and text areas are the leaf nodes. This is reflected in database schema with two lists. One for the subsections, and one for text areas. In addition to the lists, each section itself has a section type. This attribute reflects whether the section is a section, subsection, or subsubsection. The IMRaD structure information is stored as the IMRaD type. As described in \Cref{subsec:creation}, each section can have several IMRaD types, and each type of section holds its own list of these types.
 
@@ -52,17 +74,10 @@ The last two attributes of the article are the reference-, and the cited-by-list
       {General Structure of a Citation Network}
       {General Structure of a Citation Network}
       {fig:structure_citation_network}
-      {t}
 
-A Citation networks represents the relationship between scientific articles. \Cref{fig:structure_citation_network} shows the structure, and the properties ~\cite{kas2011} of such a network. Therby the articles regards as nodes, and an edge from node i to node j is added if i cites j. The network involves ofer time. ie. new articles cites existing onses. he timeline indicates that new articles citing existing articles, and thus there can not be cyclic dependencies.
+A Citation networks represents the relationship between scientific articles. \Cref{fig:structure_citation_network} shows the structure, and the properties ~\cite{kas2011} of such a network. Therby the articles regards as nodes, and an edge from node i to node j is added if i cites j. The network involves ofer time. ie. new articles cites existing onses. The timeline indicates that new articles citing existing articles, and thus there can not be cyclic dependencies.
 
-Warum keine cyles, und der connection der zeitlichen abhengigkeit
-
-eine exception sind preprints - (paper before sie peer reviewed werden) - hatte 5 drinnen, removed...
-
-longest path - was heißt es in context of citation graph, es gibt einen ausblick über die zeitspanne da nacheinander. Diese paper sind related...
-
-\begin{table}
+\begin{table}[b]
   \centering
   \begin{tabular}{ l c }
     \toprule
@@ -77,11 +92,17 @@ longest path - was heißt es in context of citation graph, es gibt einen ausblic
   \label{tbl:general_properties_about_the_graph}
 \end{table}
 
-The main properties of our citation network are shown at \Cref{tbl:general_properties_about_the_graph}(TODO: describe importat points).
+Warum keine cyles, und der connection der zeitlichen abhengigkeit
 
+eine exception sind preprints - (paper before sie peer reviewed werden) - hatte 5 drinnen, removed...
+
+longest path - was heißt es in context of citation graph, es gibt einen ausblick über die zeitspanne da nacheinander. Diese paper sind related...
+
+The main properties of our citation network are shown at \Cref{tbl:general_properties_about_the_graph}(TODO: describe importat points).
+Write something about the cycles in the network. preprints cite each other, and why they are removed for the network.
 %Three important points about the network
 %One important point is that there are no cycles, which can be also seen by the number of strongly connected components. The longest citation chain over the timeline is defined by the longest path.%
-\begin{minipage}{\textwidth}
+\begin{minipage}[t]{\textwidth}
   \begin{minipage}[b]{0.39\textwidth}
     \centering
     \begin{tabular}{ l c }
@@ -105,7 +126,7 @@ The main properties of our citation network are shown at \Cref{tbl:general_prope
 
 The in-degree distribution and their properties How is it represented (citations to papers)
 
-\begin{minipage}{\textwidth}
+\begin{minipage}[t]{\textwidth}
   \begin{minipage}[b]{0.39\textwidth}
     \centering
     \begin{tabular}{ l c }
@@ -128,10 +149,6 @@ The in-degree distribution and their properties How is it represented (citations
 \end{minipage}
 
 The out-degree distribution and their properties How is it represented (citations to papers)
-
-\subsubsection{Data cleaning}
-\label{subsubsec:data_cleaning}
-Write something about the cycles in the network. preprints cite each other, and why they are removed for the network.
 
 \section{Model}
 \label{sec:model}

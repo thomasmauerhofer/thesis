@@ -50,7 +50,7 @@
 %doc% \end{itemize}
 %doc%
 %doc%
-\newcommand{\myfig}[6]{
+\newcommand{\myfig}[5]{
 %% example:
 % \myfig{}%% filename in figures folder
 %       {width=0.5\textwidth,height=0.5\textheight}%% maximum width/height, aspect ratio will be kept
@@ -58,7 +58,7 @@
 %       {}%% optional (short) caption for list of figures
 %       {}%% label
 %       {}%% position (h (here), t (top), b(bottom) + ! (force))
-\begin{figure}[#6]
+\begin{figure}[t]
   \centering
   \includegraphics[keepaspectratio,#2]{figures/#1}
   \caption[#4]{#3}
