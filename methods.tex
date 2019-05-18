@@ -103,51 +103,55 @@ The network is directed and acyclic because each article has a unique publicatio
 
 The main properties of our citation network are shown in \Cref{tbl:general_properties_about_the_graph}. Scientific articles are the nodes, and citations are the edges between these nodes. This means that our network consists of 821 articles, and 1,716 citations between these articles. As described in \Cref{fig:structure_citation_network} and the associated timeline there can not be circles inside the graph. During the generation of our dataset we found an exception via preprints, where circles can appear and have to be handled. Preprints are versions of scentific articles which are not peer reviewed, and published in a scentific journal. In our case we removed all preprints from the dataset. The longest path length indicates that the longest citation chain of our network consists of 12 articles. The root nodes are nodes without any outgoing edges. In our network are 107 articles which cite no other article, which means that none of their refered articles are part of our dataset.
 
-\begin{minipage}[!t]{\textwidth}
-  \begin{minipage}[b]{0.39\textwidth}
-    \centering
-    \begin{tabular}{ l c }
-      \toprule
-      \textbf{Max Degree}    & $98$     \\ \midrule
-      \textbf{Mean Degree}   & $5.8767$ \\ \midrule
-      \textbf{Median Degree} & $2$      \\
-      \bottomrule
-  \end{tabular} \\
-  \vspace*{1cm}
-  (a) Properties
-\end{minipage}
-\begin{minipage}[b]{0.59\textwidth}
-  \centering
-  \includegraphics[width=1.0\textwidth]{figures/in-degree_distribution} \\
-  (b) In-Degree Distribution
+\begin{figure}[!t]
+  \begin{minipage}{\textwidth}
+    \begin{minipage}[b]{0.39\textwidth}
+      \centering
+      \begin{tabular}{ l c }
+        \toprule
+        \textbf{Max Degree}    & $98$     \\ \midrule
+        \textbf{Mean Degree}   & $5.8767$ \\ \midrule
+        \textbf{Median Degree} & $2$      \\
+        \bottomrule
+    \end{tabular} \\
+    \vspace*{1cm}
+    (a) Properties
   \end{minipage}
-  \captionof{figure}[In-Degree Distribution of the Citation Network]{\textbf{In-Degree Distribution} beschreiben indegree(wie oft hat ein paper ein anderes zitiert) mean wert ist 2, also nur 2 mal zitiert. gibt aber ausreiser, da einige sehr relevant sind.}
+  \begin{minipage}[b]{0.59\textwidth}
+    \centering
+    \includegraphics[width=1.0\textwidth]{figures/in-degree_distribution} \\
+    (b) In-Degree Distribution
+    \end{minipage}
+  \end{minipage}
+  \caption[In-Degree Distribution of the Citation Network]{\textbf{In-Degree Distribution} beschreiben indegree(wie oft hat ein paper ein anderes zitiert) mean wert ist 2, also nur 2 mal zitiert. gibt aber ausreiser, da einige sehr relevant sind.}
   \label{fig:indegree_distribution}
-\end{minipage}
+\end{figure}
 
 The in-degree distribution and their properties How is it represented (citations to papers)
 
-\begin{minipage}[!t]{\textwidth}
-  \begin{minipage}[b]{0.39\textwidth}
-    \centering
-    \begin{tabular}{ l c }
-      \toprule
-      \textbf{Max Degree}    & $13$     \\ \midrule
-      \textbf{Mean Degree}   & $2.4034$ \\ \midrule
-      \textbf{Median Degree} & $2$      \\
-      \bottomrule
-  \end{tabular} \\
-  \vspace*{1cm}
-  (a) Properties
-\end{minipage}
-\begin{minipage}[b]{0.59\textwidth}
-  \centering
-  \includegraphics[width=1.0\textwidth]{figures/out-degree_distribution} \\
-  (b) Out-Degree Distribution
+\begin{figure}[!t]
+  \begin{minipage}[!t]{\textwidth}
+    \begin{minipage}[b]{0.39\textwidth}
+      \centering
+      \begin{tabular}{ l c }
+        \toprule
+        \textbf{Max Degree}    & $13$     \\ \midrule
+        \textbf{Mean Degree}   & $2.4034$ \\ \midrule
+        \textbf{Median Degree} & $2$      \\
+        \bottomrule
+    \end{tabular} \\
+    \vspace*{1cm}
+    (a) Properties
   \end{minipage}
-  \captionof{figure}[Out-Degree Distribution of the Citation Network]{\textbf{Out-Degree Distribution} beschreiben outdegree etc...}
-  \label{fig:indegree_distribution}
-\end{minipage}
+  \begin{minipage}[b]{0.59\textwidth}
+    \centering
+    \includegraphics[width=1.0\textwidth]{figures/out-degree_distribution} \\
+    (b) Out-Degree Distribution
+    \end{minipage}
+  \end{minipage}
+\caption[Out-Degree Distribution of the Citation Network]{\textbf{Out-Degree Distribution} beschreiben outdegree etc...}
+\label{fig:indegree_distribution}
+\end{figure}
 
 The out-degree distribution and their properties How is it represented (citations to papers)
 
