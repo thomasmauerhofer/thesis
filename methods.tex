@@ -11,27 +11,27 @@ We created our used dataset from approximately 3000 scientific articles in PDF f
 
 We used a text mining pre-processing technique as introduced by Vijayarani et al.~\cite{Vijayarani2015} to separate the data from the PDF. This technique consists of three key steps, which are called the extraction-, the stopwords removal-, and the stemming-step. At first we seperated the article structure, and the raw text from the PDF. For those we used a framework descriped in \Cref{subsec:extract_document_structure}. The stopwords removal-, and the stemming step was done as descriped in \cref{subsec:stop_words} and \Cref{subsec:stemming}.
 
-\begin{table}
+\begin{table}[!b]
   \centering
-  \begin{tabular}{C{2.6cm} C{0.0cm} C{2.6cm} C{1.5cm} C{1.5cm} C{0.0cm} C{1.5cm} C{1.5cm}}
+  \begin{tabular}{C{2.6cm} C{2.7cm} C{1.5cm} C{1.5cm} C{1.5cm} C{1.5cm}}
     \toprule
-    && \multicolumn{3}{c}{\textbf{per Section Name}} && \multicolumn{2}{c}{\textbf{Overall}} \\
-    \textbf{IMRaD Type} && \textbf{Name} & \textbf{\# Paper} & \textbf{Percent} && \textbf{\# Paper} & \textbf{Percent} \\ \midrule
-    Introduction && Introduction & $822$ & $100\%$ && $822$ & $100\%$ \\ \midrule
-    \multirow{2}{*}{Related Work} && Related Work & $465$ & $56.57\%$ && \multirow{2}{*}{$499$} & \multirow{2}{*}{$60.71\%$} \\
-    && Background & $34$ & $4.14\%$ \\ \midrule
-    \multirow{3}{*}{Methods} && Method & $97$ & $11.8\%$ && \multirow{3}{*}{$312$} & \multirow{3}{*}{$37.96\%$} \\
-    && Model & 134 & $16.3\%$ \\
-    && Approach & 81 & $9.85\%$ \\ \midrule
-    \multirow{3}{*}{Result} && Experience & $396$ & $48.18\%$ && \multirow{3}{*}{$687$} & \multirow{3}{*}{$83.58\%$} \\
-    && Result & 163 & $19.83\%$ \\
-    && Evaluation & 128 & $15.57\%$ \\ \midrule
-    \multirow{3}{*}{Discussion} && Conclusion & $581$ & $70.68\%$ && \multirow{3}{*}{$773$} & \multirow{3}{*}{$94.04\%$} \\
-    && Discussion & 179 & $21.78\%$ \\
-    && Future Work & 13 & $1.58\%$ \\
+    & \multicolumn{3}{c}{\textbf{per Keywords}} & \multicolumn{2}{c}{\textbf{Overall}} \\
+    \textbf{IMRaD Type} & \textbf{Section Name} & \textbf{\# Paper} & \textbf{Percent} & \textbf{\# Paper} & \textbf{Percent} \\ \midrule
+    Introduction & Introduction & $822$ & $100\%$ & $822$ & $100\%$ \\ \midrule
+    \multirow{2}{*}{Related Work} & Related Work & $465$ & $56.57\%$ & \multirow{2}{*}{$499$} & \multirow{2}{*}{$60.71\%$} \\
+    & Background & $34$ & $4.14\%$ \\ \midrule
+    \multirow{3}{*}{Methods} & Method & $97$ & $11.8\%$ & \multirow{3}{*}{$312$} & \multirow{3}{*}{$37.96\%$} \\
+    & Model & 134 & $16.3\%$ \\
+    & Approach & 81 & $9.85\%$ \\ \midrule
+    \multirow{3}{*}{Result} & Experience & $396$ & $48.18\%$ & \multirow{3}{*}{$687$} & \multirow{3}{*}{$83.58\%$} \\
+    & Result & 163 & $19.83\%$ \\
+    & Evaluation & 128 & $15.57\%$ \\ \midrule
+    \multirow{3}{*}{Discussion} & Conclusion & $581$ & $70.68\%$ & \multirow{3}{*}{$773$} & \multirow{3}{*}{$94.04\%$} \\
+    & Discussion & 179 & $21.78\%$ \\
+    & Future Work & 13 & $1.58\%$ \\
     \bottomrule
   \end{tabular}
-  \caption[Mapping of the Section Names to IMRAD-Types]{\textbf{Mapping of the Section Names to IMRAD-Types} write something}
+  \caption[Mapping of the Section Names to IMRAD-Types]{\textbf{Mapping of the Section Names to IMRAD-Types.} This Table shows which keywords was used to generate the IMRaD structure information. Additionally the relation between those words, and how often they occures in the dataset is displayed.}
   \label{tbl:mapping_section_names}
 \end{table}
 
@@ -77,7 +77,7 @@ The last two attributes of the article are the reference-, and the cited-by-list
 
 A Citation networks represents the relationship between scientific articles. \Cref{fig:structure_citation_network} shows the structure, and the properties ~\cite{kas2011} of such a network. Therby the articles regards as nodes, and an edge from node i to node j is added if i cites j. The network involves ofer time. ie. new articles cites existing onses. The timeline indicates that new articles citing existing articles, and thus there can not be cyclic dependencies.
 
-\begin{table}[b]
+\begin{table}[!b]
   \centering
   \begin{tabular}{ l c }
     \toprule
@@ -102,7 +102,7 @@ The main properties of our citation network are shown at \Cref{tbl:general_prope
 Write something about the cycles in the network. preprints cite each other, and why they are removed for the network.
 %Three important points about the network
 %One important point is that there are no cycles, which can be also seen by the number of strongly connected components. The longest citation chain over the timeline is defined by the longest path.%
-\begin{minipage}[t]{\textwidth}
+\begin{minipage}[!t]{\textwidth}
   \begin{minipage}[b]{0.39\textwidth}
     \centering
     \begin{tabular}{ l c }
@@ -126,7 +126,7 @@ Write something about the cycles in the network. preprints cite each other, and 
 
 The in-degree distribution and their properties How is it represented (citations to papers)
 
-\begin{minipage}[t]{\textwidth}
+\begin{minipage}[!t]{\textwidth}
   \begin{minipage}[b]{0.39\textwidth}
     \centering
     \begin{tabular}{ l c }
