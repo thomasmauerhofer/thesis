@@ -1,60 +1,85 @@
 /usr/bin/python3.6 /home/thomas11/git/search-engine/src/evaluation/evaluate.py -a
 Using TensorFlow backend.
 BM25 - b: 0.75, k1: 1.2
-N =  5
+N =  7
  & #queries & MAP
 Percent: [------------------->] 100%
-without importance to sections & 4347 & 0.0794
-importance to sections & 4347 & 0.0791
-N =  6
+without importance to sections & 2550 & 0.0817
+importance to sections & 2550 & 0.0842
+N =  8
  & #queries & MAP
 Percent: [------------------->] 100%
-without importance to sections & 3336 & 0.0804
-importance to sections & 3336 & 0.0819
+without importance to sections & 1911 & 0.0818
+importance to sections & 1911 & 0.0916
+N =  9
+ & #queries & MAP
+Percent: [------------------->] 100%
+without importance to sections & 1402 & 0.0879
+importance to sections & 1402 & 0.0969
 Term Frequency
-N =  5
+N =  7
  & #queries & MAP
 Percent: [------------------->] 100%
-without importance to sections & 4347 & 0.1317
-importance to sections & 4347 & 0.0993
-N =  6
+without importance to sections & 2550 & 0.1588
+importance to sections & 2550 & 0.1085
+N =  8
  & #queries & MAP
 Percent: [------------------->] 100%
-without importance to sections & 3336 & 0.1469
-importance to sections & 3336 & 0.1042
+without importance to sections & 1911 & 0.1712
+importance to sections & 1911 & 0.1158
+N =  9
+ & #queries & MAP
+Percent: [------------------->] 100%
+without importance to sections & 1402 & 0.1804
+importance to sections & 1402 & 0.1213
 Term Frequency-Inverse Document Frequency
-N =  5
+N =  7
  & #queries & MAP
 Percent: [------------------->] 100%
-without importance to sections & 4347 & 0.1689
-importance to sections & 4347 & 0.1262
-N =  6
+without importance to sections & 2550 & 0.1857
+importance to sections & 2550 & 0.1375
+N =  8
  & #queries & MAP
 Percent: [------------------->] 100%
-without importance to sections & 3336 & 0.1766
-importance to sections & 3336 & 0.1319
+without importance to sections & 1911 & 0.1957
+importance to sections & 1911 & 0.1441
+N =  9
+ & #queries & MAP
+Percent: [------------------->] 100%
+without importance to sections & 1402 & 0.2074
+importance to sections & 1402 & 0.1496
 Ranked Boolean Retrieval
-N =  5
+N =  7
  & #queries & MAP
 Percent: [------------------->] 100%
-without importance to sections & 4347 & 0.1479
-importance to sections & 4347 & 0.0844
-N =  6
+without importance to sections & 2550 & 0.167
+importance to sections & 2550 & 0.0961
+N =  8
  & #queries & MAP
 Percent: [------------------->] 100%
-without importance to sections & 3336 & 0.1603
-importance to sections & 3336 & 0.0918
+without importance to sections & 1911 & 0.1718
+importance to sections & 1911 & 0.0988
+N =  9
+ & #queries & MAP
+Percent: [------------------->] 100%
+without importance to sections & 1402 & 0.1757
+importance to sections & 1402 & 0.1015
 Divergence from Randomness
-N =  5
+N =  7
  & #queries & MAP
 Percent: [------------------->] 100%
-without importance to sections & 4347 & 0.0416
-importance to sections & 4347 & 0.0317
-N =  6
+without importance to sections & 2550 & 0.0404
+importance to sections & 2550 & 0.0312
+N =  8
  & #queries & MAP
 Percent: [------------------->] 100%
-without importance to sections & 3336 & 0.0396
-importance to sections & 3336 & 0.0311
+without importance to sections & 1911 & 0.0449
+importance to sections & 1911 & 0.0303
+N =  9
+ & #queries & MAP
+Percent: [------------------->] 100%
+without importance to sections & 1402 & 0.0456
+importance to sections & 1402 & 0.0301
 
 Process finished with exit code 0
 
