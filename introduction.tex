@@ -3,7 +3,7 @@
 
 Today a world without internet is unimaginable to many people. It affects almost all areas of our daily life. \Cref{fig:60minutes} shows the user activity of the internet within a single minute in $2018$. In this minute, for example, $3.7$ million search queries were made on Google, $18$ million messages were sent on Whatsapp, or $4.3$ million videos were viewed on YouTube. This suggests that the internet is big, fast-, and constantly changing.
 
-Through this amount of data almost everything can be found on the internet. However a typical user is only interested into a specific piece of information. Applications which use information retrieval to provide these informations to the user are better known as search engines. Those search engines are optimized to find out what interests the user, and give suggestions based on that. That sounds very simple at first, but each user has different subjective expectations and therefore search engines have to fulfill different requirements. For example a user uses a text based search engine like Google, and type in "restaurant". Normally the top recommendations would be restaurants next to the user, or the best restaurants in town. But maybe he is not interested in eating, but wants to know the origin of the word. %So the search engine assumes.... How could this be happened... Sprung zu den channels, und ausführlicher eingehend auf das bespiel...  
+Through this amount of data almost everything can be found on the internet. However a typical user is only interested into a specific piece of information. Applications which use information retrieval to provide these informations to the user are better known as search engines. Those search engines are optimized to find out what interests the user, and give suggestions based on that. That sounds very simple at first, but each user has different subjective expectations and therefore search engines have to fulfill different requirements. For example a user uses a text based search engine like Google, and type in "restaurant". Normally the top recommendations would be restaurants next to the user, or the best restaurants in town. But maybe he is not interested in eating, but wants to know the origin of the word. %So the search engine assumes.... How could this be happened... Sprung zu den channels, und ausführlicher eingehend auf das bespiel...
 
 During a single search step the engines use different information channels. The first one is the information what the user explicitly searches for. This can be query words, an image, a document, or any other kind of information the user provides to the engine. Using only this information is called explicit search. But there is also other information available, which was not explicitly provided by the user. This can be for example the location of the user, the date of the image, or structural information about a document. Using this kind of information additional to the explicit information is called implicit search. %Addidtionaly information about the user..can used
 
@@ -19,19 +19,15 @@ Search engines have many different areas in which they are used. One of them is 
 \section{Motivation}
 \label{sec:Motivation}
 
+The main goal of our thesis was to apply the structural document information of scientific work into the most common ranking algorithms of search engines. In general a ranking algorithm search for keywords in the text areas of the scientific work. So if two works related to each other they have similar keywords. We through the information in which chapter the keyword are located a more specific search is possible. So for example .... subset of keywords...
+
+
+
+ ~\cite{Sollaci-The-2004} describe how the structure of scientific work has changed over the years. They say the subdivision into introduction, methods, result and discussion became to an common format in the course of the twentieth century. This subdivision is better known as the IMRaD-Structure. We used it as an
+
+
+
 über meine suchmaschine... was bringt es. Auf imrad eingehen. ein merkmal ist imrad struktur.
-
-\myfig{implicit_vs_explicit}
-      {width=1.0\textwidth}
-      {Implicit and Explicit Search}
-      {Implicit and Explicit Search}
-      {fig:implicit_vs_explicit}
-
-\myfig{input_search_areas}
-      {width=0.50\textwidth}
-      {Input Area and Search Area}
-      {Input Area and Search Area}
-      {fig:input_search_areas}
 
 
 \section{Research Questions}
@@ -42,9 +38,21 @@ Gegeben aus meiner Motivation geben sich folgende research questions. und dann b
 
 Main Question: Is it possible to improve the search result quality while searching for scientific publications through the use of IMRaD structure information?
 
+\myfig{implicit_vs_explicit}
+      {width=1.0\textwidth}
+      {Implicit and Explicit Search}
+      {Implicit and Explicit Search}
+      {fig:implicit_vs_explicit}
+
 Subquestion: Does the search result improve for explicit search using queries?
 
 Subquestion: Does the search result improve for implicit search using complete scientific publications?
+
+\myfig{input_search_areas}
+      {width=0.50\textwidth}
+      {Input Area and Search Area}
+      {Input Area and Search Area}
+      {fig:input_search_areas}
 
 Subquestion: Does the search result improve if only a single chapter of scientific publications is used for searching?
 
