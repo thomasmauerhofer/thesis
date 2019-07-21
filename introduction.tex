@@ -3,11 +3,11 @@
 
 Today a world without internet is unimaginable to many people. It affects almost all areas of our daily life. \Cref{fig:60minutes} shows the user activity of the internet within a single minute in $2018$. In this minute, for example, $3.7$ million search queries were made on Google, $18$ million messages were sent on Whatsapp, or $4.3$ million videos were viewed on YouTube. This suggests that the internet is big, fast-, and constantly changing.
 
-Through this amount of data almost everything can be found on the internet. However a typical user is only interested into a specific piece of information. Applications which use information retrieval to provide these informations to the user are better known as search engines. Those search engines are optimized to find out what interests the user, and give suggestions based on that. That sounds very simple at first, but each user has different subjective expectations and therefore search engines have to fulfill different requirements. For example a user uses a text based search engine like Google, and type in "restaurant". Normally the top recommendations would be restaurants next to the user, or the best restaurants in town. But maybe he is not interested in eating, but wants to know the origin of the word. %So the search engine assumes.... How could this be happened... Sprung zu den channels, und ausführlicher eingehend auf das bespiel...
+Through this amount of data almost everything can be found on the internet. However a typical user is only interested into a specific piece of information. Applications which use information retrieval to provide these informations to the user are better known as search engines. Those search engines are optimized to find out what interests the user, and give suggestions based on that. That sounds very simple at first, but each user has different subjective expectations and therefore search engines have to fulfill different requirements. For example a user uses a text based search engine like Google, and type in "restaurant". Normally the top recommendations would be restaurants next to the user, or the best restaurants in town. But maybe he is not interested in eating, but wants to know the origin of the word. %So the search engine assumes.... Sprung zu den channels, und ausführlicher eingehend auf das bespiel...
 
-During a single search step the engines use different information channels. The first one is the information what the user explicitly searches for. This can be query words, an image, a document, or any other kind of information the user provides to the engine. Using only this information is called explicit search. But there is also other information available, which was not explicitly provided by the user. This can be for example the location of the user, the date of the image, or structural information about a document. Using this kind of information additional to the explicit information is called implicit search. %Addidtionaly information about the user..can used
+(Anm: Übergang verbessern. Beispiel gut? Diesen Teil an das Beispiel anpassen.) During a single search step the engines use different information channels. The first one is the information what the user explicitly searches for. This can be query words, an image, a document, or any other kind of information the user provides to the engine. Using only this information is called explicit search. But there is also other information available, which was not explicitly provided by the user. This can be for example the location of the user, the date of the image, or structural information about a document. Using this kind of information additional to the explicit information is called implicit search. %Addidtionaly information about the user..can used
 
-Search engines have many different areas in which they are used. One of them is in the field of science, where they are used to simplify the literature research. process ein wenig beschreiben. einfach in bibiothek... modern über suchmaschinen. ich hab ein problem, und wie lös ich.
+Search engines have many different areas in which they are used. One of them is in the field of science, where they are used to simplify the literature research. (Nicht zum Durchlesen: process ein wenig beschreiben. einfach in bibiothek... modern über suchmaschinen. ich hab ein problem, und wie lös ich.)
 
 
 \myfig{60minutes}
@@ -31,10 +31,10 @@ The main goal of our thesis was to apply the structural document information of 
 Given my motivation, the following research questions arise.
 
 \begin{enumerate}
-  \item Is it possible to improve the search result quality while searching for scientific publications through the use of IMRaD structure information?
+  \item Is it possible to improve the search result quality while searching for scientific works through the use of IMRaD structure information?
 \end{enumerate}
 
-This can be seen as the main question of the thesis. It describes weather the adapted algorithms can achieve better results with the useage of IMRaD-Structure Information than the standard version of the algorithms.
+This can be seen as the main question of the thesis. It describes weather the adapted algorithms can achieve better results with the usage of IMRaD-Structure Information than the standard version of the algorithms.
 
 \myposfig{implicit_vs_explicit}
       {width=1.0\textwidth}
@@ -47,25 +47,25 @@ This can be seen as the main question of the thesis. It describes weather the ad
   \item Does the search result improve for explicit search using queries?
 \end{enumerate}
 
-The standard version of the used ranking algorithms search for query words in the whole document. The left part of \Cref{fig:implicit_vs_explicit} shows our adaption with the usage of structural information. There the user can define in which chapters the query words should occur.
+The standard version of the used ranking algorithms search for query words in the whole document. The left part of \Cref{fig:implicit_vs_explicit} shows our adaption with the usage of structural information. There the user can define in which chapters of the stored works the query words should occur.
 
 \begin{enumerate}[label=1.\arabic*]
   \setcounter{enumi}{1}
-  \item Does the search result improve for implicit search using complete scientific publications?
+  \item Does the search result improve for implicit search using complete scientific works?
 \end{enumerate}
+
+When a complete work is used as a query there is more information available. This leads that the information can be implicitly processed by the search engine. The right part of \Cref{fig:implicit_vs_explicit} shows how we used the additional information. There we added IMRaD-Structure information to the query work. Then the chapters of the query work are used to search through the chapters of the stored works.
 
 \myfig{input_search_areas}
       {width=0.50\textwidth}
-      {Input Area and Search Area}
-      {Input Area and Search Area}
+      {\textbf{Difference between Input Areas and Search Areas.} When using a scientific work to search implicit for other scientific works there are two different areas. The first is the input area which is part of the used scientific work. The second one is the search area where query words of the input area should occur. The used chapters of the input area do not have to be the same as the chapters of the search area.}
+      {Difference between Input Areas and Search Areas}
       {fig:input_search_areas}
 
-\begin{enumerate}
+\begin{enumerate}[label=1.\arabic*]
   \setcounter{enumi}{2}
-    \item Subquestion: Does the search result improve if only a single chapter of scientific publications is used for searching?
+    \item Does the search result improve if only a single chapter of scientific publications is used for searching?
+    \item Which chapter has the most influence?
 \end{enumerate}
 
-\begin{enumerate}
-  \setcounter{enumi}{2}
-    \item Subsubquestion: Which chapter has the most influence?
-\end{enumerate}
+The idea behind can be seen in \Cref{fig:input_search_areas}. There the chapter of the query work are defined as input area. In contrast the chapter of the stored works are search areas. In the previous questions always complete documents was searched thought the query words. With different combinations of those areas the influence of different chapters can be obtained.
