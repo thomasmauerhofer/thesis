@@ -57,8 +57,23 @@
 %       {}%% caption
 %       {}%% optional (short) caption for list of figures
 %       {}%% label
-%       {}%% position (h (here), t (top), b(bottom) + ! (force))
 \begin{figure}[t]
+  \centering
+  \includegraphics[keepaspectratio,#2]{figures/#1}
+  \caption[#4]{#3}
+  \label{#5}
+\end{figure}
+}
+
+\newcommand{\myposfig}[6]{
+%% example:
+% \myfig{}%% filename in figures folder
+%       {width=0.5\textwidth,height=0.5\textheight}%% maximum width/height, aspect ratio will be kept
+%       {}%% caption
+%       {}%% optional (short) caption for list of figures
+%       {}%% label
+%       {}%% position (h (here), t (top), b(bottom) + ! (force))
+\begin{figure}[#6]
   \centering
   \includegraphics[keepaspectratio,#2]{figures/#1}
   \caption[#4]{#3}

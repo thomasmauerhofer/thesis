@@ -23,23 +23,36 @@ The main goal of our thesis was to apply the structural document information of 
 
  ~\cite{Sollaci-The-2004} describe how the structure of scientific works has changed over the years. They say the subdivision into introduction, method, result and discussion became a common format in the course of the twentieth century. This subdivision is better known as the IMRaD-Structure, which we used as a base. This means we created a mapping from the chapter titles to this structure. Additionally we adapted the ranking algorithms in a way that they take this structural information into account.
 
+ % Resultate ganz lowlevel
+
 \section{Research Questions}
 \label{sec:research_questions}
 
-Gegeben aus meiner Motivation geben sich folgende research questions. und dann bei jeder kurz dazu was es bedeutet.
+Given my motivation, the following research questions arise.
 
+\begin{enumerate}
+  \item Is it possible to improve the search result quality while searching for scientific publications through the use of IMRaD structure information?
+\end{enumerate}
 
-Main Question: Is it possible to improve the search result quality while searching for scientific publications through the use of IMRaD structure information?
+This can be seen as the main question of the thesis. It describes weather the adapted algorithms can achieve better results with the useage of IMRaD-Structure Information than the standard version of the algorithms.
 
-\myfig{implicit_vs_explicit}
+\myposfig{implicit_vs_explicit}
       {width=1.0\textwidth}
-      {Implicit and Explicit Search}
-      {Implicit and Explicit Search}
+      {\textbf{Explicit and Implicit Search using Document Structure Information.} Using explicit search the user have to define where he want to search for the query words. Then the specified areas of each scientific work in the database are searched through the word. The difference of implicit search is that the user does not recognize the usage of structural information within the search engine. If a scientific work is used to search for other scientific works the words in the document gets structured by the search engine.}
+      {Explicit and Implicit Search using Document Structure Information}
       {fig:implicit_vs_explicit}
+      {h!}
 
-Subquestion: Does the search result improve for explicit search using queries?
+\begin{enumerate}[label=1.\arabic*]
+  \item Does the search result improve for explicit search using queries?
+\end{enumerate}
 
-Subquestion: Does the search result improve for implicit search using complete scientific publications?
+The standard version of the used ranking algorithms search for query words in the whole document. The left part of \Cref{fig:implicit_vs_explicit} shows our adaption with the usage of structural information. There the user can define in which chapters the query words should occur.
+
+\begin{enumerate}[label=1.\arabic*]
+  \setcounter{enumi}{1}
+  \item Does the search result improve for implicit search using complete scientific publications?
+\end{enumerate}
 
 \myfig{input_search_areas}
       {width=0.50\textwidth}
@@ -47,8 +60,12 @@ Subquestion: Does the search result improve for implicit search using complete s
       {Input Area and Search Area}
       {fig:input_search_areas}
 
-Subquestion: Does the search result improve if only a single chapter of scientific publications is used for searching?
+\begin{enumerate}
+  \setcounter{enumi}{2}
+    \item Subquestion: Does the search result improve if only a single chapter of scientific publications is used for searching?
+\end{enumerate}
 
-Subsubquestion: Which chapter has the most influence?
-
-Last - no result until now: How is it possible to find papers releated to a set of publications using clustered information about their similarities in various sections?
+\begin{enumerate}
+  \setcounter{enumi}{2}
+    \item Subsubquestion: Which chapter has the most influence?
+\end{enumerate}
