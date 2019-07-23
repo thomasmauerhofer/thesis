@@ -3,41 +3,39 @@
 
 Today a world without internet is unimaginable to many people. It affects almost all areas of our daily life. In this minute, for example, $3.7$ million search queries were made on Google, $18$ million messages were sent on Whatsapp, and $4.3$ million videos were viewed on YouTube (seen in \Cref{fig:60minutes}). Furthermore, websites are created, blog entries are written, videos and pictures are uploaded and shared. The list of use cases can be continued forever. It is obvious that users generate a lot of data. Through this amount of data almost everything can be found on the internet.
 
-In order to get information, the challenge is no longer the procurement. It is more important to filter the data, because a typical user is usually interested in a specific piece of information. Applications which use information retrieval to provide this information to the user are known as search engines. To be more specific, search engines help to reduce the time that is required to find a piece of information, and minimize the number of information sources that need to be searched thought. That sounds very simple at first, but each user has different subjective expectations, and therefore search engines have to fulfill different requirements. For example, a user uses a text based search engine to searches for "restaurant". Normally, the top recommendations would be restaurants near the user, or the best restaurants in town.
-
-
-But maybe he is not interested in eating, but wants to know the origin of the word. %So the search engine assumes.... Sprung zu den channels, und ausführlicher eingehend auf das bespiel...
-
-(Anm: Übergang verbessern. Beispiel gut? Diesen Teil an das Beispiel anpassen.) During a single search step the engines use different information channels. The first one is the information what the user explicitly searches for. This can be query words, an image, a document, or any other kind of information the user provides to the engine. Using only this information is called explicit search. But there is also other information available, which was not explicitly provided by the user. This can be for example the location of the user, the date of the image, or structural information about a document. Using this kind of information additional to the explicit information is called implicit search. %Addidtionaly information about the user..can used
-
-Search engines have many different areas in which they are used. One of them is in the field of science, where they are used to simplify the literature research. (Nicht zum Durchlesen: process ein wenig beschreiben. einfach in bibiothek... modern über suchmaschinen. ich hab ein problem, und wie lös ich.)
-
-
 \myfig{60minutes}
       {width=0.70\textwidth}
       {\textbf{User activity of the Internet in 2018.} The Internet has become a daily companion, and is an indispensable part of life. This graph gives an overview of what happens within the most popular services in a single minute. Retrieved July 19, 2019 from \url{https://www.allaccess.com/merge/archive/28030/2018-update-what-happens-in-an-internet-minute}}
       {User activity of the Internet in 2018.}
       {fig:60minutes}
 
+In order to get information, the challenge is no longer the procurement. It is more important to filter the data, because a typical user is usually interested in a specific piece of information. Applications which use information retrieval to provide this information to the user are known as search engines. To be more specific, search engines help to reduce the time that is required to find a piece of information, and minimize the number of information sources that need to be searched thought. That sounds very simple at first, but each user has different subjective expectations, and therefore search engines have to fulfill different requirements. For example, a user uses a text based search engine to searches for "restaurant". Normally, the top recommendations would be restaurants near the user, or the best restaurants in town. But maybe he is not interested in eating, but wants to know the origin of the word. %So the search engine assumes.... Sprung zu den channels, und ausführlicher eingehend auf das bespiel...
+
+During a single search step the engines use different information channels. The first one is the information what the user explicitly searches for. This can be query words, an image, a document, or any other kind of information the user provides. Using only this information is denoted as explicit search.
+
+But there is also other information available, which was not explicitly provided by the user. This can be, for example, the location of the user, the date of the image, or structural information about a document. Using this kind of information additional to the explicit information is called implicit search. %Addidtionaly information about the user..can used
+
 \section{Motivation}
 \label{sec:Motivation}
 
-The main goal of our thesis was to apply the structural document information of scientific works into the most common ranking algorithms of search engines. In general a ranking algorithm searches for keywords in the text areas of the scientific works. So when two works are related to each other they have similar keywords. We thought through the information of the chapter where the keywords are located a more specific search is possible. For example if you compare the introduction there is only a subset of keywords where the similarity depends on.
+Search engines are used in many different areas. One of them is in the field of science, where they are used to simplify the literature research. (Nicht zum Durchlesen: process ein wenig beschreiben. einfach in bibiothek... modern über suchmaschinen. ich hab ein problem, und wie lös ich.)
 
- ~\cite{Sollaci-The-2004} describe how the structure of scientific works has changed over the years. They say the subdivision into introduction, method, result and discussion became a common format in the course of the twentieth century. This subdivision is better known as the IMRaD-Structure, which we used as a base. This means we created a mapping from the chapter titles to this structure. Additionally we adapted the ranking algorithms in a way that they take this structural information into account.
+The main goal of our thesis was to apply the structural document information of scientific works into the most common ranking algorithms of search engines. In general, a ranking algorithm searches for keywords in the text areas of scientific papers. So when two papers are related to each other they have similar keywords. We deduce that a more specific search is possible through the information of the chapter where the keywords are located. For example, if the introduction is compared there is only a subset of keywords where the similarity depends on.
+
+ L.B. Sollaci and M.G. Pereira~\cite{Sollaci-The-2004} describe how the structure of a scientific paper changed over time. They concluded in their work that the subdivision into introduction, method, result, and discussion became a common format in the course of the twentieth century. This subdivision is better known as the IMRAD structure, which we used as a base. This means we created a mapping from the chapter titles to this structure. Additionally, we adapted the ranking algorithms in a way that they take this structural information into account.
 
  % Resultate ganz lowlevel
 
 \section{Research Questions}
 \label{sec:research_questions}
 
-Given my motivation, the following research questions arise.
+Given on motivation, the following research questions arise.
 
 \begin{enumerate}
-  \item Is it possible to improve the search result quality while searching for scientific works through the use of IMRaD structure information?
+  \item Is it possible to improve the search result quality while searching for scientific works through the use of IMRAD structure information?
 \end{enumerate}
 
-This can be seen as the main question of the thesis. It describes weather the adapted algorithms can achieve better results with the usage of IMRaD-Structure Information than the standard version of the algorithms.
+This can be seen as the main question of the thesis. It describes weather the adapted algorithms can achieve better results with the usage of IMRAD structure Information than the standard version of the algorithms.
 
 \myposfig{implicit_vs_explicit}
       {width=1.0\textwidth}
@@ -57,7 +55,7 @@ The standard version of the used ranking algorithms search for query words in th
   \item Does the search result improve for implicit search using complete scientific works?
 \end{enumerate}
 
-When a complete work is used as a query there is more information available. This leads that the information can be implicitly processed by the search engine. The right part of \Cref{fig:implicit_vs_explicit} shows how we used the additional information. There we added IMRaD-Structure information to the query work. Then the chapters of the query work are used to search through the chapters of the stored works.
+When a complete work is used as a query there is more information available. This leads that the information can be implicitly processed by the search engine. The right part of \Cref{fig:implicit_vs_explicit} shows how we used the additional information. There we added IMRAD structure information to the query work. Then the chapters of the query work are used to search through the chapters of the stored works.
 
 \myfig{input_search_areas}
       {width=0.50\textwidth}
@@ -68,7 +66,7 @@ When a complete work is used as a query there is more information available. Thi
 \begin{enumerate}[label=1.\arabic*]
   \setcounter{enumi}{2}
     \item Does the search result improve if only a single chapter of scientific publications is used for searching?
-    \item Which chapter has the most influence?
+    \item Which chapter is most influential?
 \end{enumerate}
 
 The idea behind can be seen in \Cref{fig:input_search_areas}. There the chapter of the query work are defined as input area. In contrast the chapter of the stored works are search areas. In the previous questions always complete documents was searched thought the query words. With different combinations of those areas the influence of different chapters can be obtained.
