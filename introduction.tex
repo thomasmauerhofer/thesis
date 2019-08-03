@@ -18,11 +18,18 @@ But there is also other information available, which was not explicitly provided
 \section{Motivation}
 \label{sec:Motivation}
 
-Search engines are used in many different areas. One of them is in the field of science, where they simplify the literature research. Before there were search engines on the Internet, literature research was almost only possible in a library.
+Search engines are used in many different areas. One of them is in the field of science, where they simplify the literature research. Before there were search engines on the Internet, literature research was only possible in a library. The research was more complicated, since certain literature was only available in certain libraries. This resulted in a time expenditure, since literature had to be sent or picked up. In addition, the complete publications needed to be searched through by the user itself. Overall the search of relevant literature was exhausting for the user and a time consuming process.
 
-%%(Nicht zum Durchlesen: process ein wenig beschreiben. einfach in bibiothek... modern über suchmaschinen. ich hab ein problem, und wie lös ich.)
+Modern search engines made searching in the field of science more comfortable. %Search engines have large pools of literature available.
 
-The main goal of our thesis was to apply the structural document information of scientific works into the most common ranking algorithms of search engines. In general, a ranking algorithm searches for keywords in the text areas of scientific papers. So when two papers are related to each other they have similar keywords. We deduce that a more specific search is possible through the information of the chapter where the keywords are located. For example, if the introduction is compared there is only a subset of keywords where the similarity depends on.
+
+%Since almost every publication, is available on the Internet, it is easy to get them.
+%Additional Search engines can search through these publications and give a ranking over them.
+%Suchmaschinen können Publikationen durchsuchen und somit schon viel an literatur aussotieren.
+%Search engines can browse through publications
+
+
+The main goal of our thesis was to apply the structural document information of scientific papers into the most common ranking algorithms of search engines. In general, a ranking algorithm searches for keywords in the text areas of scientific papers. So when two papers are related to each other they have similar keywords. We deduce that a more specific search is possible through the information of the chapter where the keywords are located. For example, if the introduction is compared there is only a subset of keywords where the similarity depends on.
 
  L.B. Sollaci and M.G. Pereira~\cite{Sollaci-The-2004} describe how the structure of a scientific paper changed over time. They concluded in their work that the subdivision into introduction, method, result, and discussion became a common format in the course of the twentieth century. This subdivision is better known as the IMRAD structure, which we used as a base. This means we created a mapping from the chapter titles to this structure. Additionally, we adapted the ranking algorithms in a way that they take this structural information into account.
 
