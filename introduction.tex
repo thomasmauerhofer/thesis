@@ -4,7 +4,7 @@
 Today a world without internet is unimaginable to many people. It affects almost all areas of our daily life. In a minute, for example, $3.7$ million search queries were made on Google, $18$ million messages were sent on Whatsapp, and $4.3$ million videos were viewed on YouTube (seen in \Cref{fig:60minutes}). Furthermore, websites are created, blog entries are written, videos and pictures are uploaded and shared. The list of use cases can be continued forever. It is obvious that users generate a lot of data. Through this amount of data almost everything can be found on the internet.
 
 \myfig{60minutes}
-      {width=0.70\textwidth}
+      {width=0.62\textwidth}
       {\textbf{User activity of the Internet in 2018.} The Internet has become a daily companion, and is an indispensable part of life. This graph gives an overview of what happens within the most popular services in a single minute. Retrieved July 19, 2019 from \url{https://www.allaccess.com/merge/archive/28030/2018-update-what-happens-in-an-internet-minute}}
       {User activity of the Internet in 2018.}
       {fig:60minutes}
@@ -13,19 +13,20 @@ In order to get information, the challenge is no longer the procurement. It is m
 
 During a single search step the engines use different information channels. The first is the information provided by the user. For many known search engines, these are key words used as a query. Another possibility is to search with the usage of files like pictures, articles or scientific papers. When a search engine uses only this kind of information it is called a explicit search. The explicit search process itself work in a way that stored data gets searched through first. Afterwards the results are ranked according to their relevance. Finally the user gets an sorted list with the "best" results on top of the list.
 
-% here
-But there is also other information available, which was not explicitly provided by the user. This can be, for example, the location of the user, the date of the image, or structural information about a document. Using this kind of information additional to the explicit information is called implicit search. %Addidtionaly information about the user..can used
+But there is also other information available, which was not explicitly provided by the user. With this additional information, the results can be better adapted to the needs of the user. As mentioned in the example above the top recommendations would be restaurants near the user, or the best restaurants in town. However the user never entered his location. This happened because the search engine used location information additional to the explicit information. Therefore using this kind of information additional to the information provided by the user is called a implicit search.
 
 \section{Motivation}
 \label{sec:Motivation}
 
-Search engines are used in many different areas. One of them is in the field of science, where they are used to simplify the literature research. (Nicht zum Durchlesen: process ein wenig beschreiben. einfach in bibiothek... modern über suchmaschinen. ich hab ein problem, und wie lös ich.)
+Search engines are used in many different areas. One of them is in the field of science, where they simplify the literature research. Before there were search engines on the Internet, literature research was almost only possible in a library.
+
+%%(Nicht zum Durchlesen: process ein wenig beschreiben. einfach in bibiothek... modern über suchmaschinen. ich hab ein problem, und wie lös ich.)
 
 The main goal of our thesis was to apply the structural document information of scientific works into the most common ranking algorithms of search engines. In general, a ranking algorithm searches for keywords in the text areas of scientific papers. So when two papers are related to each other they have similar keywords. We deduce that a more specific search is possible through the information of the chapter where the keywords are located. For example, if the introduction is compared there is only a subset of keywords where the similarity depends on.
 
  L.B. Sollaci and M.G. Pereira~\cite{Sollaci-The-2004} describe how the structure of a scientific paper changed over time. They concluded in their work that the subdivision into introduction, method, result, and discussion became a common format in the course of the twentieth century. This subdivision is better known as the IMRAD structure, which we used as a base. This means we created a mapping from the chapter titles to this structure. Additionally, we adapted the ranking algorithms in a way that they take this structural information into account.
 
- % Resultate ganz lowlevel
+ % TODO: Resultate ganz lowlevel
 
 \section{Research Questions}
 \label{sec:research_questions}
