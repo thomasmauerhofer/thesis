@@ -20,16 +20,9 @@ But there is also other information available, which was not explicitly provided
 
 Search engines are used in many different areas. One of them is in the field of science, where they simplify the literature research. Before there were search engines on the Internet, literature research was only possible in a library. The research was more complicated, since certain literature was only available in certain libraries. This resulted in a time expenditure, since literature had to be sent or picked up. In addition, the complete publications needed to be searched through by the user itself. Overall the search of relevant literature was exhausting for the user and a time consuming process.
 
-Modern search engines made searching in the field of science more comfortable. %Search engines have large pools of literature available.
+Modern search engines made searching in the field of science more comfortable. They have databases with many publications in the background. With a single query all of the publications are searched through the query words. Normally this takes only a few seconds, which is more time saving. The ranking of the results also gives a first overview which literature is relevant for the user. To provide these publications to the user the search results typically contain a link to the publications.
 
-
-%Since almost every publication, is available on the Internet, it is easy to get them.
-%Additional Search engines can search through these publications and give a ranking over them.
-%Suchmaschinen können Publikationen durchsuchen und somit schon viel an literatur aussotieren.
-%Search engines can browse through publications
-
-
-The main goal of our thesis was to apply the structural document information of scientific papers into the most common ranking algorithms of search engines. In general, a ranking algorithm searches for keywords in the text areas of scientific papers. So when two papers are related to each other they have similar keywords. We deduce that a more specific search is possible through the information of the chapter where the keywords are located. For example, if the introduction is compared there is only a subset of keywords where the similarity depends on.
+The main goal of our thesis was to apply the structural document information of scientific papers into the most common ranking algorithms of search engines. In general, a ranking algorithm searches for keywords in the text areas of scientific papers. Therefore when two papers are related to each other they have similar keywords. We deduce that a more specific search is possible through the information of the chapter where the keywords are located. For example, if the introduction is compared there is only a subset of keywords where the similarity depends on.
 
  L.B. Sollaci and M.G. Pereira~\cite{Sollaci-The-2004} describe how the structure of a scientific paper changed over time. They concluded in their work that the subdivision into introduction, method, result, and discussion became a common format in the course of the twentieth century. This subdivision is better known as the IMRAD structure, which we used as a base. This means we created a mapping from the chapter titles to this structure. Additionally, we adapted the ranking algorithms in a way that they take this structural information into account.
 
@@ -38,44 +31,40 @@ The main goal of our thesis was to apply the structural document information of 
 \section{Research Questions}
 \label{sec:research_questions}
 
-Given on motivation, the following research questions arise.
+In general we tackle the question weather it possible to improve the search result quality while searching for scientific works through the use of IMRAD structure information. This means we evaluate if our adapted algorithms can achieve better results with the usage of IMRAD structure information than the standard version.
 
-\begin{enumerate}
-  \item Is it possible to improve the search result quality while searching for scientific works through the use of IMRAD structure information?
-\end{enumerate}
+Given on this motivation, the following research questions arise.
 
-This can be seen as the main question of the thesis. It describes weather the adapted algorithms can achieve better results with the usage of IMRAD structure Information than the standard version of the algorithms.
-
-\myposfig{implicit_vs_explicit}
-      {width=1.0\textwidth}
+\myfig{implicit_vs_explicit}
+      {width=0.9\textwidth}
       {\textbf{Explicit and Implicit Search using Document Structure Information.} Using explicit search the user have to define where he want to search for the query words. Then the specified areas of each scientific work in the database are searched through the word. The difference of implicit search is that the user does not recognize the usage of structural information within the search engine. If a scientific work is used to search for other scientific works the words in the document gets structured by the search engine.}
       {Explicit and Implicit Search using Document Structure Information}
       {fig:implicit_vs_explicit}
-      {h!}
 
-\begin{enumerate}[label=1.\arabic*]
+\begin{enumerate}
   \item Does the search result improve for explicit search using queries?
 \end{enumerate}
 
-The standard version of the used ranking algorithms search for query words in the whole document. The left part of \Cref{fig:implicit_vs_explicit} shows our adaption with the usage of structural information. There the user can define in which chapters of the stored works the query words should occur.
+The assumption is that used key words are various in different areas. This leads to the idea that a more specific search is possible if a user can specify where query words should occur (see the left part of \Cref{fig:implicit_vs_explicit}).
 
-\begin{enumerate}[label=1.\arabic*]
+\begin{enumerate}
   \setcounter{enumi}{1}
-  \item Does the search result improve for implicit search using complete scientific works?
+  \item Does the search result improve for implicit search using complete scientific papers?
 \end{enumerate}
 
-When a complete work is used as a query there is more information available. This leads that the information can be implicitly processed by the search engine. The right part of \Cref{fig:implicit_vs_explicit} shows how we used the additional information. There we added IMRAD structure information to the query work. Then the chapters of the query work are used to search through the chapters of the stored works.
+When a complete paper is used as a query the query words and the structure information is available. Therefore the query words can be structured to their occurrence (see the right part of \Cref{fig:implicit_vs_explicit}). Using the same assumption than in the previous question the similarity of the scientific papers should be higher.
 
 \myfig{input_search_areas}
-      {width=0.50\textwidth}
+      {width=0.45\textwidth}
       {\textbf{Difference between Input Areas and Search Areas.} When using a scientific work to search implicit for other scientific works there are two different areas. The first is the input area which is part of the used scientific work. The second one is the search area where query words of the input area should occur. The used chapters of the input area do not have to be the same as the chapters of the search area.}
       {Difference between Input Areas and Search Areas}
       {fig:input_search_areas}
 
-\begin{enumerate}[label=1.\arabic*]
+\begin{enumerate}
   \setcounter{enumi}{2}
-    \item Does the search result improve if only a single chapter of scientific publications is used for searching?
-    \item Which chapter is most influential?
+  \item Does the search result improve if only a single chapter of the scientific paper is used for searching?
 \end{enumerate}
 
-The idea behind can be seen in \Cref{fig:input_search_areas}. There the chapter of the query work are defined as input area. In contrast the chapter of the stored works are search areas. In the previous questions always complete documents was searched thought the query words. With different combinations of those areas the influence of different chapters can be obtained.
+The assumption is that each chapter has a different influence to the search result. Therefore there are chapters with a higher effect than others. This effect could be positive for the resulting list, but also be negative. The idea is to improve the result by using only chapters with a positive effect.
+
+Furthermore keywords of a chapter can be used in other chapters (see \Cref{fig:input_search_areas}). For example the methods of one paper would be in the related work of another paper. Using this approach there could be an positive effect for the results.
