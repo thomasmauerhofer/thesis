@@ -123,11 +123,11 @@ The main properties of our citation network are shown in \Cref{tbl:general_prope
     (b) In-Degree Distribution
     \end{minipage}
   \end{minipage}
-  \caption[In-Degree Distribution of the Citation Network]{\textbf{In-Degree Distribution.} The in-degree distribution describes how often articles get cited by other articles. The positive screw of the distribution indicates that there are a lot of articles which are cited only a few times, and a few articles which was cited more often. There are some single outliers with a higher degree than 20. This can also be seen by the difference between the mean and the median. The max degree represents that one single article was cited by 98 other articles.}
+  \caption[In-Degree Distribution of the Citation Network]{\textbf{In-Degree Distribution.} The in-degree distribution describes how often articles get referred by other articles. The positive screw of the distribution indicates that there are a lot of articles which are referred only a few times, and a few articles which are referred more often. There are some single outliers with a higher degree than 20. This can also be seen by the difference between the mean and the median. The max degree in connection with the zoomed view represents that one single article was cited by 98 other articles.}
   \label{fig:indegree_distribution}
 \end{figure}
 
-In \Cref{fig:indegree_distribution} the in-degree distribution of our citation network is shown. In general the in-degree of a node is described by the number of ingoing edges. The in-degree distribution represents the probability distribution of these nodes over the whole network. Regarding a citation network the in-degree of a node can be described as the number of times an article gets cited by other articles. The positive screw of the in-degree distribution indicates that there are a lot of articles which are cited only a few times, and a few articles which was cited more often. There are only some single articles with an in-degree higher than 20. This is the reason why the median is higher than the mean. The max degree represents that one single article was cited by 98 other articles.
+In \Cref{fig:indegree_distribution} the in-degree distribution of our citation network is shown. In general the in-degree of a node is described by the number of ingoing edges. The in-degree distribution represents the probability distribution of these nodes over the whole network. Regarding a citation network the in-degree of a node can be described as the number of articles which referred this article. The positive screw of the in-degree distribution indicates that there are a lot of articles which are referred only a few times, and a few articles which are referred more often. There are only some single articles with an in-degree higher than 20. This is the reason why the median is higher than the mean. The max degree in connection with the zoomed view represents that one single article was referred by 98 other articles.
 
 \begin{figure}[!t]
   \begin{minipage}[!t]{\textwidth}
@@ -149,11 +149,11 @@ In \Cref{fig:indegree_distribution} the in-degree distribution of our citation n
     (b) Out-Degree Distribution
     \end{minipage}
   \end{minipage}
-\caption[Out-Degree Distribution of the Citation Network]{\textbf{Out-Degree Distribution.} beschreiben outdegree etc...}
+\caption[Out-Degree Distribution of the Citation Network]{\textbf{Out-Degree Distribution.} The out-degree distribution describes how often articles refer other articles. The positive screw of the distribution indicates that there are a lot of articles which refer less than 7 other articles, and only few with refer to more articles. This number is less because not every referred article is part of our dataset. By the small distance between the mean and the median can be seen that there are less outliers. The max degree represent that the maximum number of a single article refer other articles is 13.}
 \label{fig:outdegree_distribution}
 \end{figure}
 
-The out-degree distribution and their properties are displayed in In \Cref{fig:outdegree_distribution}. How is it represented (citations to papers)
+The out-degree distribution and their properties are displayed in \Cref{fig:outdegree_distribution}. Different to the in-degree distribution describes the out-degree distribution the number of outgoing edges. Regarding to the citation network the out-degree of a node can be described as the number of articles which gets referred by this article. The positive screw of the out-degree distribution indicates that there are a lot of articles which refer less than 7 other articles, and only few with refer 7 or more articles. In general articles contains more than 7 references. The mean and median of the outgoing edges are lower, because not every article is part of our dataset. By the small distance between the mean and the median can also be seen that there are less outliers. The max degree represent that the maximum number of a single article refer other articles is 13.
 
 \section{Model}
 \label{sec:model}
