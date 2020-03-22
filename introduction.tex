@@ -13,10 +13,8 @@ In order to find relevant information, the challenge becomes to filter the data,
 
 During a single request search engines leverage different information channels. First, information provided by the user. For many known search engines, these are key words used as a query. Another possibility is to search with files like pictures, articles, or scientific papers. When a search engine uses only this type of information it is called an explicit search. The explicit search process itself works in a way that stored data is examined first. Afterwards the results are ranked according to their relevance. Finally, the user gets an sorted list with the best results on top of the list.
 
-However, there is also other implicit information available, which was not explicitly provided by the user. With this additional information, the results can be better adapted to the needs of the user. One example would be user behavior descriped by Agichtein et al. ~\cite{agichtein2006improving}. They used machine learning approaches to include user actions (on the web search engine)
+However, there is also other implicit information available, which was not explicitly provided by the user. With this additional information, the results can be better adapted to the needs of the user. For example Agichtein et al. ~\cite{agichtein2006improving} use machine learning approaches to take user actions during the search process into account. Leveraging this type of information in addition to information provided by the user is denoted implicit search.
 
-
-%As mentioned in the example above the top recommendations would be restaurants near the user, or the best restaurants in town. However the user never entered his location. This happened because the search engine used location information additional to the explicit information. Therefore, using this type of information in addition to the information provided by the user is called implicit search.
 
 \section{Motivation}
 \label{sec:Motivation}
@@ -25,16 +23,16 @@ Search engines are used in many different areas. One of them is in the field of 
 
 Modern search engines made searching in the field of science more comfortable. With a single query all publications are searched for the query words. Normally, this takes only a few seconds. The ranking of the results also gives a first overview which literature is relevant for the user. To provide these publications to the user the search results typically contain a link to the publications.
 
-The main goal of our thesis is to apply structural document information of scientific papers into the most common ranking algorithms of search engines. In general, a ranking algorithm ranks based on keywords in the text areas of scientific papers. Therefore, when two papers are related to each other they have similar keywords. We deduce that a more targeted search is possible by providing the information of the chapter where the keywords are located. For example, if the introduction is compared there is only a subset of keywords where the similarity depends on.
+The main goal of our thesis is to apply structural document information of scientific papers into the most common ranking algorithms of search engines. In general, a ranking algorithm ranks based on keywords in the text areas of scientific papers. Therefore, when two papers are related to each other they have similar keywords. We deduce that a more targeted search is possible by providing the information of the section where the keywords are located. For example, if the introduction is compared there is only a subset of keywords where the similarity depends on.
 
- L.B. Sollaci and M.G. Pereira~\cite{Sollaci-The-2004} describe in their work how the structure of a scientific paper changed over time. They concluded that the subdivision into introduction, method, result, and discussion became a common format in the course of the twentieth century. This subdivision is better known as the IMRAD structure, which we used as a base. This means we created a mapping from the chapter titles to this structure. Additionally, we adapted the ranking algorithms in a way that they take this structural information into account.
+ L.B. Sollaci and M.G. Pereira~\cite{Sollaci-The-2004} describe in their work how the structure of a scientific paper changed over time. They concluded that the subdivision into introduction, method, result, and discussion became a common format in the course of the twentieth century. This subdivision is better known as the IMRaD structure, which we used as a base. This means we created a mapping from the chapter titles to this structure. Additionally, we adapted the ranking algorithms in a way that they take this structural information into account.
 
  % TODO: Resultate ganz lowlevel
 
 \section{Research Questions}
 \label{sec:research_questions}
 
-In general, we tackle the question whether it is possible to improve the search result quality while searching for scientific works by using IMRAD structure information. This means we evaluate if our adapted algorithms can achieve better results with the usage of IMRAD structure information than the standard version.
+In general, we tackle the question whether it is possible to improve the search result quality while searching for scientific works by using IMRaD structure information. This means we evaluate if our adapted algorithms can achieve better results with the usage of IMRaD structure information than the standard version.
 
 Hence, the following research questions arise:
 
