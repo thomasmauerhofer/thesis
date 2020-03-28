@@ -1,10 +1,18 @@
 \chapter{Related Work}
 \label{cha:related_work}
 
-\section{Modern Information Retrieval}
-\label{sec:modern_information_retrieval}
+\section{Information Retrieval Models}
+\label{sec:information_retrieval_models}
 
-Write about the general structure of modern search engines
+Intro: Was sind IR Model, und wozu...
+
+Baeza-Yates and Baeza-Yates ~\cite{ModernInvormationRetrieval1999} define Information Retrieval Models as a quardruple $[\textbf{D}, \textbf{Q}, \mathcal{F}, \mathcal{R}(q_i, d_j)]$ where:
+\begin{enumerate}
+  \item \textbf{D} is a set composed of logical views of documents in a collection.
+  \item \textbf{Q} is a set composed of logical views of the user information needs. Such representations are called queries.
+  \item $\mathcal{F}$ is a framework for modeling document representations, queries and their relationships.
+  \item $\mathcal{R}(q_i, d_j)$ is a raking function that associates a real number with a query representation $q_i \in \textbf{Q}$ and a document representation $d_j \in \textbf{D}$. The ranking function generates an order over all documents \textbf{D} with respect to a query $q_i$. More about raking functions is described in \Cref{sec:text_similarities}.
+\end{enumerate}
 
 \section{Document Preprocessing}
 \label{sec:document_preprocessing}
@@ -36,8 +44,8 @@ Describe Text Similarities and common techniques. ~\cite{ModernInvormationRetrie
 
 general about IMRaD in scientific writing: ~\cite{robert1989}, chapter distribution analysis: ~\cite{bertin2013} important: ~\cite{Sollaci-The-2004}
 
-\section{Ranking Algorithms}
-\label{sec:ranking_algorithms}
+\section{Ranking Functions}
+\label{sec:ranking_functions}
 
 Describe basics like term frequency, document frequency ...
 
