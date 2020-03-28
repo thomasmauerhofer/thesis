@@ -4,48 +4,31 @@
 \section{Information Retrieval Models}
 \label{sec:information_retrieval_models}
 
-Intro: Was sind IR Model, und wozu...
+Creating an information retrieval system is a complex process that needs to be considered carefully. To aim this goal models are used as a base, where the whole system is sketched. The generation of the model consists of two tasks. The first one is to design a framework which represents the documents and the user queries. The second one is to create a ranking function which generates a numeric rank for each document based on a query. Afterwards these ranks are used by the system to sort the documents.
 
-Baeza-Yates and Baeza-Yates ~\cite{ModernInvormationRetrieval1999} define Information Retrieval Models as a quardruple $[\textbf{D}, \textbf{Q}, \mathcal{F}, \mathcal{R}(q_i, d_j)]$ where:
+One of the best known retrieval approaches is retrieval based on index terms. In this context an index term is a keyword which appears in the document collection of the framework. This approach can be implemented efficient since query words can be used easily as index terms with only limited transformations.
+
+In general a information retrieval models can be spitted into $4$ parts. Baeza-Yates and Baeza-Yates ~\cite{ModernInvormationRetrieval1999} define them as a quadruple $[\textbf{D}, \textbf{Q}, \mathcal{F}, \mathcal{R}(q_i, d_j)]$ where:
+
 \begin{enumerate}
   \item \textbf{D} is a set composed of logical views of documents in a collection.
   \item \textbf{Q} is a set composed of logical views of the user information needs. Such representations are called queries.
   \item $\mathcal{F}$ is a framework for modeling document representations, queries and their relationships.
-  \item $\mathcal{R}(q_i, d_j)$ is a raking function that associates a real number with a query representation $q_i \in \textbf{Q}$ and a document representation $d_j \in \textbf{D}$. The ranking function generates an order over all documents \textbf{D} with respect to a query $q_i$. More about raking functions is described in \Cref{sec:text_similarities}.
+  \item $\mathcal{R}(q_i, d_j)$ is a raking function that associates a real number with a query representation $q_i \in \textbf{Q}$ and a document representation $d_j \in \textbf{D}$. The ranking function generates an order over all documents \textbf{D} with respect to a query $q_i$.
 \end{enumerate}
 
-\section{Document Preprocessing}
-\label{sec:document_preprocessing}
+In relation to this definition it can be seen that the model is used to define the framework $\mathcal{F}$ and the ranking function $\mathcal{R}(q_i, d_j)$. To provide a better understanding how a framework looks like, an example based on text documents is given. The document representation is a set of all terms within the document. To keep the collection smaller without loosing any information stop words should be removed in a preprocessing step. According our document representation the query representation is a set of all terms within the query. There can also be an additional step in the query creation, where for example synonyms are added to the query set.
 
-~\cite{ModernInvormationRetrieval1999} page 223
+After the design of the framework, a ranking function can be created. It should be constructed in a way that it fits at its best to the requirements of the user. This means for a given query the ranking function supply a numeric rank to each document in the collection which represent the relevance for the user.
 
-\subsection{Extract Document Structure}
-\label{subsec:extract_document_structure}
+% todo beispiel term frequercy... what is term frequency... normalized...
 
-Write about the underlying framework. Created within ~\cite{KlampflGJK14}
+% ranked boolean and other models etc.
 
-\subsection{Stop Words}
-\label{subsec:stop_words}
+\section{Ranking Algorithms}
+\label{sec:ranking_algorithms}
 
-What are stopwords, and describe common techniques. In ~\cite{Vijayarani2015} and references
-
-\subsection{Stemming}
-\label{subsec:stemming}
-
-Describe stemming and common stemming techniques. In ~\cite{Vijayarani2015} and references
-
-\section{Text Similarities}
-\label{sec:text_similarities}
-
-Describe Text Similarities and common techniques. ~\cite{ModernInvormationRetrieval1999} page 222
-
-\section{IMRaD Structure}
-\label{sec:imrad_structure}
-
-general about IMRaD in scientific writing: ~\cite{robert1989}, chapter distribution analysis: ~\cite{bertin2013} important: ~\cite{Sollaci-The-2004}
-
-\section{Ranking Functions}
-\label{sec:ranking_functions}
+%IRS has to deal with the problem which documents are relevant and which are not relevant to the user. Hard to decide since each user has different understanding what's relevant, and what's not relevant.. System implement a predictive algorithm which approximates... modern info retrieval page 58
 
 Describe basics like term frequency, document frequency ...
 
@@ -117,8 +100,39 @@ as described in ~\cite{ModernInvormationRetrieval1999} page 113
   f^{\prime}_{i, j} = f_{i, j} \cdot \frac{avgdl}{len(d_j)}
 \end{equation}
 
-\section{Mean Average Precision}
-\label{sec:mean_average_precision}
+
+\section{Document Preprocessing}
+\label{sec:document_preprocessing}
+
+~\cite{ModernInvormationRetrieval1999} page 223
+
+\subsection{Extract Document Structure}
+\label{subsec:extract_document_structure}
+
+Write about the underlying framework. Created within ~\cite{KlampflGJK14}
+
+\subsection{Stop Words}
+\label{subsec:stop_words}
+
+What are stopwords, and describe common techniques. In ~\cite{Vijayarani2015} and references
+
+\subsection{Stemming}
+\label{subsec:stemming}
+
+Describe stemming and common stemming techniques. In ~\cite{Vijayarani2015} and references
+
+\section{Text Similarities}
+\label{sec:text_similarities}
+
+Describe Text Similarities and common techniques. ~\cite{ModernInvormationRetrieval1999} page 222
+
+\section{IMRaD Structure}
+\label{sec:imrad_structure}
+
+general about IMRaD in scientific writing: ~\cite{robert1989}, chapter distribution analysis: ~\cite{bertin2013} important: ~\cite{Sollaci-The-2004}
+
+\section{Evaluation of Ranking Algorithms}
+\label{sec:evaluation_of_ranking_algorithms}
 
 as described in ~\cite{manning2008} page 147 and in ~\cite{ModernInvormationRetrieval1999} page 140
 
