@@ -21,16 +21,14 @@ In relation to this definition it can be seen that the model is used to define t
 
 After the design of the framework, a ranking function can be created. It should be constructed in a way that it fits at its best to the requirements of the user. This means for a given query the ranking function supply a numeric rank to each document in the collection which represent the relevance for the user. As a basic example, the ranking function could count how often query terms appear in a document. This rate is called term frequency. To be able to compare the documents using the term frequency, the ranks must be normalized.
 
-% ranked boolean and other models etc.
+%% maybe document frequency more detailed.
 
-\section{Ranking Algorithms}
-\label{sec:ranking_algorithms}
+\subsection{The Boolean Model}
+\label{sec:the_boolean_model}
 
-%IRS has to deal with the problem which documents are relevant and which are not relevant to the user. Hard to decide since each user has different understanding what's relevant, and what's not relevant.. System implement a predictive algorithm which approximates... modern info retrieval page 58
+General about vector boolean model.
 
-Describe basics like term frequency, document frequency ...
-
-\subsection{Ranked Boolean Retrieval}
+\subsubsection{Ranked Boolean Retrieval}
 \label{sec:ranked_boolean_retrieval}
 
 Described in ~\cite{manning2008} page 103
@@ -39,10 +37,19 @@ Described in ~\cite{manning2008} page 103
   \sum_{i = 1}^{l}g_i s_i
 \end{equation}
 
-\subsection{Tf-idf}
+\subsection{The Vector Space Model}
+\label{sec:the_vector_space_model}
+
+General about vector space model... The classical vector space model was introduced by Salton et al.~\cite{salton75vsm}
+
+\subsubsection{Term Frequency-Inverse Document Frequency Model}
 \label{sec:tfidf}
 
-Described in ~\cite{manning2008} page 109 and ~\cite{ModernInvormationRetrieval1999} page 72
+% also Tf-idf Model in the same paper defined ~\cite{salton75vsm}
+% concept of inverse document frequency was introduced by jones72astatistical
+
+Describe basics like term frequency, document frequency...
+
 \begin{equation}
   \begin{split}
     \text{idf}_t & = log \frac{N}{df_t} \\
@@ -51,7 +58,12 @@ Described in ~\cite{manning2008} page 109 and ~\cite{ModernInvormationRetrieval1
   \end{split}
 \end{equation}
 
-\subsection{Okapi BM25}
+\subsection{The Probabilistic Model}
+\label{sec:the_probabilistic_model}
+
+General about probabilistic model.
+
+\subsubsection{Okapi BM25}
 \label{sec:okapi_bm25}
 as described in ~\cite{manning2008} page 214 and in ~\cite{ModernInvormationRetrieval1999} page 105
 \begin{equation}
@@ -62,7 +74,8 @@ as described in ~\cite{manning2008} page 214 and in ~\cite{ModernInvormationRetr
   \end{split}
 \end{equation}
 
-\subsection{Divergence from Randomness}
+
+\subsubsection{Divergence from Randomness}
 \label{sec:divergence_from_randomness}
 
 as described in ~\cite{ModernInvormationRetrieval1999} page 113
