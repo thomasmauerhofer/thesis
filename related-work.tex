@@ -19,9 +19,7 @@ In general a information retrieval models can be spitted into $4$ parts. Baeza-Y
 
 In relation to this definition it can be seen that the model is used to define the framework $\mathcal{F}$ and the ranking function $\mathcal{R}(q_i, d_j)$. To provide a better understanding how a framework looks like, an example based on text documents is given. The document representation is a set of all terms within the document. To keep the collection smaller without loosing any information stop words should be removed in a preprocessing step. According our document representation the query representation is a set of all terms within the query. There can also be an additional step in the query creation, where for example synonyms are added to the query set.
 
-After the design of the framework, a ranking function can be created. It should be constructed in a way that it fits at its best to the requirements of the user. This means for a given query the ranking function supply a numeric rank to each document in the collection which represent the relevance for the user.
-
-% todo beispiel term frequercy... what is term frequency... normalized...
+After the design of the framework, a ranking function can be created. It should be constructed in a way that it fits at its best to the requirements of the user. This means for a given query the ranking function supply a numeric rank to each document in the collection which represent the relevance for the user. As a basic example, the ranking function could count how often query terms appear in a document. This rate is called term frequency. To be able to compare the documents using the term frequency, the ranks must be normalized.
 
 % ranked boolean and other models etc.
 
