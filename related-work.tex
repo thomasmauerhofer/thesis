@@ -28,6 +28,15 @@ After the design of the framework, a ranking function can be created. It should 
 
 General about vector boolean model.
 
+\myfig{boolean_model}
+      {width=0.8\textwidth}
+      {\textbf{Example query in the Boolean model with $3$ terms.} For the Boolean model documents in the collection are represented as sets of terms. Furthermore they can be separated according to the terms ($t_1$, $t_2$, $t_3$) they are containing. Given a query $q=t_1 \wedge (t_2 \vee \neg t_3)$ all documents which satisfy this query are marked as relevant for the user.}
+      {Example query in the Boolean model with $3$ terms.}
+      {fig:boolean_model}
+
+boolean operators together with query terms. Normal vector form..
+Relevant or not (user gets no score)
+
 \subsubsection{Ranked Boolean Retrieval}
 \label{sec:ranked_boolean_retrieval}
 
