@@ -19,14 +19,23 @@ In general a information retrieval models can be spitted into $4$ parts. Baeza-Y
 
 In relation to this definition it can be seen that the model is used to define the framework $\mathcal{F}$ and the ranking function $\mathcal{R}(q_i, d_j)$. To provide a better understanding how a framework looks like, an example based on text documents is given. The document representation is a set of all terms within the document. To keep the collection smaller without loosing any information stop words should be removed in a preprocessing step. According our document representation the query representation is a set of all terms within the query. There can also be an additional step in the query creation, where for example synonyms are added to the query set.
 
-After the design of the framework, a ranking function can be created. It should be constructed in a way that it fits at its best to the requirements of the user. This means for a given query the ranking function supply a numeric rank to each document in the collection which represent the relevance for the user. As a basic example, the ranking function could count how often query terms appear in a document. This rate is called term frequency. To be able to compare the documents using the term frequency, the ranks must be normalized.
+After the design of the framework, a ranking function can be created. It should be constructed in a way that it fits at its best to the requirements of the user. This means for a given query the ranking function supply a numeric rank to each document in the collection which represent the relevance for the user. As a basic example, the ranking function count how often query terms appear in a document. This rate is called term frequency. To be able to compare the documents using the term frequency, the ranks must be normalized.
 
-%% maybe document frequency more detailed.
+Information retrieval is used in several fields where the underlying models have to fulfill different requirements. Therefore they are separated into Text-based models, Link-based models, and multimedia objects-based models. Furthermore Text-based models distinguish between unstructured, and semi-structured text models. Unstructured text models are used for each kind of text documents where the content can be seen as sequence of words. Semi-structured text models contains a structure like title, sections, paragraphs, but also unstructured text within those structure.
+
+When having a look on the web, it is rapid growing, and has a huge number of web pages (documents). Therefore it is not enough to consider only the content of documents. It is also necessary to take links between those documents into account. This leads to Link-based models where PageRank ~\cite{brin1998anatomy} and Hyperlink-Induced Topic Search ~\cite{kleinberg1999authoritative} are important parts of the models.
+
+Information retrieval for multimedia objects differs completely from the first $2$ types. For example when thinking on a image it can be seen as a matrix of color values. Detecting similarities between images means compare colors and shapes of them. This consideration continues when thinking of the query representation. The user can use words, or use a image to define a query. The simplest form of multimedia-based retrieval is image retrieval. Audio and video retrieval are more complicated since there is also a time value which have to be taken into account.
+
+\section{Unstructured Text Retrieval}
+\label{sec:unstructured_text_Retrieval}
+
+Introduction about Boolean, vector, and probabilistic model...
 
 \subsection{The Boolean Model}
 \label{sec:the_boolean_model}
 
-General about vector boolean model.
+General about boolean model.
 
 \myfig{boolean_model}
       {width=0.7\textwidth}
@@ -36,15 +45,6 @@ General about vector boolean model.
 
 boolean operators together with query terms. Normal vector form..
 Relevant or not (user gets no score)
-
-\subsubsection{Ranked Boolean Retrieval}
-\label{sec:ranked_boolean_retrieval}
-
-Described in ~\cite{manning2008} page 103
-
-\begin{equation}
-  \sum_{i = 1}^{l}g_i s_i
-\end{equation}
 
 \subsection{The Vector Space Model}
 \label{sec:the_vector_space_model}
@@ -120,6 +120,19 @@ as described in ~\cite{ModernInvormationRetrieval1999} page 113
   f^{\prime}_{i, j} = f_{i, j} \cdot \frac{avgdl}{len(d_j)}
 \end{equation}
 
+\section{Structured Text Retrieval}
+\label{sec:structured_text_Retrieval}
+
+Write about structuring, early text retrieval, xml retrieval
+
+\subsubsection{Ranked Boolean Retrieval}
+\label{sec:ranked_boolean_retrieval}
+
+Described in ~\cite{manning2008} page 103
+
+\begin{equation}
+  \sum_{i = 1}^{l}g_i s_i
+\end{equation}
 
 \section{Document Preprocessing}
 \label{sec:document_preprocessing}
