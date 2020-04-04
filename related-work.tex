@@ -17,9 +17,11 @@ In general a information retrieval models can be spitted into $4$ parts. Baeza-Y
   \item $\mathcal{R}(q_i, d_j)$ is a raking function that associates a real number with a query representation $q_i \in \textbf{Q}$ and a document representation $d_j \in \textbf{D}$. The ranking function generates an order over all documents \textbf{D} with respect to a query $q_i$.
 \end{enumerate}
 
-In relation to this definition it can be seen that the model is used to define the framework $\mathcal{F}$ and the ranking function $\mathcal{R}(q_i, d_j)$. To provide a better understanding how a framework looks like, an example based on text documents is given. The document representation is a set of all terms within the document. To keep the collection smaller without loosing any information stop words should be removed in a preprocessing step. According our document representation the query representation is a set of all terms within the query. There can also be an additional step in the query creation, where for example synonyms are added to the query set.
+In relation to this definition it can be seen that the model is used to define the framework $\mathcal{F}$ and the ranking function $\mathcal{R}(q_i, d_j)$. To provide a better understanding how a framework looks like, an example based on text documents is given. The document representation is a set of all terms within the document. To keep the collection smaller without loosing any information stop words should be removed in a preprocessing step. The set of all index terms within a document collection is called vocabulary. According our document representation the query representation is a set of all terms within the query. There can also be an additional step in the query creation, where for example synonyms are added to the query set.
 
-After the design of the framework, a ranking function can be created. It should be constructed in a way that it fits at its best to the requirements of the user. This means for a given query the ranking function supply a numeric rank to each document in the collection which represent the relevance for the user. As a basic example, the ranking function count how often query terms appear in a document. This rate is called term frequency. To be able to compare the documents using the term frequency, the ranks must be normalized.
+After the design of the framework, a ranking function can be created. It should be constructed in a way that it fits at its best to the requirements of the user. This means for a given query the ranking function supply a numeric rank to each document in the collection which represent the relevance for the user. As a basic example, the ranking function count how many query terms appear in the term set of the document.
+
+Another example is to use the term frequency as ranking function. The term frequency itself expresses how often a term occurs in a document. To be able to use it, the document representation have to change from a set with all terms to a bag of words. In a bag of words each term is represented as a pair of term and term frequency. The ranking function itself sums the frequencies over all query terms. To be able to compare the documents using the term frequency, the ranks must be normalized.
 
 Information retrieval is used in several fields where the underlying models have to fulfill different requirements. Therefore they are separated into Text-based models, Link-based models, and multimedia objects-based models. Furthermore Text-based models distinguish between unstructured, and semi-structured text models. Unstructured text models are used for each kind of text documents where the content can be seen as sequence of words. Semi-structured text models contains a structure like title, sections, paragraphs, but also unstructured text within those structure.
 
@@ -29,6 +31,8 @@ Information retrieval for multimedia objects differs completely from the first $
 
 \section{Unstructured Text Retrieval}
 \label{sec:unstructured_text_Retrieval}
+
+
 
 Introduction about Boolean, vector, and probabilistic model...
 
