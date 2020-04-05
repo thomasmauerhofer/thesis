@@ -37,16 +37,21 @@ In unstructured text retrieval the used documents can be seen as sequence of wor
 \subsection{The Boolean Model}
 \label{sec:the_boolean_model}
 
-General about boolean model.
-
 \myfig{boolean_model}
       {width=0.7\textwidth}
       {\textbf{Example query in the Boolean model with $3$ terms.} For the Boolean model documents in the collection are represented as sets of terms. Furthermore they can be separated according to the terms ($t_1$, $t_2$, $t_3$) they are containing. Given a query $q=t_1 \wedge (t_2 \vee \neg t_3)$ all documents which satisfy this query are marked as relevant for the user.}
       {Example query in the Boolean model with $3$ terms.}
       {fig:boolean_model}
 
-boolean operators together with query terms. Normal vector form..
-Relevant or not (user gets no score)
+The Boolean model is a well-known information retrieval model in the field of unstructured text retrieval. It was proposed as a paradigm for accessing large scale systems since the $1950$s ~\cite{Melucci2009}. The model uses Boolean operators and set theory to find relevant documents in the document collection.
+
+The classical Boolean model can only decide if a document is relevant for the user, or not. It does not provide a rank which is used to sort the documents. Salton et al. introduce in their work ~\cite{Salton-Extended-1983} a extension where the documents are sorted according their relevance.
+
+Index terms are combined with the $3$ Boolean operators NOT($\neg$), AND($\wedge$), OR($\vee$) to formulize user queries. The disjunctive normal form of the query shows which areas of the sets are relevant. When considering an example query with $3$ terms $q=t_1 \wedge (t_2 \vee \neg t_3)$, where $t_1$, $t_2$, $t_3$ are the query terms, the disjunctive normal form looks as follows:
+\begin{equation}
+q_{DNF} = (t_1 \wedge t_2 \wedge t_3) \vee (t_1 \wedge t_2 \wedge \neg t_3) \vee (t_1 \wedge \neg t_2 \wedge \neg t_3)
+\end{equation}
+\Cref{fig:boolean_model} displays the relevant documents according their areas in the Venn diagram. Their it can be seen... % noch genauer welche areas, welche nicht...
 
 \subsection{The Vector Space Model}
 \label{sec:the_vector_space_model}
