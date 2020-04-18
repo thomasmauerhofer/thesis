@@ -51,9 +51,9 @@ Finally, we have $821$ scientific articles in our dataset. This are only $27$ pe
 \subsection{Structure of a Scientific Article}
 \label{sec:structure_scientific_article}
 
-We invented a database schema which fits to the structure of a scientific article. The table named scientific article in the schema (see \Cref{fig:database_schema}) can be seen as the root node for each database entry.
+We designed a database schema, which corresponds to the structure of a scientific article. The table "scientific article" in the schema (see \Cref{fig:database_schema}) can be seen as the root node for each database entry.
 
-The author text attribute refers to the table named AuthorText. It contains the names and email addresses of all associated authors. This values are generated from the author area, which is normally on the first page of each paper. When having a look into the database schema this attribute consists of three values. First is the complete text, which contains the whole author area. Second is the email text. This is a subset with all email addresses of the complete text. The last one is a list with all authors. The author area is the only one that is not prepossessed.
+The "author text" attribute refers to the table "AuthorText". It contains the names and email addresses of all associated authors. These values are generated from the author area, which is normally on the first page of each paper. In the database schema this attribute consists of three values. First, the complete text, which contains the whole author area. Second, the email text, which are all email addresses separated from the complete text. Finally, a list with all authors. The author area is the only area that is not prepossessed.
 
 \myfig{scientific_articles_tree}
       {width=0.90\textwidth}
@@ -61,13 +61,13 @@ The author text attribute refers to the table named AuthorText. It contains the 
       {Example of a Scientific Article Tree.}
       {fig:scientific_articles_tree}
 
-One of the most important characteristics are the sections, and the underlying structure that comes with it. \Cref{fig:scientific_articles_tree} shows an example of an article, and the tree-like structure that comes with it. Chapters are non-leaf nodes, and text areas are the leaf nodes. This is reflected in database schema as two lists, one for the subsections and one for text areas. In addition to the lists, each section itself has a section type. This attribute reflects whether the section is a section, subsection, or subsubsection. The IMRaD structure information is stored as the IMRaD-Type. As described in \Cref{subsec:generation}, each section may have several IMRaD-Types. Each type of section holds its own list of these types. This means that subsections and subsubsections keep the same IMRaD-Types as their parent section.
+One of the most important characteristics are sections, and the underlying structure. \Cref{fig:scientific_articles_tree} shows an example of an article, and the tree-like structure that comes with it. Chapters are non-leaf nodes, and text areas are leaf nodes. This is represented in database schema as two lists, one for subsections and one for text areas. In addition to the lists, each section itself has a section type. This attribute describes whether the section is a section, subsection, or subsubsection. The IMRaD structure information is stored as the IMRaD-Type. As described in \Cref{subsec:generation}, each section may have several IMRaD-Types. Each type of section holds its own list of these types. Hence, subsections and subsubsections keep the same IMRaD-Types as their parent section.
 
-We store word histograms for articles as well as the sections, so we do not have to scan the entire text for each search request. These histograms contain the term frequencies of the corresponding area. So the subsubsections contain the frequencies of their text areas, the subsections contain the frequencies of their text areas, and their subsubsections text areas, and so on. Finally, an article holds the term frequencies of the whole document.
+We store word histograms for articles as well as the sections, so we do not have to scan the entire text for each search request. These histograms contain the term frequencies of the corresponding area. Therefore, subsubsections contain the frequencies of their text areas, subsections contain the frequencies of their text areas, and their subsubsections text areas, and so on. Finally, an article holds the term frequencies of the whole document.
 
-The last two attributes of an article are the reference-, and the cited-by-lists. The two lists are used to generate connections between the articles. A reference holds the id of a refereed paper. In turn the refereed paper has an entry with the paper id in the cited-by-list. Additionally, we store the text of whole reference, the authors, and other available information such as publisher, pages, volume, etc.
+The last two attributes of an article are the reference-, and the cited-by-lists. The two lists are used to generate connections between articles. A reference holds the identifier of a referred paper. In turn, the referred paper has an entry with the paper id in the cited-by-list. Additionally, we store the text of whole reference, the authors, and other available information such as publisher, pages, or the volume.
 
-One important point over all tables of the schema is, that all extracted text values are available as raw and processed. Raw represents the text as it was separated from the used framework. Processed is the raw text after the stopword removal and the stemming.
+One characteristic over all tables of the schema is, that all extracted text values are available as raw-, and processed text values. Raw represents the text as it was separated from the used framework. Processed is the raw text after the stopword removal and the stemming.
 
 \subsection{Citation Network}
 \label{sec:citation_network}
