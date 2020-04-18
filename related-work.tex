@@ -4,9 +4,9 @@
 \section{Information Retrieval Models}
 \label{sec:information_retrieval_models}
 
-Creating an information retrieval system is a complex process that needs to be considered carefully. To aim this goal models are used as a base, where the whole system is sketched. The model generation consists of two tasks. First, design a framework which represents the documents and the user queries. Second, create a ranking function, which generates a numeric rank for each document based on a query. Afterwards these ranks are used by the system to sort the documents.
+Creating an information retrieval system is a complex process that has to be planned accordingly. To reach this goal models are used as a base, where the whole system is sketched. The model generation consists of two tasks. First, design a framework which represents the documents and the user queries. Second, create a ranking function, which generates a numeric rank for each document based on a query. Afterwards these ranks are used by the system to sort the documents.
 
-One of the most common retrieval approaches is retrieval based on index terms. In this context an index term is a keyword, which appears in the document collection of the framework. This approach can be implemented efficiently as query words can be used as index terms with limited transformations.
+One of the most common retrieval approaches is retrieval based on index terms. In this context an index term is a keyword, which appears in the document collection of the framework. This approach can be implemented efficiently as query words can be used as index terms with limited transformations. For example a user is interested in cooking, and searches for "Austrian dishes". The query words "Austrian", and "dishes" can directly used to search through the document collection since they do not need any transformation.
 
 In general, information retrieval models consists of four parts. Baeza-Yates and Baeza-Yates ~\cite{ModernInvormationRetrieval1999} define them as a quadruple $[\textbf{D}, \textbf{Q}, \mathcal{F}, \mathcal{R}(q_i, d_j)]$, where:
 
@@ -25,7 +25,8 @@ Another example is to use term frequency as ranking function. Term frequency its
 
 Information retrieval is used in several fields where the underlying models have to fulfill different requirements. Therefore, they are separated into text-based models, link-based models, and multimedia objects-based models Furthermore, text-based models can be categorized in unstructured, and semi-structured text models. Unstructured text models are used for text documents where the content is represented as sequence of words. Semi-structured text models contain structure such as title, sections, paragraphs, in addition to unstructured text.
 
-The web is rapidly growing, and as a consequence has a huge number of web pages (i.e. documents). Therefore, it is not enough to consider only the content of documents. It is also necessary to take links between those documents into account. This leads to Link-based models where PageRank ~\cite{brin1998anatomy} and Hyperlink-Induced Topic Search ~\cite{kleinberg1999authoritative} are important parts of the models.
+The web is rapidly growing, and as a consequence has a huge number of web pages (i.e. documents). Therefore, additional information has to be leveraged as well.
+This means that the content of documents, and furthermore the links between those documents are take into account. Models which use those additional link information are called Link-based models where PageRank ~\cite{brin1998anatomy} and Hyperlink-Induced Topic Search ~\cite{kleinberg1999authoritative} are important parts of the models.
 
 Information retrieval for multimedia objects differs completely from the first $2$ types. For example when thinking on a image it can be seen as a matrix of color values. Detecting similarities between images means compare colors and shapes of them. This consideration continues when thinking of the query representation. The user can use words, or use a image to define a query. The simplest form of multimedia-based retrieval is image retrieval. Audio and video retrieval are more complicated since there is also a time value which have to be taken into account.
 
