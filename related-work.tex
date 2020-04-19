@@ -37,23 +37,23 @@ In unstructured text retrieval, documents can be seen as sequence of words. The 
 \subsection{The Boolean Model}
 \label{sec:the_boolean_model}
 
-The boolean model is a well-known information retrieval model in the field of unstructured text retrieval. It was proposed as a paradigm for accessing large scale systems since the $1950$s ~\cite{Melucci2009}. The model uses boolean operators and set theory to find relevant documents in the document collection.
+The boolean model is a well-known information retrieval model in the area of unstructured text retrieval. It was proposed as a paradigm for accessing large-scale systems since the $1950$s ~\cite{Melucci2009}. The model uses boolean operators and set theory to find relevant documents.
 
 \myfig{boolean_model}
       {width=0.65\textwidth}
-      {\textbf{Example query in the boolean model with $3$ terms.} For the boolean model documents in the collection are represented as sets of terms. In this example the vocabulary of the document collection is given by V = \{$t_1$, $t_2$, $t_3$\}. Furthermore, documents can be separated according to the terms they are containing. Given a query $q=t_1 \wedge (t_2 \vee \neg t_3)$ all documents which satisfy this query are marked as relevant for the user.}
+      {\textbf{Example query in the boolean model with $3$ terms.} For the boolean model documents in the collection are represented as sets of terms. In this example the vocabulary of the document collection is given by V = \{$t_1$, $t_2$, $t_3$\}. Furthermore, documents can be separated according to the terms they are containing. Given a query $q=t_1 \wedge (t_2 \vee \neg t_3)$ all documents which satisfy this query are marked with an green hook. This means that they are relevant for the user. All other documents which does not satisfy the query are marked with a red cross.}
       {Example query in the boolean model with $3$ terms.}
       {fig:boolean_model}
 
-The classical boolean model can only decide if a document is relevant for the user, or not. It does not provide a rank which is used to sort the documents. Salton et al. introduce in their work ~\cite{Salton-Extended-1983} a extension where the documents are sorted according their relevance.
+The classic boolean model can only decide if a document is relevant for the user, or not. It does not provide a rank, which is used to sort the documents. Salton et al. introduce in their work ~\cite{Salton-Extended-1983} an extension where documents are sorted according their relevance.
 
-Index terms are combined with the $3$ boolean operators NOT($\neg$), AND($\wedge$), OR($\vee$) to formulize user queries. The disjunctive normal form of the query shows which areas of the sets are relevant. For an example query $q=t_1 \wedge (t_2 \vee \neg t_3)$, and a vocabulary V = \{$t_1$, $t_2$, $t_3$\} the disjunctive normal form looks as follows:
+Index terms are combined with the $3$ boolean operators NOT($\neg$), AND($\wedge$), OR($\vee$) to formulize user queries. The disjunctive normal form of the query shows which areas of the sets are relevant. For example, for query $q=t_1 \wedge (t_2 \vee \neg t_3)$, and vocabulary V = \{$t_1$, $t_2$, $t_3$\}, $q_{DNF}$ is:
 \begin{equation}
 q_{DNF} = (t_1 \wedge t_2 \wedge t_3) \vee (t_1 \wedge t_2 \wedge \neg t_3) \vee (t_1 \wedge \neg t_2 \wedge \neg t_3)
 \end{equation}
-In this representation of the query it can be seen that $3$ areas are relevant for the user. The first one is where all $3$ query terms occur. The second where the first and the second term occur, but not the third. And the last area where the first term occurs, but not the second and the third. \Cref{fig:boolean_model} displays the example query represented in a Venn diagram, where the $3$ areas can be seen in a graphical representation.
+This representation of the query highlight that $3$ areas are relevant for the user. First, all $3$ query terms occur. Second, the first and the second term occur, but not the third. Finally, the first term occurs, but not the second and the third. \Cref{fig:boolean_model} displays the example query represented in a Venn diagram, where the $3$ areas can be seen in a graphical representation.
 
-The boolean model works also if not all terms of the vocabulary are part of the user query. Considering an vocabulary with $4$ terms V = \{$t_1$, $t_2$, $t_3$, $t_4$\}, and the previous example query the disjunctive normal form looks as follows:
+The boolean model works also if not all terms of the vocabulary are part of the user query. Considering a vocabulary V = \{$t_1$, $t_2$, $t_3$, $t_4$\}, and the previous example query, the disjunctive normal form is:
 \begin{equation}
   \begin{aligned}
     q_{DNF} = &(t_1 \wedge t_2 \wedge t_3 \wedge \neg t_4) \vee (t_1 \wedge t_2 \wedge t_3 \wedge t_4) \vee \\
@@ -61,9 +61,9 @@ The boolean model works also if not all terms of the vocabulary are part of the 
               &(t_1 \wedge \neg t_2 \wedge \neg t_3 \wedge \neg t_4) \vee (t_1 \wedge \neg t_2 \wedge \neg t_3 \wedge t_4)
   \end{aligned}
 \end{equation}
-The last term which is not part of the query is also considered in the disjunctive normal form. It is always added once as present, and once as absent to the other $3$ terms.
+The last term (i.e., $t_4$), which is not part of the query, is also considered in the disjunctive normal form. It is added once as present, and once as absent to the other $3$ terms.
 
-The main advantages of the boolean model are the clean formalism of the model, and its simplicity ~\cite{ModernInvormationRetrieval1999}. This advantages comes with the usage of binary operators, and binary index term weighing. One of the main disadvantages is the exact matching of documents. This means that a document can only be relevant, or not relevant to the user, without any ranking. As a result, users receive too few or too many documents.
+The main advantages of the boolean model are the clean formalism, and its simplicity ~\cite{ModernInvormationRetrieval1999}. These advantages comes with the usage of binary operators, and binary index term weighing. One of the main disadvantages is the exact matching of documents. This means that a document can only be relevant, or not relevant to the user, without any ranking. As a result, users receive too few or too many documents.
 
 \subsection{The Vector Space Model}
 \label{sec:the_vector_space_model}
