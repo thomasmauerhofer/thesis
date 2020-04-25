@@ -8,7 +8,7 @@ Creating an information retrieval system is a complex process that has to be pla
 
 One of the most common retrieval approaches is retrieval based on index terms. In this context an index term is a keyword, which appears in the document collection of the framework. This approach can be implemented efficiently as query words can be used as index terms with limited transformations. For example a user is interested in cooking, and searches for "Austrian dishes". The query words "Austrian", and "dishes" can directly used to search through the document collection since they do not need any transformation.
 
-In general, information retrieval models consists of four parts. Baeza-Yates and Baeza-Yates ~\cite{ModernInvormationRetrieval1999} define them as a quadruple $[\textbf{D}, \textbf{Q}, \mathcal{F}, \mathcal{R}(q_i, d_j)]$, where:
+In general, information retrieval models consists of four parts. Ribeiro-Neto and Baeza-Yates ~\cite{ModernInvormationRetrieval1999} define them as a quadruple $[\textbf{D}, \textbf{Q}, \mathcal{F}, \mathcal{R}(q_i, d_j)]$, where:
 
 \begin{enumerate}
   \item \textbf{D} is a set composed of logical views of documents in a collection.
@@ -68,7 +68,16 @@ The main advantages of the boolean model are the clean formalism, and its simpli
 \subsection{The Vector Space Model}
 \label{sec:the_vector_space_model}
 
-General about vector space model... The classical vector space model was introduced by Salton et al.~\cite{salton75vsm}
+The classical vector space model was introduced by Salton et al.~\cite{salton75vsm}. In the model documents and queries are represented as vectors in an t-dimensional space. The size of t is defined by the number of words in the vocabulary of the collection.
+
+The vector space model is more sophisticated than the boolean model, since it contains partial matching. Partial matching means, that a degree of similarity between user queries and the documents in the system are calculated. To accomplish this, non-binary weights are used in combination with the index terms. Ribeiro-Neto and Baeza-Yates ~\cite{ModernInvormationRetrieval1999} define the document representation $d_j$, and the query representation $q$ as:
+\begin{align}
+  \vec{d_j} & = (w_{1, j}, w_{2, j}, \dots, w_{t, j}) \\
+  \vec{q} & = (w_{1, q}, w_{2, q}, \dots, w_{t, q})
+\end{align}
+aaaa bbbb ccccc
+% Formeln genau beschreiben. Beispiel mit 3 Wörtern.. one basic example to understand with tf .. überschwingen auf tf-idf....
+% Sortierung der documente...
 
 \subsubsection{Term Frequency-Inverse Document Frequency Model}
 \label{sec:tfidf}
