@@ -70,7 +70,7 @@ The main advantages of the boolean model are the clean formalism, and its simpli
 
 The classical vector space model was introduced by Salton et al.~\cite{salton75vsm}. In the model documents and queries are represented as vectors in an t-dimensional space. The size of t is defined by the number of words in the vocabulary of the collection.
 
-The vector space model is more sophisticated than the boolean model, since it contains partial matching. Partial matching means, that a degree of similarity between user queries and the documents in the system are calculated. To accomplish this, non-binary weights are used in combination with index terms. The idea of non-binary weights comes from the assumption that some index terms are more important than other to describe the content of a document.
+The vector space model is more sophisticated than the boolean model, since it contains partial matching. Partial matching means, that a degree of similarity between user queries and the documents in the system are calculated. To accomplish this, non-binary weights are used in combination with index terms. The idea of non-binary weights comes from the assumption that some index terms are more important than other to describe the content of a document. The calculation of such term weights is a challenging task. For example, when thinking on a collection with thousand of documents. A term which appears in each of those documents is useless as an index term, since it gives no information which document is relevant to the user. On the other hand....
 
 %term weighing
 
