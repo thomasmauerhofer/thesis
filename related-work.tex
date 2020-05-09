@@ -72,7 +72,9 @@ The vector space model was introduced by Salton et al.~\cite{salton75vsm}. In th
 
 The vector space model is more sophisticated than the boolean model, since it contains partial matching. Partial matching means, that a degree of similarity between user queries and the documents in the system are calculated. To accomplish this, non-binary weights are used in combination with index terms.
 
-The idea of non-binary weights is based on the assumption that some index terms are more important than others to describe the content of a document. The calculation of such term weights is a challenging task. For example, when thinking on a collection with thousand of documents. A term which appears in each of these documents is useless as an index term, as it gives no information which document is relevant to the user. On the other hand....
+The idea of non-binary weights is based on the assumption that some index terms are more important than others to describe the content of a document. The calculation of such term weights is a challenging task, since they have to reflect the subjective expectation of a user. As a result terms that appear in a few documents have a higher weight than terms that occur in many documents. For a example a collection consists of $3$ documents, given by $D_1 =$ \{"cooking", "appetizer"\}, $D_2 =$ \{"cooking", "main", "dish"\}, $D_3 =$ \{"cooking", "dessert"\}. A user is interested to create a dessert. Therefore he searches for "cooking dessert". The first query word "cooking" is part of each document. This means it is not very useful to define the users requirements. The second query word "dessert" is only part of one document. %mehr aussagekraft, und dadurch höher gewichtet...
+
+
 
 %term weighing
 
