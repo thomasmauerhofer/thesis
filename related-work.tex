@@ -76,13 +76,18 @@ The idea of non-binary weights is based on the assumption that some index terms 
 
 The combination of index terms and weights allow to calculate a numeric rank for each document. These ranks are used to sort the documents regarding a given user query. The resulting list contains the best results on top according to their relevance.
 
-When having a closer look on index terms and their correlations it can be assumed that they are mutually independent. This means knowing $w_{i, j}$, where $w_{i, j}$ is the weight of an index term $k_i$ in a document $d_j$, tells nothing about the next weight $w_{i + 1, j}$. The assumption does not hold, since terms in a document are always related to each other. One example would be the words \textit{mobile} and \textit{phone}, which often occur together. Therefore when a document contains the word \textit{mobile} it is probably that the document also contains the word \textit{phone}. This correlation is mirrored by their term weigths. The term-term correlation matrix defined by Ribeiro-Neto and Baeza-Yates ~\cite{ModernInvormationRetrieval1999} reflect such relations. It is defined by... M...
-
+When having a closer look on index terms and their correlations it can be assumed that they are mutually independent. This means knowing $w_{i, j}$, where $w_{i, j}$ is the weight of an index term $k_i$ in a document $d_j$, tells nothing about the next weight $w_{i + 1, j}$. The assumption does not hold, since terms in a document are always related to each other. One example would be the words \textit{mobile} and \textit{phone}, which often occur together. Therefore when a document contains the word \textit{mobile} it is probably that the document also contains the word \textit{phone}. This correlation is mirrored by their term weights. The term-term correlation matrix described by Ribeiro-Neto and Baeza-Yates ~\cite{ModernInvormationRetrieval1999} reflect such relations. It is defined as follows:
+\begin{align}
+  \textbf{C} = \textbf{M} \cdot \textbf{M}^T
+\end{align}
+Thereby \textbf{M} is a term-document matrix with t rows, and N columns. Each row contains a term of the vocabulary. As a result the number of rows equals the size of the vocabulary. The columns reflect the documents collection, where each column contains a single document. Each entry in the matrix is given by the weight $w_{i, j}$ associated with index term $k_i$ and document $d_j$. In the term-term correlation matrix \textbf{C} each element $c_{u, v} \in \textbf{C}$ describes a correlation between the terms $k_u$ and $k_v$, which is given by:
 \begin{align}
   c_{u, v} = \sum_{d_j}w_{u, j} \times w_{v, j}
 \end{align}
-Describe the definition.. transition with 2 documents and 3 terms
-%-------------------------------------------------------------------------------
+Continue with the joint occurrence...
+
+Describe the definition.. transition with 2 documents and 3 termsewedad
+\begin{samepage}
 \[
   \begin{blockarray}{ccc}
     & d_1 & d_2 \\
@@ -116,7 +121,8 @@ Describe the definition.. transition with 2 documents and 3 terms
     \end{block}
   \end{blockarray}
 \]
-%-------------------------------------------------------------------------------
+\end{samepage}
+
 Describe creation of matrix and matrix itself based on the example with 2 documents and 3 terms
 
 
