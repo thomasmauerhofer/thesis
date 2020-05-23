@@ -76,30 +76,28 @@ The idea of non-binary weights is based on the assumption that some index terms 
 
 The combination of index terms and weights allow to calculate a numeric rank for each document. These ranks are used to sort the documents regarding a given user query. The resulting list contains the best results on top according to their relevance.
 
-When having a closer look on index terms and their correlations it can be assumed that they are mutually independent. This means knowing $w_{i, j}$, where $w_{i, j}$ is the weight of an index term $k_i$ in a document $d_j$, tells nothing about the next weight $w_{i + 1, j}$. The assumption does not hold, since terms in a document are always related to each other. One example would be the words \textit{mobile} and \textit{phone}, which often occur together. Therefore when a document contains the word \textit{mobile} it is probably that the document also contains the word \textit{phone}. This correlation is mirrored by their term weights. The term-term correlation matrix described by Ribeiro-Neto and Baeza-Yates ~\cite{ModernInvormationRetrieval1999} reflect such relations. It is defined as follows:
+When having a closer look on index terms and their correlations it can be assumed that they are mutually independent. This means knowing $w_{i, j}$, where $w_{i, j}$ is the weight of an index term $t_i$ in a document $d_j$, tells nothing about the next weight $w_{i + 1, j}$. The assumption does not hold, since terms in a document are always related to each other. One example would be the words \textit{mobile} and \textit{phone}, which often occur together. Therefore when a document contains the word \textit{mobile} it is probably that the document also contains the word \textit{phone}. This correlation is mirrored by their term weights. The term-term correlation matrix described by Ribeiro-Neto and Baeza-Yates ~\cite{ModernInvormationRetrieval1999} reflect such relations. It is defined as follows:
 \begin{align}
   \textbf{C} = \textbf{M} \cdot \textbf{M}^T
 \end{align}
-Thereby \textbf{M} is a term-document matrix with t rows, and N columns. Each row contains a term of the vocabulary. As a result the number of rows equals the size of the vocabulary. The columns reflect the documents collection, where each column contains a single document. Each entry in the matrix is given by the weight $w_{i, j}$ associated with index term $k_i$ and document $d_j$. In the term-term correlation matrix \textbf{C} each element $c_{u, v} \in \textbf{C}$ describes a correlation between the terms $k_u$ and $k_v$, which is given by:
+Thereby \textbf{M} is a term-document matrix with t rows, and N columns. Each row contains a term of the vocabulary. As a result the number of rows equals the size of the vocabulary. The columns reflect the documents collection, where each column contains a single document. Each entry in the matrix is given by the weight $w_{i, j}$ associated with index term $t_i$ and document $d_j$. In the term-term correlation matrix \textbf{C} each element $c_{u, v} \in \textbf{C}$ describes a correlation between the terms $t_u$ and $t_v$, which is given by:
 \begin{align}
   c_{u, v} = \sum_{d_j}w_{u, j} \times w_{v, j}
 \end{align}
-Continue with the joint occurrence...
-
-Describe the definition.. transition with 2 documents and 3 termsewedad
+So the relation between any two terms $t_u$ and $t_v$ can be seen in the matrix. It is based on the joint co-occurrence of the two terms within all documents of the collection. For example, when having a collection of $2$ documents, and the vocabulary of the collection is given by V = \{$t_1$, $t_2$, $t_3$\}. The term-term correlation matrix is calculated as follows:
 \begin{samepage}
 \[
   \begin{blockarray}{ccc}
     & d_1 & d_2 \\
     \begin{block}{l[cc]}
-      k_1 & w_{1, 1} & w_{1, 2} \\
-      k_2 & w_{2, 1} & w_{2, 2} \\
-      k_3 & w_{3, 1} & w_{3, 2} \\
+      t_1 & w_{1, 1} & w_{1, 2} \\
+      t_2 & w_{2, 1} & w_{2, 2} \\
+      t_3 & w_{3, 1} & w_{3, 2} \\
     \end{block}
   \end{blockarray}
   \hspace{40mm}
   \begin{blockarray}{cccc}
-    & k_1 & k_2 & k_3 \\
+    & t_1 & t_2 & t_3 \\
     \begin{block}{l[ccc]}
       d_1 & w_{1, 1} & w_{2, 1} & w_{3, 1} \\
       d_2 & w_{1, 2} & w_{2, 2} & w_{3, 2} \\
@@ -113,29 +111,34 @@ Describe the definition.. transition with 2 documents and 3 termsewedad
 \]
 \[
   \begin{blockarray}{cccc}
-    & k_1 & k_2 & k_3 \\
+    & t_1 & t_2 & t_3 \\
     \begin{block}{l[ccc]}
-      k_1 & w_{1, 1}w_{1, 1} + w_{1, 2}w_{1, 2} & w_{1, 1}w_{2, 1} + w_{1, 2}w_{2, 2} & w_{1, 1}w_{3, 1} + w_{1, 2}w_{3, 2} \\
-      k_2 & w_{2, 1}w_{1, 1} + w_{2, 2}w_{1, 2} & w_{2, 1}w_{2, 1} + w_{2, 2}w_{2, 2} & w_{2, 1}w_{3, 1} + w_{2, 2}w_{3, 2} \\
-      k_3 & w_{3, 1}w_{1, 1} + w_{3, 2}w_{1, 2} & w_{3, 1}w_{2, 1} + w_{3, 2}w_{2, 2} & w_{3, 1}w_{3, 1} + w_{3, 2}w_{3, 2} \\
+      t_1 & w_{1, 1}w_{1, 1} + w_{1, 2}w_{1, 2} & w_{1, 1}w_{2, 1} + w_{1, 2}w_{2, 2} & w_{1, 1}w_{3, 1} + w_{1, 2}w_{3, 2} \\
+      t_2 & w_{2, 1}w_{1, 1} + w_{2, 2}w_{1, 2} & w_{2, 1}w_{2, 1} + w_{2, 2}w_{2, 2} & w_{2, 1}w_{3, 1} + w_{2, 2}w_{3, 2} \\
+      t_3 & w_{3, 1}w_{1, 1} + w_{3, 2}w_{1, 2} & w_{3, 1}w_{2, 1} + w_{3, 2}w_{2, 2} & w_{3, 1}w_{3, 1} + w_{3, 2}w_{3, 2} \\
     \end{block}
   \end{blockarray}
 \]
 \end{samepage}
+It can be seen that the term-document matrix \textbf{M} has size $3$ x $2$, where rows consists of the terms, and columns consists of the documents. For example, the weight in the first row, and in the first column $w_{1, 1}$ contains the weight of $t_1$ in document $d_1$. The transposed matrix consists the terms and the documents the other way round. By multiplying these $2$ matrices the term-term correlation matrix \textbf{C} is generated. It has size $3$ x $3$ where rows and columns consists of the terms in the vocabulary. For example, the entry in the first row, and in the second column contains the joint co-occurrence of the terms $t_1$ and $t_2$.
 
-Describe creation of matrix and matrix itself based on the example with 2 documents and 3 terms
+The vector space model is just one information retrieval model which takes the advantage of term-term correlation into account. Other models would be fuzzy information retrieval models, the set-based model, and the language models.
 
-
-Ribeiro-Neto and Baeza-Yates ~\cite{ModernInvormationRetrieval1999} define the document representation $d_j$, and the query representation $q$ as:
+The vector space model uses term weights for the representation of the vectors. Ribeiro-Neto and Baeza-Yates ~\cite{ModernInvormationRetrieval1999} define the document representation $d_j$, and the query representation $q$ as follows:
 \begin{align}
   \vec{d_j} & = (w_{1, j}, w_{2, j}, \dots, w_{t, j}) \\
   \vec{q} & = (w_{1, q}, w_{2, q}, \dots, w_{t, q})
 \end{align}
-aaaa bbbb ccccc
-% Formeln genau beschreiben. Beispiel mit 3 Wörtern.. one basic example to understand with tf .. überschwingen auf tf-idf....
-% Sortierung der documente...
+The weight $w_{i,j}$ contains the weight of term $t_i$ in document $d_j$. It has to be non-negative, and non-binary. ...
 
-\subsubsection{Term Frequency-Inverse Document Frequency Model}
+\myfig{diff_vectors}
+      {width=0.5\textwidth}
+      {\textbf{Example of the similarity between query and documents in a $2$D space.} Description}
+      {Example of the similarity between query and documents in a $2$D space.}
+      {fig:diff_vectors}
+
+
+\subsubsection{Term Frequency-Inverse Document Frequency Weights}
 \label{sec:tfidf}
 
 % also Tf-idf Model in the same paper defined ~\cite{salton75vsm}
