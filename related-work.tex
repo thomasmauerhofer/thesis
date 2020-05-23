@@ -131,10 +131,18 @@ The vector space model uses term weights for the representation of the vectors. 
 \end{align}
 The weight $w_{i,j}$ contains the weight of term $t_i$ in document $d_j$. It has to be non-negative, and non-binary. ...
 
+\begin{equation}
+  \begin{split}
+    sim(d_j, q) & = \frac{\vec{d_j} \bullet \vec{q}}{|\vec{d_j}| \times |\vec{q}|} \\
+    & = \frac{\sum_{i = 1}^t w_{i, j} \times w_{i, q}}{\sqrt{\sum_{i = 1}^t w_{i, j}^2 \times \sum_{i = 1}^t w_{i, q}^2}}
+  \end{split}
+\end{equation}
+
+
 \myfig{diff_vectors}
       {width=0.5\textwidth}
-      {\textbf{Example of the similarity between query and documents in a $2$D space.} Description}
-      {Example of the similarity between query and documents in a $2$D space.}
+      {\textbf{Example of the similarity between query and documents in the vector space model.} In this example the vocabulary of the document collection is given by \mbox{V = \{"\textit{appetizer}", "\textit{dessert}"\}}. The $2$ documents $d_1$, $d_2$, and the query $q$ are represented as vectors according their term weights. The similarity of $2$ vectors is given by the angle between them.}
+      {Example of the similarity between query and documents in the vector space model.}
       {fig:diff_vectors}
 
 
