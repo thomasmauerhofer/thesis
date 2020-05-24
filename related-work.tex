@@ -138,7 +138,9 @@ The degree of similarity between a document $d_j$, and a query $q$ is calculated
     & = \frac{\sum_{i = 1}^t w_{i, j} \times w_{i, q}}{\sqrt{\sum_{i = 1}^t w_{i, j}^2} \times \sqrt{\sum_{i = 1}^t w_{i, q}^2}}
   \end{split}
 \end{equation}
-Thereby ... % Describe the formula...
+Thereby $\vec{d_j} \bullet \vec{q}$ is the internal product of the $2$ vectors. The factor $|\vec{d_j}|$ is the norms of the document vector, and $|\vec{q}|$ is the norm of query vector. These norms define the document length, respectively the query length. The norm of the document vector is used to provide the same vector length for all documents. The norm of the query vector does not affect the ranking result since it is the same for all documents in the collection. Singhal et. al discuss in their work ~\cite{SinghalBM96} more sophisticated document length normalization for vector space models.
+
+Write about the weigths....
 
 \myfig{diff_vectors}
       {width=0.5\textwidth}
