@@ -146,23 +146,36 @@ The degree of similarity between a document $d_j$, and a query $q$ is calculated
 \end{equation}
 Thereby $\vec{d_j} \bullet \vec{q}$ is the internal product of the $2$ vectors. The factor $|\vec{d_j}|$ is the norms of the document vector, and $|\vec{q}|$ is the norm of query vector. These norms define the document length, respectively the query length. The norm of the document vector is used to provide the same vector length for all documents. The norm of the query vector does not affect the ranking result since it is the same for all documents in the collection. Singhal et. al discuss in their work ~\cite{SinghalBM96} more sophisticated document length normalization for vector space models.
 
-\subsubsection{TF-IDF Term Weights}
+\subsubsection{TF-IDF Weighting Scheme}
 \label{sec:tfidf}
 
-The TF-IDF, short for term frequency – inverse document frequency, term weight is the most popular...
-% Term Frequency-Inverse Document Frequency Weights
-% also Tf-idf Model in the same paper defined ~\cite{salton75vsm}
-% concept of inverse document frequency was introduced by jones72astatistical
+The first form of term weighing was discussed by Luhn ~\cite{Luhn_statistical-1957}. The Author observed that terms which occurs more often in a document are important to describe the content of the document. Therefore these terms can be seen as key words. As a result he assumed that the term frequency $f_{i, j}$, where term $t_i$ occurs in document $d_j$, has to be relative to the term frequency weight $TF_{i, j}$. This means the higher the term frequency, the higher the associated term frequency weight. This assumption leads to the following formulation of term frequency weights:
+\begin{align}
+  \label{raw_tf}
+  tf_{i, j} = f_{i, j}
+\end{align}
+In this formula the raw term frequency is used as term weight. However, Salton and Yang observed in their work ~\cite{FT023} that in some cases term frequency weights are an improvement according binary weights. Furthermore they state inconsistence in their test results when they changed their test collection, and query set.
 
-Describe basics like term frequency, document frequency...
+To improve the results of term frequency weights, inverse document frequency weights are used in combination. The concept of inverse document frequency was introduced by Spärck Jones ~\cite{jones72astatistical}, and is a foundation in term weighting. % statistical research...
 
+The Zipf's Law ~\cite{zipf1932selected} was used as base to create the inverse document frequency:
+\begin{align}
+  IDF_i = \log \frac{N}{n_i}
+\end{align}
+Describe the values in the formula...
+
+To use the term frequency weight in combination with the inverse document frequency weight formula ~\ref{raw_tf} has to be adopted:
 \begin{equation}
-  \begin{split}
-    \text{idf}_t & = log \frac{N}{df_t} \\
-    \text{tf-idf}_{t, d} & = \text{tf}_{t, d} \cdot \text{idf}_t \\
-    \text{Score}(q, d) & = \sum_{t \in q}\text{tf-idf}_{t, d}
-  \end{split}
+  \label{log_term_frequency_weigth}
+  tf_{i, j} =
+  \begin{cases}
+    1 + \log f_{i, j}, & \text{if $f_{i,j} > 0$}.\\
+    0, & \text{otherwise}.
+  \end{cases}
 \end{equation}
+This is the preferred form of the term frequency weight since the logarithm makes it directly combinable with inverse document frequency weights.
+
+% write about the combination of both...
 
 \subsection{The Probabilistic Model}
 \label{sec:the_probabilistic_model}
