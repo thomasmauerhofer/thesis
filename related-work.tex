@@ -180,17 +180,21 @@ It is called inverse document frequency since $n_i/N$ is the relative document f
 
 To use the term frequency weight (see \Cref{raw_tf}) in combination with the inverse document frequency weight has to be adopted to the log term frequency weight:
 \begin{equation}
-  \label{log_term_frequency_weigth}
   tf_{i, j} =
   \begin{cases}
-    1 + \log f_{i, j}, & \text{if $f_{i,j} > 0$}.\\
+    1 + \log f_{i, j}, & \text{if $f_{i,j} > 0$} \\
     0, & \text{otherwise}.
   \end{cases}
 \end{equation}
-This is the preferred form of the term frequency weight since the logarithm makes it directly combinable with inverse document frequency weights.
-
-% write about the combination of TF and IDF... continue here.. add formula...
-
+The log term frequency weight is one of the mostly used term frequency weighing schemes since the invert document frequency term weight is also a logarithmic function. Therefore they can be combined directly as defined by Salton and Yang ~\cite{FT023} to the TF-IDF weighing scheme:
+\begin{equation}
+  w_{i, j} =
+  \begin{cases}
+    1 + \log f_{i, j} \times \log \frac{N}{n_i}, & \text{if $f_{i,j} > 0$} \\
+    0, & \text{otherwise}.
+  \end{cases}
+\end{equation}
+Thereby $w_{i, j}$ is the term weight of term $k_i$ which occurs in document $d_j$. %THe first part is the ... the second ... continue...
 
 There exist different variants of TF-IDF weighting... %einleitung variants.. book73
 
