@@ -174,7 +174,7 @@ It is called inverse document frequency since $n_i/N$ is the relative document f
       double normalization K & $K + (1 - K)\frac{f_{i, j}}{max_i f_{i, j}}$  \\
       \bottomrule
     \end{tabular}
-  \caption[Variants of TF weights]{\textbf{Variants of TF weights.} There exist $5$ important variants of term frequency weights. The binary weight is the simplest form, and only states if a term occurs in a document, or not. The raw frequency uses the term frequency directly, and can be seen as the basic for term frequency weighting. For the double normalization $0.5$ the weighting value lies always between $0.5$ and $1$. The double normalization K is a generalization of the double normalization $0.5$.}
+  \caption[Variants of TF weight]{\textbf{Variants of TF weight.} There exist $5$ important variants of term frequency weight. The binary weight is the simplest form, and only states if a term occurs in a document, or not. The raw frequency uses the term frequency directly, and can be seen as the basic for term frequency weighting. For the double normalization $0.5$ the weighting value lies always between $0.5$ and $1$. The double normalization K is a generalization of the double normalization $0.5$.}
   \label{tbl:tf_variants}
 \end{table}
 
@@ -196,9 +196,9 @@ The log term frequency weight is one of the mostly used term frequency weighing 
 \end{equation}
 Thereby $w_{i, j}$ is the term weight of term $k_i$ which occurs in document $d_j$. On the one hand there is the term frequency, which states the importance of the term within the document. On the other hand there is the inverse document frequency, which states the importance of the term within the whole document collection. The combination of those two weights leads to an effective term weighting scheme. Therefore it is the base for term weighting, that is used in almost every modern information retrieval system.
 
-There exist different variants of TF-IDF weighting... %einleitung variants.. book73
+Since the TF-IDF weighting scheme is one of the most popular weighting schemes in information retrieval several variants was designed over time. Ribeiro-Neto and Baeza-Yates ~\cite{ModernInvormationRetrieval1999} described in their work the most important forms of the term frequency weight, and the inverse document weight. Furthermore they state the best combinations of them to generate different TF-IDF weighting schemes for document term weighting, and query term weighting.
 
-In \Cref{tbl:tf_variants} are the $5$ most important variants of term frequency weighing schemes. The binary weight is the simplest form, as it is used in the boolean retrieval. It only states if a term occurs in a document, or not. The raw frequency can be seen as the basic for term frequency weighting. It uses the term frequency directly. The log normalization is used in combination with the inverse document frequency. The logarithm makes it directly combinable. For the double normalization $0.5$ the weighting value always lies between $0.5$ and $1$. Therefore the weight is always normalized. The double normalization K is a generalization of the double normalization $0.5$.
+In \Cref{tbl:tf_variants} are the $5$ most important variants of term frequency weights. The binary weight is the simplest form, as it is used in the boolean retrieval. It only states if a term occurs in a document, or not. The raw frequency can be seen as the basic for term frequency weighting. It uses the term frequency directly. The log normalization is used in combination with the inverse document frequency. The logarithm makes it directly combinable. For the double normalization $0.5$ the weighting value always lies between $0.5$ and $1$. Therefore the weight is always normalized. The double normalization K is a generalization of the double normalization $0.5$.
 
 \begin{table}[b!]
     \centering
@@ -212,10 +212,12 @@ In \Cref{tbl:tf_variants} are the $5$ most important variants of term frequency 
       probabilistic inverse frequency & $\log (\frac{N - n_i}{n_i})$  \\
       \bottomrule
     \end{tabular}
-  \caption[Variants of IDF weights]{\textbf{Variants of IDF weights.} Describe}
+  \caption[Variants of inverse document frequency weight]{\textbf{Variants of inverse document frequency weight.} There exist $5$ important variants of inverse document frequency weight. First, the unary form is used to ignore the inverse document frequency. Second, the inverse frequency form is the standard variant as it was initial introduced. Third, the inverse frequency smooth form is used to produce a more representative weight for extreme values of $n_i$. Fourth, the inverse frequency max form computes the weights relative to the term with the highest document frequency. Fifth, the probabilistic inverse frequency form is the basic form for the probabilistic model, as described in the next section.}
   \label{tbl:idf_variants}
 \end{table}
-In \Cref{tbl:idf_variants} are the different variants of term inverse document frequency weighing schemes... %desc
+In \Cref{tbl:idf_variants} are the $5$ most important variants of term inverse document frequency weighing scheme. First, the unary form is used to ignore the inverse document frequency. Therefore a $1$ is assigned for every term. Second, the inverse frequency form is the standard as it was initial introduced. Third, the inverse frequency smooth form adds $1$ to the fracture result. This produces a more representative weight for extreme values of $n_i$. Forth, the inverse frequency max form uses the term with the highest document frequency instead of the number of documents in the collection. Therefore the computed weights are relative to the term with the highest document frequency. Fifth, the probabilistic inverse frequency form subtract the document frequency from the number of documents in the collection. It is the basic form for the probabilistic model, as described in the next section.
+
+% write about page 78 - weight for vector model....
 
 \begin{table}[b]
     \centering
