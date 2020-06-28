@@ -139,6 +139,7 @@ The document vector $\vec{d_j}$ consists of the term weights according a documen
 
 The degree of similarity between a document $d_j$, and a query $q$ is calculated by the cosine of the angle between their underlying vectors (see \Cref{fig:diff_vectors}). The calculation is as follows:
 \begin{equation}
+  \label{vector_space_similarity}
   \begin{split}
     sim(d_j, q) & = \frac{\vec{d_j} \bullet \vec{q}}{|\vec{d_j}| \times |\vec{q}|} \\
     & = \frac{\sum_{i = 1}^t w_{i, j} \times w_{i, q}}{\sqrt{\sum_{i = 1}^t w_{i, j}^2} \times \sqrt{\sum_{i = 1}^t w_{i, q}^2}}
@@ -217,8 +218,6 @@ In \Cref{tbl:tf_variants} are the $5$ most important variants of term frequency 
 \end{table}
 In \Cref{tbl:idf_variants} are the $5$ most important variants of term inverse document frequency weighing scheme. First, the unary form is used to ignore the inverse document frequency. Therefore a $1$ is assigned for every term. Second, the inverse frequency form is the standard as it was initial introduced. Third, the inverse frequency smooth form adds $1$ to the fracture result. This produces a more representative weight for extreme values of $n_i$. Forth, the inverse frequency max form uses the term with the highest document frequency instead of the number of documents in the collection. Therefore the computed weights are relative to the term with the highest document frequency. Fifth, the probabilistic inverse frequency form subtract the document frequency from the number of documents in the collection. It is the basic form for the probabilistic model, as described in the next section.
 
-% write about page 78 - weight for vector model....
-
 \begin{table}[b]
     \centering
     \begin{tabular}{ c c }
@@ -229,10 +228,15 @@ In \Cref{tbl:idf_variants} are the $5$ most important variants of term inverse d
       $(1 + \log f_{i, j} \times \log \frac{N}{n_i})$ & $(1 + \log f_{i, q}) \times \log \frac{N}{n_i}$  \\
       \bottomrule
     \end{tabular}
-  \caption[Recommended TF-IDF weighting schemes]{\textbf{Recommended TF-IDF weighting schemes.} Describe}
+  \caption[Recommended variants of the TF-IDF weighting scheme]{\textbf{Recommended variants of the TF-IDF weighting scheme.} There exist $3$ recommended variants of the TF-IDF weighting scheme. Given different document collections the best performing form could vary. They combine term frequency weighing variants with inverse frequency weighing variants. Additionally they distinguish between document term weights, and query term weights.}
   \label{tbl:recommended_tfidf_weights}
 \end{table}
-In \Cref{tbl:recommended_tfidf_weights} are recommended combinations of TF-IDF weighting schemes... %desc
+There exist several forms of TF-IDF weighting schemes. Given different document collections the best performing variant could vary. In \Cref{tbl:recommended_tfidf_weights} are $3$ recommended combinations which was stated by Salton ~\cite{salton1971}. The author distinguish between document term weights, and query term weights. The first variant combines the \textit{raw frequency} of the term frequency weighing variants in \Cref{tbl:tf_variants}, and the \textit{inverse frequency} of the inverse frequency weighing variants in \Cref{tbl:idf_variants} for the document term weight. The associated query term weight uses \textit{double normalization $0.5$} and also \textit{inverse frequency}. The second variant differs, since document terms consist only of a term frequency weight, and query terms consists only of a inverse frequency weight. It uses the \textit{log normalization} as term frequency weight, and the \textit{inverse frequency smooth} as inverse frequency weight. The third variant is the initial variant, as it was defined by Salton and Yang ~\cite{FT023}. It combines the \textit{log normalization}, and the \textit{inverse frequency} for document-, and query terms.
+
+In general the third variant is used in the vector space model. Ribeiro-Neto and Baeza-Yates ~\cite{ModernInvormationRetrieval1999} describe in their work an adaption to retrieve better results. There the equation should only be applied if the term frequency is greater than $0$, otherwise the corresponding weight is $0$. In the web it is common that the query term frequency is $1$. Therefore the equation should be reduced to the inverse document frequency. If this is done the similarity (see \Cref{vector_space_similarity}) states $TF \times IDF^2$. To bring it back to the $TF \times IDF$ form the document term weight should be reduced to the term frequency weight $TF$. The second variant is based on the same basic principle.
+
+% write about tf-idf to compute the score as it is described in book...
+% Bla blub described in this work how to use the tf-idf as a ranking algorithm without any knowledge about vector operations. There....
 
 \subsection{The Probabilistic Model}
 \label{sec:the_probabilistic_model}
