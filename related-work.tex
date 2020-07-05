@@ -235,8 +235,16 @@ There exist several forms of TF-IDF weighting schemes. Given different document 
 
 In general the third variant is used in the vector space model. Ribeiro-Neto and Baeza-Yates ~\cite{ModernInvormationRetrieval1999} describe in their work an adaption to retrieve better results. There the equation should only be applied if the term frequency is greater than $0$, otherwise the corresponding weight is $0$. In the web it is common that the query term frequency is $1$. Therefore the equation should be reduced to the inverse document frequency. If this is done the similarity (see \Cref{vector_space_similarity}) states $TF \times IDF^2$. To bring it back to the $TF \times IDF$ form the document term weight should be reduced to the term frequency weight $TF$. The second variant is based on the same basic principle.
 
-% write about tf-idf to compute the score as it is described in book...
-% Bla blub described in this work how to use the tf-idf as a ranking algorithm without any knowledge about vector operations. There....
+The TF-IDF weighting scheme can also be used as a ranking function with little knowledge about vectors. Manning et. al ~\cite{manning2008} described in their work such a TF-IDF ranking function:
+\begin{align}
+  \begin{split}
+    \text{Score}(q, d) & = \sum_{i \in q} \text{tf-idf}_{i, d} \\
+    \text{tf-idf}_{i, d} & = f_{i, q} \times \log \frac{N}{n_i} 
+  \end{split}
+\end{align}
+There the query q, and a document d are parsed into the ranking function. The query and the document can be seen as a set of terms. To calculate the rank the TF-IDF weights are summed up. For every query term which does not occur in the document a $0$ is counted. For the calculation the \textit{raw frequency} of the term frequency weighing variants in \Cref{tbl:tf_variants} is used, and the \textit{inverse frequency} of the inverse frequency weighing variants in \Cref{tbl:idf_variants}. 
+
+The TF-IDF weighting scheme is one of the most popular weighting schemes in information retrieval. Since it has a wide field where it is used many different variants was designed over time. Through these variants it was optimized for different document collections.
 
 \subsection{The Probabilistic Model}
 \label{sec:the_probabilistic_model}
