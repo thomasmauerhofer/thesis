@@ -250,7 +250,7 @@ The TF-IDF weighting scheme can also be used as a ranking function with limited 
     \text{tf-idf}_{i, d} & = f_{i, q} \times \log \frac{N}{n_i},
   \end{split}
 \end{align}
-where the query q, and a document d are passed into the ranking function. The query and the document can be seen as sets of terms. To calculate the rank, the TF-IDF weights are summed up. For every query term that does not occur in the document the weight is $0$. For the calculation the \textit{Raw Frequency} term frequency weighing, and the \textit{Inverse Frequency} inverse frequency weighing is used (see \Cref{tbl:tf_variants}, and \Cref{tbl:idf_variants}). 
+where the query q, and a document d are passed into the ranking function. The query and the document can be seen as sets of terms. To calculate the rank, the TF-IDF weights are summed up. For every query term that does not occur in the document the weight is $0$. For the calculation the \textit{Raw Frequency} term frequency weighing, and the \textit{Inverse Frequency} inverse frequency weighing are used (see \Cref{tbl:tf_variants}, and \Cref{tbl:idf_variants}).
 
 The TF-IDF weighting scheme is one of the most popular weighting schemes in information retrieval as it is leveraged, adapted and optimized for a wide array of different use-cases.
 
