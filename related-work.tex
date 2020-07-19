@@ -152,24 +152,24 @@ where $\vec{d_j} \bullet \vec{q}$ is the internal product of the $2$ vectors. Th
 \subsubsection{TF-IDF Weighting Scheme}
 \label{sec:tfidf}
 
-The first form of term weighing was discussed by Luhn ~\cite{Luhn_statistical-1957}. The Author observed that terms which occurs more often in a document are important to describe the content of the document. Therefore these terms can be seen as key words. As a result he assumed that the term frequency $f_{i, j}$, where term $t_i$ occurs in document $d_j$, has to be relative to the term frequency weight $TF_{i, j}$. This means the higher the term frequency, the higher the associated term frequency weight. This assumption leads to the following formulation of term frequency weights:
+Term weighting was first discussed by Luhn ~\cite{Luhn_statistical-1957}. The Author observed that terms that occurs more often in a document are important to describe the content of the document. Therefore, these terms can be seen as keywords. As a result, he assumed that the term frequency $f_{i, j}$, where term $t_i$ occurs in document $d_j$, is relative to the term frequency weight $TF_{i, j}$. Hence, a high term frequency leads to a high term frequency weight. This assumption leads to the following formulation of term frequency weights
 \begin{align}
   \label{raw_tf}
-  tf_{i, j} = f_{i, j}
+  \mathit{tf}_{i, j} = f_{i, j}.
 \end{align}
-In this formula the raw term frequency is used as term weight. However, Salton and Yang observed in their work ~\cite{FT023} that in some cases term frequency weights are an improvement according binary weights. Furthermore they state inconsistence in their test results when they changed their test collection, and query set.
+In this formula the raw term frequency is used as term weight. However, Salton and Yang observed in their work ~\cite{FT023} that in some cases term frequency weights are an improvement according binary weights. Furthermore, they state inconsistence in their test results when they changed their test collection, and query set.
 
-To improve the results of term frequency weights, inverse document frequency weights are used in combination. The concept of inverse document frequency was introduced by Spärck Jones ~\cite{jones72astatistical}, and is a foundation in term weighting. Therefore it is used in every modern information retrieval system. The inverse document frequency weight is approximated using Zipf's Law ~\cite{zipf1932selected}, which is denoted as:
+To improve the results of term frequency weighting, inverse document frequency weights are used additionally. The concept of inverse document frequency was introduced by Spärck Jones ~\cite{jones72astatistical}, and is one of the foundations of term weighting. Therefore, it is used in every modern information retrieval system. The inverse document frequency weight is approximated using Zipf's Law ~\cite{zipf1932selected}
 \begin{align}
-  IDF_i = \log \frac{N}{n_i}
+  \mathit{IDF}_i = \log \frac{N}{n_i}.
 \end{align}
-It is called inverse document frequency since $n_i/N$ is the relative document frequency. Therefore is $n_i$ the number of documents, where a term $k_i$ occurs in the document collection, and $N$ is the size of the document collection. The inverse document frequency states the importance of a term according the whole document collection. It is low if a term occurs in almost every document, and it is high if the term appears just in a few documents.
+It is called inverse document frequency as $n_i/N$ is the relative document frequency. Therefore, is $n_i$ the number of documents, where a term $k_i$ occurs in the document collection, and $N$ is the size of the document collection. The inverse document frequency represents the importance of a term regarding the whole document collection. It is small if a term occurs in almost every document, and it is high if the term appears just in a few documents.
 
 \begin{table}[b!]
     \centering
     \begin{tabular}{ l c }
       \toprule
-      \textbf{weighting scheme} & \textbf{TF weight} \\ \midrule
+      \textbf{Weighting scheme} & \textbf{TF Weight} \\ \midrule
       binary  & $\{0, 1\}$  \\
       raw frequency & $f_{i, j}$  \\
       log normalization & $1 + \log f_{i, j}$  \\
@@ -177,29 +177,29 @@ It is called inverse document frequency since $n_i/N$ is the relative document f
       double normalization K & $K + (1 - K)\frac{f_{i, j}}{max_i f_{i, j}}$  \\
       \bottomrule
     \end{tabular}
-  \caption[Variants of TF weight]{\textbf{Variants of TF weight.} There exist $5$ important variants of term frequency weight. The binary weight is the simplest form, and only states if a term occurs in a document, or not. The raw frequency uses the term frequency directly, and can be seen as the basic for term frequency weighting. For the double normalization $0.5$ the weighting value lies always between $0.5$ and $1$. The double normalization K is a generalization of the double normalization $0.5$.}
+  \caption[Variants of TF weight]{\textbf{Variants of TF weight.} There exist $5$ important variants of term frequency weight. The binary weight is the simplest form, and only states if a term occurs in a document. The raw frequency uses the term frequency directly, and can be seen as base for term frequency weighting. For the double normalization $0.5$ the weighting value lies always between $0.5$ and $1$. The double normalization K is a generalization of the double normalization $0.5$.}
   \label{tbl:tf_variants}
 \end{table}
 
-To use the term frequency weight (see \Cref{raw_tf}) in combination with the inverse document frequency weight has to be adopted to the log term frequency weight:
+To use term frequency weighting in combination with inverse document frequency weighting the raw term frequency weight (see \Cref{raw_tf}) has to be adopted to the logarithmic term frequency weight:
 \begin{equation}
-  tf_{i, j} =
+  \mathit{tf}_{i, j} =
   \begin{cases}
     1 + \log f_{i, j}, & \text{if $f_{i,j} > 0$} \\
     0, & \text{otherwise}.
   \end{cases}
 \end{equation}
-The log term frequency weight is one of the mostly used term frequency weighing schemes since the invert document frequency term weight is also a logarithmic function. Therefore they can be combined directly as defined by Salton and Yang ~\cite{FT023} to the TF-IDF weighing scheme:
+The log term frequency weight is one of the most frequently used term frequency weighing schemes as the invert document frequency term weight is also a logarithmic function. Therefore, they can be combined directly as defined by Salton and Yang ~\cite{FT023} to the TF-IDF weighing scheme:
 \begin{equation}
   w_{i, j} =
   \begin{cases}
     1 + \log f_{i, j} \times \log \frac{N}{n_i}, & \text{if $f_{i,j} > 0$} \\
-    0, & \text{otherwise}.
+    0, & \text{otherwise},
   \end{cases}
 \end{equation}
-Thereby $w_{i, j}$ is the term weight of term $k_i$ which occurs in document $d_j$. On the one hand there is the term frequency, which states the importance of the term within the document. On the other hand there is the inverse document frequency, which states the importance of the term within the whole document collection. The combination of those two weights leads to an effective term weighting scheme. Therefore it is the base for term weighting, that is used in almost every modern information retrieval system.
+where $w_{i, j}$ is the term weight of term $k_i$, which occurs in document $d_j$. On the one hand, this includes the term frequency, which represents the importance of the term within the document. On the other hand, it is composed of the inverse document frequency, which represents the importance of the term within the whole document collection. The combination of these two weights leads to an effective term weighting scheme. Therefore, it is the base for term weighting that is used in almost every modern information retrieval system.
 
-Since the TF-IDF weighting scheme is one of the most popular weighting schemes in information retrieval several variants was designed over time. Ribeiro-Neto and Baeza-Yates ~\cite{ModernInvormationRetrieval1999} described in their work the most important forms of the term frequency weight, and the inverse document weight. Furthermore they state the best combinations of them to generate different TF-IDF weighting schemes for document term weighting, and query term weighting.
+As the TF-IDF weighting scheme is one of the most popular weighting schemes in information retrieval several variants where proposed over time. Ribeiro-Neto and Baeza-Yates ~\cite{ModernInvormationRetrieval1999} describe in their work the most important forms of term frequency weighting, and inverse document weighting. Furthermore, they state the best combinations of them to generate different TF-IDF weighting schemes for document term weighting, and query term weighting.
 
 In \Cref{tbl:tf_variants} are the $5$ most important variants of term frequency weights. The binary weight is the simplest form, as it is used in the boolean retrieval. It only states if a term occurs in a document, or not. The raw frequency can be seen as the basic for term frequency weighting. It uses the term frequency directly. The log normalization is used in combination with the inverse document frequency. The logarithm makes it directly combinable. For the double normalization $0.5$ the weighting value always lies between $0.5$ and $1$. Therefore the weight is always normalized. The double normalization K is a generalization of the double normalization $0.5$.
 
