@@ -257,8 +257,13 @@ The TF-IDF weighting scheme is one of the most popular weighting schemes in info
 \subsection{The Probabilistic Model}
 \label{sec:the_probabilistic_model}
 
-The first probabilistic model was introduced by Robertson and Sparck Jones ~\cite{Robertson1976}. In their work they defined the probabilistic relevance model as framework for future models. Given an user query the challenge is to find the set of documents which contains exactly the relevant documents. This set of documents is called the ideal answer set.
-% continue page 80...
+The first probabilistic model was introduced by Robertson and Sparck Jones ~\cite{Robertson1976}. In their work they defined the probabilistic relevance model as framework for future models. Given an user query the task is to find the set of documents which contains exactly the relevant documents. This set of documents is called the ideal answer set. 
+
+To receive the ideal answer set properties are defined. The challenge is to define these properties with index terms. A further challenge is, that the properties of the ideal answer set are not known at query time. Therefore they are guessed, and a first answer set is generated.
+
+Afterwards the answer set is improved by user interaction. For example, the user has to choose which documents of the answer set are relevant. With this user decisions the known properties are adapted, and a new answer set is generated. With each iteration of this process the resulting answer set is getting closer to the ideal answer set. 
+
+
 
 \subsubsection{Okapi BM25}
 \label{sec:okapi_bm25}
