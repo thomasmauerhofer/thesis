@@ -161,6 +161,7 @@ In this formula the raw term frequency is used as term weight. However, Salton a
 
 To improve the results of term frequency weighting, inverse document frequency weights are used additionally. The concept of inverse document frequency was introduced by Spärck Jones ~\cite{jones72astatistical}, and is one of the foundations of term weighting. Therefore, it is used in every modern information retrieval system. The inverse document frequency weight is approximated using Zipf's Law ~\cite{zipf1932selected}
 \begin{align}
+  \label{idf}
   \mathit{IDF}_i = \log \frac{N}{n_i}.
 \end{align}
 It is called inverse document frequency as $n_i/N$ is the relative document frequency. Therefore, is $n_i$ the number of documents, where a term $k_i$ occurs in the document collection, and $N$ is the size of the document collection. The inverse document frequency represents the importance of a term regarding the whole document collection. It is small if a term occurs in almost every document, and it is high if the term appears just in a few documents.
@@ -321,7 +322,9 @@ This equation is used to calculate the initial set of relevant documents. Robert
   \label{similarity_porbabilistic_no_relevant}
   sim(d_{j}, q) \sim \sum_{k_i \in q \wedge k_i \in d_j} \log \left(\frac{N + 0.5}{n_i + 0.5}\right).
 \end{equation}
-As a result the 
+As a result the term of the sum is zero, if the index term occurs in each document. Furthermore, it can be determined that the calculation for one term is similar to the calculation of the inverse document frequency (see \Cref{idf}).
+
+In theory the probabilistic model is optimally, as documents are ordered by their probability of being relevant for the user. In practice the system is affected by properties that are not part of it. Therefore, finding the ideal answer set is just theoretically possible. An additional disadvantages is, that the initial relevant-, and not-relevant sets have to be guessed. The last disadvantage is, that term frequency is not used, as document weights are binary. More advanced extensions of the probabilistic model correct some of these disadvantages. One of them will be the BM-$25$, as discussed in the next section.
 
 \subsubsection{Okapi BM25}
 \label{sec:okapi_bm25}
