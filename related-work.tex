@@ -263,7 +263,19 @@ To receive the ideal answer set properties are defined. The challenge is to defi
 
 Afterwards the answer set is improved by user interaction. For example, the user has to choose which documents of the answer set are relevant. With this user decisions the known properties are adapted, and a new answer set is generated. With each iteration of this process the resulting answer set is getting closer to the ideal answer set. 
 
+Robertson proposed is his work ~\cite{robertson-the-1997} the probability ranking principle. The principe captures that documents that are relevant for the user can be influenced by properties outside the system. Therefore the ideal answer set produced by the system is not necessarily the ideal answer set for the user.
 
+In the probabilistic model documents are represented as vectors in a $t$-dimensional space:
+\begin{equation}
+  \vec{d_j} = (w_{1, j}, w_{2, j}, \dots, w_{t, j}),
+\end{equation}
+where the size of $t$ is defined by the size of the vocabulary. As a result, each index term represent one dimension in the vector. Furthermore, the weights of the vector are binary. Hence, $w_{i, j} = 1$ if term $k_i$ occurs in document $d_j$, otherwise $w_{i, j} = 0$. The query $q$ can be seen as a subset of index terms.
+
+With the document representation $d_j$, and the query representation $q$ the similarity can be calculated as follows:
+\begin{equation}
+  sim(d_{j}, q) = \frac{P(R|\vec{d_j}, q)}{P(\overline{R}|\vec{d_j}, q)},
+\end{equation}
+where ...
 
 \subsubsection{Okapi BM25}
 \label{sec:okapi_bm25}
