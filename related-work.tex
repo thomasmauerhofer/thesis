@@ -319,7 +319,6 @@ This is the classic probabilistic ranking equation, and called the Robertson-Spa
 \end{equation}
 This equation is used to calculate the initial set of relevant documents. Robertson proposed is his work ~\cite{robertson04idf} that the equation has negative terms if $n_i > N/2$. Therefore he defined an alternative form by removing the subtraction of $n_i$ in the numerator:
 \begin{equation}
-  \label{similarity_porbabilistic_no_relevant}
   sim(d_{j}, q) \sim \sum_{k_i \in q \wedge k_i \in d_j} \log \left(\frac{N + 0.5}{n_i + 0.5}\right).
 \end{equation}
 As a result the term of the sum is zero, if the index term occurs in each document. Furthermore, it can be determined that the calculation for one term is similar to the calculation of the inverse document frequency (see \Cref{idf}).
