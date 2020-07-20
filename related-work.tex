@@ -277,9 +277,51 @@ With the document representation $d_j$, and the query representation $q$ the sim
 \end{equation}
 where $R$ is a set of documents that is initially guessed, or known to be relevant for the user given a query $q$. $\overline{R}$ describes the complement of $R$, and is the set of documents that are not relevant for the user. Furthermore $P(R|\vec{d_j}, q)$ defines the probability that a document $d_j$ is relevant regarding query $q$, and $P(\overline{R}|\vec{d_j}, q)$ defines the probability that the document is not relevant regarding this query. The equation can be approximated as denoted by Ribeiro-Neto and Baeza-Yates ~\cite{ModernInvormationRetrieval1999}:
 \begin{equation}
+  \label{similarity_porbabilistic_approx}
   sim(d_{j}, q) \sim \sum_{k_i \in q \wedge k_i \in d_j} \log \left(\frac{P(k_i|R, q)}{1 - P(k_i|R, q)}\right) + \log \left(\frac{1 - P(k_i|\overline{R}, q)}{P(k_i|\overline{R}, q)}\right),
 \end{equation}
-where $P(k_i|R, q)$ is the probability that index term $k_i$ is present in a document selected randomly from the set of relevant documents $R$. Furthermore, $P(k_i|\overline{R}, q)$ is the probability that index term $k_i$ is not present in a document selected randomly from the set of relevant documents.
+where $P(k_i|R, q)$ is the probability that index term $k_i$ is present in a document selected randomly from the set of relevant documents $R$. Furthermore, $P(k_i|\overline{R}, q)$ is the probability that index term $k_i$ is not present in a document selected randomly from the set of relevant documents. \Cref{similarity_porbabilistic_approx} can be seen as base for ranking in probabilistic models.
+
+The set of relevant documents $R$ is not known initially. Therefore, an additional method is necessary to calculate $P(k_i|R, q)$, and $P(k_i|\overline{R}, q)$ for the initial answer set. One possible solution is to use a contingency table as proposed by Robertson and Sparck Jones ~\cite{Robertson1976} (see \Cref{tbl:contingency_table_probabilistic_ranking}).
+
+\begin{table}[b]
+    \centering
+    \begin{tabular}{ c c c c}
+      \toprule
+      \textbf{Case} & \textbf{Relevant} & \textbf{Non-relevant} & \textbf{Total} \\ \midrule
+      Documents containing $k_i$ & $r_i$ & $n_i - r_i$ & $n_i$ \\
+      Documents not containing $k_i$ & $R - r_i$ & $N - n_i - (R - r_i)$ & $N - n_i$ \\
+      All documents & $R$ & $N - R$ & $N$ \\
+      \bottomrule
+    \end{tabular}
+  \caption[Contingency table for probabilistic ranking]{\textbf{Contingency table for probabilistic ranking.} The contingency table represents the relationships between documents, and relevance. $N$ is the number of all documents in the collection. $n_i$ defines the number of documents that contain an index term $k_i$. Furthermore $R$ is the number of documents that are relevant for a user regarding a query $q$. $r_i$ defines the number of relevant documents that contain an index term $k_i$.}
+  \label{tbl:contingency_table_probabilistic_ranking}
+\end{table}
+
+With the contingency table $P(k_i|R, q)$, and $P(k_i|\overline{R}, q)$ can be defined as follows:
+\begin{align}
+  P(k_i|R, q) & = \frac{r_i}{R} \\
+  P(k_i|\overline{R}, q) & = \frac{n_i - r_i}{N - R},
+\end{align}
+where the first equation captures the relevant documents that contain term $k_i$ in relation to all relevant documents. The second equation captures the non-relevant documents that contain term $k_i$ in relation to all relevant documents. By combining these two equation with \Cref{similarity_porbabilistic_approx} the resulting equation looks as follows:
+\begin{equation}
+  sim(d_{j}, q) \sim \sum_{k_i \in q \wedge k_i \in d_j} \log \left(\frac{r_i(N - n_i - R + r_i)}{(R - r_i)(n_i - r_i)}\right).
+\end{equation}
+To handle small values of $r_i$ $0.5$ is added to each term of the equation:
+\begin{equation}
+  sim(d_{j}, q) \sim \sum_{k_i \in q \wedge k_i \in d_j} \log \left(\frac{(r_i + 0.5)(N - n_i - R + r_i + 0.5)}{(R - r_i + 0.5)(n_i - r_i + 0.5)}\right).
+\end{equation}
+This is the classic probabilistic ranking equation, and called the Robertson-Sparck Jones equation. However, it still is necessary to know the relevant documents, as $R$, and $r_i$ are part of the equation. One solution is to estimate $R$, and $r_i$ to be $0$:
+\begin{equation}
+  \label{similarity_porbabilistic_no_relevant}
+  sim(d_{j}, q) \sim \sum_{k_i \in q \wedge k_i \in d_j} \log \left(\frac{N - n_i + 0.5}{n_i + 0.5}\right).
+\end{equation}
+This equation is used to calculate the initial set of relevant documents. Robertson proposed is his work ~\cite{robertson04idf} that the equation has negative terms if $n_i > N/2$. Therefore he defined an alternative form by removing the subtraction of $n_i$ in the numerator:
+\begin{equation}
+  \label{similarity_porbabilistic_no_relevant}
+  sim(d_{j}, q) \sim \sum_{k_i \in q \wedge k_i \in d_j} \log \left(\frac{N + 0.5}{n_i + 0.5}\right).
+\end{equation}
+As a result the 
 
 \subsubsection{Okapi BM25}
 \label{sec:okapi_bm25}
