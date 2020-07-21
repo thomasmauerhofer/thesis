@@ -395,37 +395,36 @@ where $w_{i, j}$ is the term weight of term $k_i$, which occurs in document $d_j
 \begin{equation}
   R(d_j, q) = \sum_{k_i \in q} f_{i, q} \times w_{i, j},
 \end{equation}
-where $f_{i, q}$ is the term frequency of term $k_i$ in query $q$. To approximate the $2$ assumptions of the term weight as described by Amati and Rijsbergen ~\cite{AmatiR02} the following definition are needed:
+where $f_{i, q}$ is the term frequency of term $k_i$ in query $q$. To approximate the first term of the term weight the following definition are needed:
 \begin{align}
   F_i & = \sum_j f_{i, j} \\
   \lambda_i & = p \times F_i,
 \end{align}
 where $F_i$ is the frequency of a term $k_i$ over all documents in the collection. For $\lambda_i$ $p$ is defined to be $p = 1/N$.
 
-The first term of the term weight (see \Cref{dfr_term_weight}) can be approximated to:
-\begin{equation}
-  \begin{split}
+The first part of the term weight (see \Cref{dfr_term_weight}) represents the amount of information of a term over the whole document collection. Amati and Rijsbergen ~\cite{AmatiR02} proposed in their work $2$ approximations:
+\begin{align}
     - \log P(k_i | C) \approx & f_{i, j} \log \Bigl( \frac{f_{i, j}}{\lambda_i} \Bigr) + \Bigl( \lambda_i + \frac{1}{12 f_{i, j} + 1} - f_{i, j}\Bigr) \log e \\
-    & + \frac{1}{2} \log(2 \pi f_{i, j})
-  \end{split}
-\end{equation}
+    & + \frac{1}{2} \log(2 \pi f_{i, j}) \nonumber \\
+  - \log P(k_i | C) \approx & - \log \left( \frac{1}{1 + \lambda_i} \right) - f_{i, j} \times \log \left( \frac{\lambda_i}{1 + \lambda_i} \right),
+\end{align}
+where $f_{i, j}$ is the frequency of term $k_i$ in document $d_j$. For the second approximation $p$ has also to be adapted to be $p = 1/(1 + \lambda_i)$.
 
+The second part of the term weight (see \Cref{dfr_term_weight}) represents the amount of information of a term according to the elite set. To calculate it two equations are provided:
+\begin{align}
+  1 - P(k_i | d_j) & = \frac{1}{f_{i, j} + 1} \\
+  1 - P(k_i | d_j) & = \frac{F_i + 1}{n_i \times (f_{i, j} + 1)},
+\end{align}
+where $n_i$ is the number of documents that contain term $k_i$.
 
-%\begin{equation}
-%  P(k_i | C) = \binom{F_i}{f_{i, j}}p^{f_{i, j}} \cdot (1 - p)^{F_i - f_{i, j}}
-%\end{equation}
-%\begin{equation}
+The basic form of the Divergence from Randomness model does not take document length normalization into account. Therefore there exist 2 extensions for the term frequency $f_{i, j}$. Each of them can be used to add document length normalization:
+\begin{align}
+  f^{\prime}_{i, j} & = f_{i, j} \times \frac{avg\_doclen}{len(d_j)} \\
+  f^{\prime}_{i, j} & = f_{i, j} \times \log \left(1 + \frac{avg\_doclen}{len(d_j)} \right),
+\end{align}
+where $avg\_doclen$ is the average document length over the whole collection, and $len(d_j)$ is the number of terms inside document $d_j$.
 
-%\end{equation}
-%\begin{equation}
-%  P(k_i | C) = \frac{e^{-\lambda_i}\lambda_i^{f_{i, j}}}{f_{i, j}!}
-%\end{equation}
-%\begin{equation}
-%  1 - P(k_i | d_j) = \frac{1}{f_{i, j} + 1}
-%\end{equation}
-%\begin{equation}
-%  f^{\prime}_{i, j} = f_{i, j} \cdot \frac{avgdl}{len(d_j)}
-%\end{equation}
+With the different possibilities to combine the $2$ terms of the term weight, and the document length normalization various ranking formulas that suites different collections can be produced.
 
 \section{Structured Text Retrieval}
 \label{sec:structured_text_Retrieval}
