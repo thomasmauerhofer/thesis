@@ -379,38 +379,53 @@ The BM25 brings the advantages of the vector space model into the probabilistic 
 \subsubsection{Divergence from Randomness}
 \label{sec:divergence_from_randomness}
 
-as described in ~\cite{ModernInvormationRetrieval1999} page 113
+The Divergence from Randomness model was introduced by Amati and Rijsbergen ~\cite{AmatiR02}. It is a probabilistic model that has some language model characteristics. In the model, the term weights are computed by evaluate the divergence between the actual term distribution, and the term distribution created by a random process.
+
+The model is based on $2$ assumptions:
+\begin{enumerate}
+\item The first assumption is, that terms of a document has different importance to describe the content of it. It is assumed that less important words are distributed randomly over the document collection $C$. The probability distribution of a term $k_i$ over the document collection $C$ is given by $P(k_i|C)$. Furthermore, the amount of information of these term over the whole document collection is defined as $- \log P(K_i|C)$.
+\item The second assumption is, that a complementary term distribution is received by considering just the subset of documents that contain term $k_i$. This subset is called elite set. The underlying probability distribution is defined as $P(k_i|d_j)$. The probability distribution is high if the term $k_i$ occurs often in document $d_j$. Furthermore, if a term occurs rarely in a document, it is important to describe the content of the document. Therefore, the amount of information of these term being in the elite set is given by $1 - P(k_i|d_j)$.
+\end{enumerate}
+By combining these $2$ assumptions the term weight is given by:
 \begin{equation}
-  w_{i, j} = (- \log P(k_i | C)) \cdot (1 - P(k_i | d_j))
+  \label{dfr_term_weight}
+  w_{i, j} = (- \log P(k_i | C)) \times (1 - P(k_i | d_j)),
 \end{equation}
+where $w_{i, j}$ is the term weight of term $k_i$, which occurs in document $d_j$. Furthermore, the ranking function is defined as:
 \begin{equation}
-  \text{Score}(d_j, q) = \sum_{k_i \in q} f_{i, q} \cdot w_{i, j}
+  R(d_j, q) = \sum_{k_i \in q} f_{i, q} \times w_{i, j},
 \end{equation}
-\begin{equation}
-  F_i = \sum_j f_{i, j}
-\end{equation}
-\begin{equation}
-  P(k_i | C) = \binom{F_i}{f_{i, j}}p^{f_{i, j}} \cdot (1 - p)^{F_i - f_{i, j}}
-\end{equation}
-\begin{equation}
-  \lambda_i = p \cdot F_i
-\end{equation}
-\begin{equation}
-  P(k_i | C) = \frac{e^{-\lambda_i}\lambda_i^{f_{i, j}}}{f_{i, j}!}
-\end{equation}
+where $f_{i, q}$ is the term frequency of term $k_i$ in query $q$. To approximate the $2$ assumptions of the term weight as described by Amati and Rijsbergen ~\cite{AmatiR02} the following definition are needed:
+\begin{align}
+  F_i & = \sum_j f_{i, j} \\
+  \lambda_i & = p \times F_i,
+\end{align}
+where $F_i$ is the frequency of a term $k_i$ over all documents in the collection. For $\lambda_i$ $p$ is defined to be $p = 1/N$.
+
+The first term of the term weight (see \Cref{dfr_term_weight}) can be approximated to:
 \begin{equation}
   \begin{split}
-    - \log P(k_i | C) & = -\log\Biggl(\frac{e^{-\lambda_i}\lambda_i^{f_{i, j}}}{f_{i, j}!}\Biggr) \\
-    & \approx -f_{i,j} \log \lambda_i + \lambda_i \log e + log(f_{i,j}!) \\
-    & \approx f_{i, j} \log \Bigl( \frac{f_{i, j}}{\lambda_i} \Bigr) + \Bigl( \lambda_i + \frac{1}{12 f_{i, j} + 1} - f_{i, j}\Bigr) \log e + \frac{1}{2} \log(2 \pi f_{i, j})
+    - \log P(k_i | C) \approx & f_{i, j} \log \Bigl( \frac{f_{i, j}}{\lambda_i} \Bigr) + \Bigl( \lambda_i + \frac{1}{12 f_{i, j} + 1} - f_{i, j}\Bigr) \log e \\
+    & + \frac{1}{2} \log(2 \pi f_{i, j})
   \end{split}
 \end{equation}
-\begin{equation}
-  1 - P(k_i | d_j) = \frac{1}{f_{i, j} + 1}
-\end{equation}
-\begin{equation}
-  f^{\prime}_{i, j} = f_{i, j} \cdot \frac{avgdl}{len(d_j)}
-\end{equation}
+
+
+%\begin{equation}
+%  P(k_i | C) = \binom{F_i}{f_{i, j}}p^{f_{i, j}} \cdot (1 - p)^{F_i - f_{i, j}}
+%\end{equation}
+%\begin{equation}
+
+%\end{equation}
+%\begin{equation}
+%  P(k_i | C) = \frac{e^{-\lambda_i}\lambda_i^{f_{i, j}}}{f_{i, j}!}
+%\end{equation}
+%\begin{equation}
+%  1 - P(k_i | d_j) = \frac{1}{f_{i, j} + 1}
+%\end{equation}
+%\begin{equation}
+%  f^{\prime}_{i, j} = f_{i, j} \cdot \frac{avgdl}{len(d_j)}
+%\end{equation}
 
 \section{Structured Text Retrieval}
 \label{sec:structured_text_Retrieval}
