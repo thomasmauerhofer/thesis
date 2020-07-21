@@ -327,15 +327,52 @@ In theory the probabilistic model is optimally, as documents are ordered by thei
 
 \subsubsection{Okapi BM25}
 \label{sec:okapi_bm25}
-as described in ~\cite{manning2008} page 214 and in ~\cite{ModernInvormationRetrieval1999} page 105
-\begin{equation}
-  \begin{split}
-    \text{idf}_t & = log \frac{N - \text{df}_t + 0.5}{\text{df}_t + 0.5} \\
-    \text{bm25}_{t, d} & = \text{idf}_t \cdot \frac{\text{tf}_{t, d} \cdot (k_1 + 1)}{\text{tf}_{t, d} + k_1 \cdot \bigl(1 - b \cdot \frac{|G|}{\text{avgdl}}\bigr)}  \\
-    \text{Score}(q, d) & = \sum_{t \in q}\text{bm25}_{t, d}
-  \end{split}
-\end{equation}
 
+The Okapi BM$25$ is the result of several experiments by Robertson et. al ~\cite{RobertsonWHGL92, RobertsonWJHG93, RobertsonWJHG94}.  The idea was to bring the advantages of the vector space model into the probabilistic model. These advantages are known as inverse document frequency, term frequency, and document length normalization. As base the classic probabilistic ranking equation (see \Cref{similarity_porbabilistic_no_relevant}) was used. The equation already covers the usage of the inverse document frequency, and is known as BM$1$.
+
+To bring the term frequency into the probabilistic model the following equation was designed:
+\begin{equation}
+  \label{bm25_term_frequency_factor}
+  \mathcal{F}_{i, j} = S_1 \times \frac{f_{i,j}}{K_1 + f_{i, j}},
+\end{equation}
+where $f_{i, j}$ is the term frequency of term $k_i$ that occurs in document $d_j$. Furthermore, $K_1$ is a constant that is determined based on the document collection. When $K_1$ is set to $0$ the factor becomes $1$, and the term frequency is disabled for the ranking. $S_1$ is used as a scaling factor.   
+
+The next step was to bring document length normalization into the probabilistic model. Therefore, the above equation was adjusted:
+\begin{equation}
+  \label{bm25_term_frequency_factor_extension}
+  \mathcal{F}'_{i, j} = S_1 \times \frac{f_{i,j}}{\frac{K_1 \times len(d_j)}{avg\_doclen} + f_{i, j}},
+\end{equation} 
+where $len(d_j)$ is the number of terms in the document, and $avg\_doclen$ is the average over all documents in the collection. Furthermore a correction factor for the document length, and the query length was introduced:
+\begin{equation}
+  \mathcal{G}_{i, q} = K_2 \times len(q) \times \frac{avg\_doclen - len(d_j)}{avg\_doclen + len(d_j)},
+\end{equation}
+where $len(q)$ is the number of terms in the query, and $K_2$ is a constant. To bring the term frequency factor also into queries an additional equation was designed based on \Cref{bm25_term_frequency_factor}:
+\begin{equation}
+  \mathcal{F}_{i, q} = S_3 \times \frac{f_{i,q}}{K_3 + f_{i, q}},
+\end{equation}
+where $f_{i,q}$ is the term frequency of term $k_i$ that occurs in query $q$. $K_3$ is an additional constant, and is determined based on queries. $S_3$ is a scaling factor for the whole term.
+
+With these $4$ equations BM$15$, and BM$11$ can be defined:
+\begin{align}
+  sim_{\text{BM$15$}}(d_j, q) & \sim \mathcal{G}_{i, q} + \sum_{k_i \in q \wedge k_i \in d_j} \mathcal{F}_{i, j}  \times \mathcal{F}_{i, q} \times \log \left(\frac{N - n_i + 0.5}{n_i + 0.5}\right) \\
+  sim_{\text{BM$11$}}(d_j, q) & \sim \mathcal{G}_{i, q} + \sum_{k_i \in q \wedge k_i \in d_j} \mathcal{F}'_{i, j} \times \mathcal{F}_{i, q} \times \log \left(\frac{N - n_i + 0.5}{n_i + 0.5}\right).
+\end{align}
+The BM$15$ uses $\mathcal{F}_{i, j}$ without the extension of document length normalization, as it was introduced in the BM$11$. Robertson and Walker observed in their work ~\cite{RobertsonW94} that the best value for $K_2 = 0$. As a result the correction factor $\mathcal{G}_{i, q}$ is eliminated. Furthermore, they suggest $S_1 = (K_1 + 1)$, and $S_3 = (K_3 + 1)$, where $K_3$ should be chosen large. Finally they observed that the query term frequency factor $\mathcal{F}_{i, q}$ can be reduced to $f_{i, q}$, and for small queries expected to be $1$. Adding these findings to the BM$15$-, and BM$11$-equation they can be simplified:
+\begin{align}
+  sim_{\text{BM$15$}}(d_j, q) & \sim \sum_{k_i \in q \wedge k_i \in d_j} \frac{(K_1 + 1) f_{i, j}}{(K_1 + f_{i, j})} \times \log \left(\frac{N - n_i + 0.5}{n_i + 0.5}\right) \\
+  sim_{\text{BM$11$}}(d_j, q) & \sim \sum_{k_i \in q \wedge k_i \in d_j} \frac{(K_1 + 1) f_{i, j}}{\frac{K_1 \times len(d_j)}{avg\_doclen} + f_{i, j}} \times \log \left(\frac{N - n_i + 0.5}{n_i + 0.5}\right).
+\end{align}
+In these equations the correction factor, and the query term frequency factor are removed. Furthermore, $S_1$ is set to be $K_1 + 1$. As the document length normalization is only part of BM$11$ it outperforms the BM$15$.
+
+The BM$25$ was designed as a combination of the BM$15$, and BM$11$. A combination of their term frequency factors (see \Cref{bm25_term_frequency_factor}, and \Cref{bm25_term_frequency_factor_extension}) was used to generate the  term frequency factor of the BM$25$:
+\begin{align}
+  \mathcal{B}_{i, j} = \frac{(K_1 + 1) f_{i, j}}{K_1 \left[(1 - b) + b \frac{len(d_j)}{avg\_doclen} \right] + f_{i, j}},
+\end{align}
+where $b$ is a constant that takes values between $0.0$ and $1.0$. On the one hand, if $b = 0$ the equation is reduced to the BM$15$ term frequency factor. On the other hand, if $b = 1$ the equation is reduced to the BM$11$ term frequency factor. With usage of $\mathcal{B}_{i, j}$ the BM$25$ is defined as follows:
+\begin{align}
+  sim_{\text{BM$25$}}(d_j, q) & \sim \sum_{k_i \in q \wedge k_i \in d_j} \mathcal{B}_{i, j} \times \log \left(\frac{N - n_i + 0.5}{n_i + 0.5}\right)
+\end{align}
+bla bla ...
 
 \subsubsection{Divergence from Randomness}
 \label{sec:divergence_from_randomness}
