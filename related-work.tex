@@ -328,7 +328,7 @@ In theory the probabilistic model is optimally, as documents are ordered by thei
 \subsubsection{Okapi BM25}
 \label{sec:okapi_bm25}
 
-The Okapi BM$25$ is the result of several experiments by Robertson et. al ~\cite{RobertsonWHGL92, RobertsonWJHG93, RobertsonWJHG94}.  The idea was to bring the advantages of the vector space model into the probabilistic model. These advantages are known as inverse document frequency, term frequency, and document length normalization. As base the classic probabilistic ranking equation (see \Cref{similarity_porbabilistic_no_relevant}) was used. The equation already covers the usage of the inverse document frequency, and is known as BM$1$.
+The Okapi BM$25$ is the result of several experiments by Robertson et. al ~\cite{RobertsonWHGL92, RobertsonWJHG93, RobertsonWJHG94}. The idea was to bring the advantages of the vector space model into the probabilistic model. These advantages are known as inverse document frequency, term frequency, and document length normalization. As base the classic probabilistic ranking equation (see \Cref{similarity_porbabilistic_no_relevant}) was used. The equation already covers the usage of the inverse document frequency, and is known as BM$1$.
 
 To bring the term frequency into the probabilistic model the following equation was designed:
 \begin{equation}
@@ -372,7 +372,9 @@ where $b$ is a constant that takes values between $0.0$ and $1.0$. On the one ha
 \begin{align}
   sim_{\text{BM$25$}}(d_j, q) & \sim \sum_{k_i \in q \wedge k_i \in d_j} \mathcal{B}_{i, j} \times \log \left(\frac{N - n_i + 0.5}{n_i + 0.5}\right)
 \end{align}
-bla bla ...
+Robertson et. al observed in their work ~\cite{RobertsonWJHG94} that $b = 0.75$, and $K_1 = 1$ is the best choice for most cases. In general they found out that $b$ should be closer to $1$ to apply the document length normalization. 
+
+The BM25 brings the advantages of the vector space model into the probabilistic model. It needs to be fine-tuned, but afterwards it produce better results than the vector space model for general document collections. Therefore it has become to a baseline to evaluate new ranking methods.
 
 \subsubsection{Divergence from Randomness}
 \label{sec:divergence_from_randomness}
