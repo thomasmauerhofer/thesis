@@ -429,7 +429,20 @@ With the different possibilities to combine the $2$ terms of the term weight, an
 \section{Structured Text Retrieval}
 \label{sec:structured_text_Retrieval}
 
-Write about structuring, early text retrieval, xml retrieval
+When thinking of a text document there always is a certain structure involved. For example, a scientific paper can be split by its sections, subsections, and paragraphs. Another example would be a book that is divided by pages and columns. Information retrieval models that uses the documents structure in addition to the documents content are called structured text retrieval models. There are several stages where the information retrieval systems can take the advantage of these structural information:
+\begin{enumerate}
+  \item At index stage, where components of a document are detected, and indexed separately. The relationship between the components is preserved.
+  \item At retrieval stage, by allowing components to be retrieved in varying granularity.
+  \item As result of the presentation stage, where only relevant components are returned to the user, and not the whole document.
+  \item At querying stage, where a certain query language is used that contains structural constrains.
+\end{enumerate}
+Information retrieval models use the structural information explicit or implicit. A more common way is to use an explicit structure, where documents are structured in a defined scheme (e.g. XML scheme). The advantage of these structure is, that components of the document knows the relationship between them. For example, a nested component knows its parent, and the parent knows its childs. 
+
+For the implicit structure it is not possible to distinguish between text content and structural information. Documents are represented as a sequence of text tokens, and mark-up tokens. The structural component is generated at query time as opening and closing mark-up tokens are searched by the system, and with its content the component is created. The structural component only exists at query time, and is discarded by the system afterwards.
+
+
+
+
 
 \subsubsection{Ranked Boolean Retrieval}
 \label{sec:ranked_boolean_retrieval}
