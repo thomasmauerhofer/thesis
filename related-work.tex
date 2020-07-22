@@ -451,7 +451,11 @@ Another model was introduced by Baeza-Yates and Navarro ~\cite{GB95, GB97} that 
 \subsubsection{Ranking Strategies in XML Retrieval}
 \label{sec:ranking_strategies_in_xml_retrieval}
 
-When the XML was introduced in 1998 it became to the standard in structured text retrieval. Nowadays XML Retrieval is almost a synonym for Structured Text Retrieval. In the XML Retrieval documents are represented in an XML structure.
+When the XML was introduced in $1998$ it became to the standard in structured text retrieval. Nowadays XML Retrieval is almost a synonym for Structured Text Retrieval. In the XML Retrieval documents are represented in an XML structure. Ranking Algorithms are used as discussed in \Cref{sec:unstructured_text_Retrieval} to calculate ranks for document components. This is achieved easily as documents are represented as set of terms, and components are subsets of these terms. This calculations additionally need a ranking strategy, as the ranking of structured text differs from the ranking of unstructured text. For example, a single components do not have to contain all query terms, as they can occur in different areas of the document. Some of the most important ranking strategies are discussed in this section.
+
+The first ranking strategy is known as contextualization. There the rank of the component is combined with the rank of its root element, which is the document. Arvola et al. suggest in their work ~\cite{ArvolaJK05} to use the average of these $2$ ranks. In addition Mass and Mandelbrod introduced in their work ~\cite{MassM04} a scaling factor for each rank to give certain importance.
+
+The second ranking strategy is named propagation. It requires that only leaf elements are indexed, and not all elements.
 
 \subsubsection{Ranked Boolean Retrieval}
 \label{sec:ranked_boolean_retrieval}
@@ -462,21 +466,21 @@ Described in ~\cite{manning2008} page 103
   \sum_{i = 1}^{l}g_i s_i
 \end{equation}
 
-\section{Document Preprocessing}
-\label{sec:document_preprocessing}
+%\section{Document Preprocessing}
+%\label{sec:document_preprocessing}
 
-~\cite{ModernInvormationRetrieval1999} page 223
-Describe Text Similarities and common techniques. ~\cite{ModernInvormationRetrieval1999} page 222
+%~\cite{ModernInvormationRetrieval1999} page 223
+%Describe Text Similarities and common techniques. ~\cite{ModernInvormationRetrieval1999} page 222
 
-\subsection{Stop Words}
-\label{subsec:stop_words}
+%\subsection{Stop Words}
+%\label{subsec:stop_words}
 
-What are stopwords, and describe common techniques. In ~\cite{Vijayarani2015} and references
+%What are stopwords, and describe common techniques. In ~\cite{Vijayarani2015} and references
 
-\subsection{Stemming}
-\label{subsec:stemming}
+%\subsection{Stemming}
+%\label{subsec:stemming}
 
-Describe stemming and common stemming techniques. In ~\cite{Vijayarani2015} and references
+%Describe stemming and common stemming techniques. In ~\cite{Vijayarani2015} and references
 
 %\section{Text Similarities}
 %\label{sec:text_similarities}
