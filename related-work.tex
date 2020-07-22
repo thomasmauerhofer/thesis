@@ -448,16 +448,23 @@ One of the first models that use structured text retrieval was proposed by Burko
 
 Another model was introduced by Baeza-Yates and Navarro ~\cite{GB95, GB97} that is based on proximal nodes. The model uses hierarchical index structures, to store structural information. Since the hierarchies are linked to each other more complex queries as for the model is based on non-overlapping lists are possible. 
 
-\subsubsection{Ranking Strategies in XML Retrieval}
+\subsection{Ranking Strategies in XML Retrieval}
 \label{sec:ranking_strategies_in_xml_retrieval}
 
 When the XML was introduced in $1998$ it became to the standard in structured text retrieval. Nowadays XML Retrieval is almost a synonym for Structured Text Retrieval. In the XML Retrieval documents are represented in an XML structure. Ranking Algorithms are used as discussed in \Cref{sec:unstructured_text_Retrieval} to calculate ranks for document components. This is achieved easily as documents are represented as set of terms, and components are subsets of these terms. This calculations additionally need a ranking strategy, as the ranking of structured text differs from the ranking of unstructured text. For example, a single components do not have to contain all query terms, as they can occur in different areas of the document. Some of the most important ranking strategies are discussed in this section.
 
 The first ranking strategy is known as contextualization. There the rank of the component is combined with the rank of its root element, which is the document. Arvola et al. suggest in their work ~\cite{ArvolaJK05} to use the average of these $2$ ranks. In addition Mass and Mandelbrod introduced in their work ~\cite{MassM04} a scaling factor for each rank to give certain importance.
 
-The second ranking strategy is named propagation. It requires that only leaf elements are indexed, and not all elements.
+The second ranking strategy is named propagation. It requires that only leaf elements are indexed, and not all elements. The rank of the document is calculated from bottom to top. First the rank of the leaf elements is calculated. Afterwards the rank of the parent is calculated based on its childs ranks. This is continued until the root element is reached. The most common propagation mechanisms are based on weighted sums. Geva introduced in his work ~\cite{GS2005} a weighing based on the number of childs:
+\begin{align}
+  \mathit{score}(e, q) = D(m) \times \sum_{e_c} \mathit{score}(e_c, q),
+\end{align}
+where $e$ is the component, $e_c$ are the child components of $e$, and $m$ is the number of retrieved child components of $e$. Retrieved mean, that $\mathit{score}(e_c, q) > 0$ holds. Furthermore $D(m) = 0.49$ if $e$ has just one retrieved child ($m = 1$), otherwise $D(m) = 0.99$. Propagation mechanisms are more complex to implement than contextualization mechanisms, but provides good retrieval performance.
 
-\subsubsection{Ranked Boolean Retrieval}
+The third ranking strategy is called aggregation. continue here ...
+
+
+\subsection{Ranked Boolean Retrieval}
 \label{sec:ranked_boolean_retrieval}
 
 Described in ~\cite{manning2008} page 103
