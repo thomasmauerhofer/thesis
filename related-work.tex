@@ -440,9 +440,11 @@ Information retrieval models use the structural information explicit or implicit
 
 For the implicit structure it is not possible to distinguish between text content and structural information. Documents are represented as a sequence of text tokens, and mark-up tokens. The structural component is generated at query time as opening and closing mark-up tokens are searched by the system, and with its content the component is created. The structural component only exists at query time, and is discarded by the system afterwards.
 
+In an information retrieval system it is possible to use multiple hierarchies. For example, the first hierarchy represents the logical structure of a scientific paper. Therefore it contains the information about chapters, section, subsections and paragraphs. The second hierarchy represents the layout structure. Hence, it contains information about columns and pages. Multiple hierarchies are normally used for explicit structure, as maintaining them for implicit structure is more complex. 
 
+Inside one hierarchy content of a document is always assignable to one component (e.g. text in a subsection). If this is the case the components do not overlap. Across different hierarchies it is possible that content is assigned to multiple components. Therefore the components overlap. A long time it was not possible to mix hierarchies in one query, as it cases may undefined cases. Alink et al. defined in their work ~\cite{AlinkBBV06} navigation steps to allow changing between hierarchies.  
 
-
+One of the first models that use structured text retrieval was proposed by Burkowski ~\cite{BURKOWSKI1992333, Burkowski92}. The model is based on non-overlapping lists. bla bla...
 
 \subsubsection{Ranked Boolean Retrieval}
 \label{sec:ranked_boolean_retrieval}
