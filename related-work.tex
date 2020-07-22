@@ -444,7 +444,14 @@ In an information retrieval system it is possible to use multiple hierarchies. F
 
 Inside one hierarchy content of a document is always assignable to one component (e.g. text in a subsection). If this is the case the components do not overlap. Across different hierarchies it is possible that content is assigned to multiple components. Therefore the components overlap. A long time it was not possible to mix hierarchies in one query, as it cases may undefined cases. Alink et al. defined in their work ~\cite{AlinkBBV06} navigation steps to allow changing between hierarchies.  
 
-One of the first models that use structured text retrieval was proposed by Burkowski ~\cite{BURKOWSKI1992333, Burkowski92}. The model is based on non-overlapping lists. bla bla...
+One of the first models that use structured text retrieval was proposed by Burkowski ~\cite{BURKOWSKI1992333, Burkowski92}. The model is based on non-overlapping lists. Therefore a list for each type of document component is generated. For example, a first list stores all sections, a second list all subsections, and a third list all subsubsections. An inverted index is generated to search for a term. The inverted index stores a mapping of index terms, and their occurrence. Simple queries are used to search for content within the lists.
+
+Another model was introduced by Baeza-Yates and Navarro ~\cite{GB95, GB97} that is based on proximal nodes. The model uses hierarchical index structures, to store structural information. Since the hierarchies are linked to each other more complex queries as for the model is based on non-overlapping lists are possible. 
+
+\subsubsection{Ranking Strategies in XML Retrieval}
+\label{sec:ranking_strategies_in_xml_retrieval}
+
+When the XML was introduced in 1998 it became to the standard in structured text retrieval. Nowadays XML Retrieval is almost a synonym for Structured Text Retrieval. In the XML Retrieval documents are represented in an XML structure.
 
 \subsubsection{Ranked Boolean Retrieval}
 \label{sec:ranked_boolean_retrieval}
