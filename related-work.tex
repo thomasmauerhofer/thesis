@@ -516,24 +516,36 @@ There exists many more strategies to rank structured text. Some of them need spe
 \section{Evaluation of Ranking Algorithms}
 \label{sec:evaluation_of_ranking_algorithms}
 
-as described in ~\cite{manning2008} page 147 and in ~\cite{ModernInvormationRetrieval1999} page 140
+The effectivity of an information retrieval system is strongly depending on the underlying ranking function. Therefore, it is important to measure the functionality of these ranking functions, and make them comparable.
 
 \myfig{precision_recall}
       {width=0.50\textwidth}
-      {Precision and Recall}
-      {Precision and Recall}
+      {\textbf{Document collection split according their relevance.} During the evaluation of an ranking algorithm the document collection is split into $4$ subsets. First, the \textit{true positive} documents are retrieved as relevant for the user, and are relevant. Second, the \textit{false positive} documents are retrieved as relevant, but are not relevant. Third, the \textit{true negatives} documents were correctly received as not relevant. Forth, the \textit{false negatives} documents were wrongly received as not relevant. The \textit{true positive} set, and \textit{true negative} set should be as large as possible as it is directly related to the effectivity of the ranking algorithm.}
+      {Document collection split according their relevance.}
       {fig:precision_recall}
 
-\begin{equation}
-  P = \frac{\text{\# relevant items retrieved}}{\text{\# retrieved items}} = \frac{TP}{TP + FP} = P(\text{relevant} | \text{retrieved})
-\end{equation}
+To archive this $2$ information retrieval basic measures known as \textit{Precision} and \textit{Recall} are needed. \textit{Precision} is a measurement of retrieved documents that are relevant for the user:
+\begin{align}
+  \text{Precision} = & \frac{\text{\# relevant items retrieved}}{\text{\# retrieved items}} \nonumber \\
+    = & P(\text{relevant} | \text{retrieved}) \nonumber \\
+    = & \frac{\text{true positives}}{\text{true positives} + \text{false positives}},
+\end{align}
+where \textit{true positives} are divided by all retrieved (selected) articles (see \Cref{fig:precision_recall}). \textit{Recall} represents the fraction of relevant documents that are received: 
+\begin{align}
+  \text{Recall} = & \frac{\text{\# relevant items retrieved}}{\text{\# relevant items}} \nonumber \\
+    = & P(\text{retrieved} | \text{relevant}) \nonumber \\
+    = & \frac{\text{true positives}}{\text{true positives} + \text{false negatives}},
+\end{align}
+where \textit{true positives} are divided by the number of all documents that are marked as positive (see \Cref{fig:precision_recall}). \textit{Precision} and \textit{Recall} trade off against each other. Therefore, when having a \textit{Recall} of $1$ it is possible to have a low \textit{Precision}. This happens as \textit{Recall} always increasing until all relevant documents are retrieved, but new received documents can be \textit{false positives}. Hence, the \textit{Precision} decreases, and \textit{Recall} stays the same.
+
+bla bla Mean Average Precision:
+\begin{align}
+  \text{MAP}(Q) = \frac{1}{|Q|}\sum_{j = 1}^{|Q|} \frac{1}{m_j}\sum_{k = 1}^{m_j}\text{Precision}(R_{jk}),
+\end{align}
+where bla bla ...
 
 \myfig{map}
       {width=1.00\textwidth}
       {Example for the precision of a search result}
       {Example for the precision of a search result}
       {fig:map}
-
-\begin{equation}
-  \text{MAP}(Q) = \frac{1}{|Q|}\sum_{j = 1}^{|Q|} \frac{1}{m_j}\sum_{k = 1}^{m_j}\text{Precision}(R_{jk})
-\end{equation}
