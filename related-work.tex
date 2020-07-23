@@ -526,6 +526,7 @@ The effectivity of an information retrieval system is strongly depending on the 
 
 To archive this $2$ information retrieval basic measures known as \textit{Precision} and \textit{Recall} are needed. \textit{Precision} is a measurement of retrieved documents that are relevant for the user:
 \begin{align}
+  \label{precision}
   \text{Precision} = & \frac{\text{\# relevant items retrieved}}{\text{\# retrieved items}} \nonumber \\
     = & P(\text{relevant} | \text{retrieved}) \nonumber \\
     = & \frac{\text{true positives}}{\text{true positives} + \text{false positives}},
@@ -540,12 +541,17 @@ where \textit{true positives} are divided by the number of all documents that ar
 
 bla bla Mean Average Precision:
 \begin{align}
-  \text{MAP}(Q) = \frac{1}{|Q|}\sum_{j = 1}^{|Q|} \frac{1}{m_j}\sum_{k = 1}^{m_j}\text{Precision}(R_{jk}),
+  \label{map_of_a_single_query}
+  \mathit{MAP}_i = \frac{1}{|R_i|}\sum_{k = 1}^{|R_i|} P(R_i[k]),
 \end{align}
-where bla bla ...
+where $R_i$ is the set of relevant documents according query $q_i$. $R_i[k]$ represents the reference of the $k$th document in $R_i$, and $P(R_i[k])$ is the \textit{Precision} (see \Cref{precision}) of the document. If $R_i[k]$ belongs to a \textit{false positive} document $P(R_i[k]) = 0$ (for an example see \Cref{fig:map}). Furthermore, the Mean Average Precision over a set of queries is defined as:
+\begin{align}
+  \mathit{MAP} = \frac{1}{N_q}\sum_{i = 1}^{|N_q|} \mathit{MAP}_i,
+\end{align}
+where $N_q$ is the total number of queries.
 
 \myfig{map}
       {width=1.00\textwidth}
-      {Example for the precision of a search result}
-      {Example for the precision of a search result}
+      {\textbf{Example for Mean Average Precision of a single query.} The Precision values are calculated according the retrieved set of relevant documents. Documents with a green hook are \textit{true positives} (TP), and documents with a red cross are \textit{false positives} (FP). The precision values down the FP are ignored, as they are not counted. In the example $R_1 =$ \{TP, FP, TP, TP, FP, TP\}, and therefore $|R_1| = 6$. Inserting these values into the Mean Average Precision formula of a single query (see \Cref{map_of_a_single_query}) results with $\mathit{MAP}_1 = 1/6 \times (1 + (2/3) + (3/4) + (4/6)) = 0,513\overline{8}$.}
+      {Example for Mean Average Precision of a single query}
       {fig:map}
