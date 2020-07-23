@@ -9,7 +9,7 @@
 
 We created our dataset from approximately $3,000$ scientific articles in PDF format. An important point was that these articles come from different scientific fields.
 
-We used a text mining pre-processing technique as introduced by Vijayarani et al.~\cite{Vijayarani2015} to separate the text from the PDFs and add additional information. This technique consists of three key steps, which are called extraction, stopword removal, and stemming. First, we used a framework described in ~\cite{KlampflGJK14} to separated the article structure and the raw text from the PDF. Stopword removal, and stemming was done as described in \Cref{subsec:stop_words} and \Cref{subsec:stemming}.
+We used a text mining pre-processing technique as introduced by Vijayarani et al.~\cite{Vijayarani2015} to separate the text from the PDFs and add additional information. This technique consists of three key steps, which are called extraction, stopword removal, and stemming. First, we used a framework described in ~\cite{KlampflGJK14} to separated the article structure and the raw text from the PDF. Afterwards the stopwords are removed, and the remaining terms of the raw text are stemmed.
 
 \begin{table}[!b]
   \caption[Mapping of the Section Titles to IMRaD-Types]{\textbf{Mapping of the Section Titles to IMRaD-Types.} In this Table we show which section titles was used to generate the IMRaD structure information. Additionally, we show the relation between titles and how often they occurs in the used dataset.}
@@ -36,7 +36,7 @@ We used a text mining pre-processing technique as introduced by Vijayarani et al
 
 One additional information we had to add was IMRaD structure. The IMRaD structure maps Related Work to be part of the Introduction. Since most of our papers had an own section titled Related Work we introduce an additional type for it. We were able to classify the IMRaD structure with simple keyword detection in the section titles. \Cref{tbl:mapping_section_names} shows the mapping between IMRaD-Types and these titles. Because it was not really possible to identify Method sections by using the section titles we used information about their position in the article. We manage that by using the Related Work as upper bound, and the Result section as lower bound. We classify all sections between these two bounds as a Method section. If the Related Work section was not available, we use the Introduction section as upper bound, or if the Result section was not available, we use the Discussion section as lower bound. If one of the two bounds could not be set, we discarded the scientific article. Note that, chapters can have several IMRaD-Types. For example, if a section was titled \textit{"Results and Discussion"} it belongs to the types result and discussion.
 
-Another additional detail we had to add were links between the scientific articles. For this we performed a semi-automated annotation. Thereby similarities about the references of an article and the titles of all other articles are compared as described in \Cref{sec:text_similarities}, and if they exceed a given threshold a recommendation to create a link between the two was given.
+Another additional detail we had to add were links between the scientific articles. For this we performed a semi-automated annotation. Thereby similarities about the references of an article and the titles of all other articles are compared, and if they exceed a given threshold a recommendation to create a link between the two was given.
 
 We created each data record in such a way that it can be transferred directly to the database schema shown in \Cref{fig:database_schema}. To reduce noise during the evaluation we removed all articles without any connection to other articles.
 
@@ -164,7 +164,7 @@ The out-degree distribution and their properties are displayed in \Cref{fig:outd
 \section{Model}
 \label{sec:model}
 
-Write general about information retrieval models as described in ~\cite{ModernInvormationRetrieval1999} page 57
+Write general about the implemented information retrieval model ...
 
 \subsection{Query Structure}
 
@@ -172,4 +172,4 @@ Write how a query looks like - explicit and implicit
 
 \subsection{Introducing IMRaD Structure Features into Weighing Schemes}
 
-Write how the algorithms described in \cref{sec:ranking_algorithms} are modified for IMRaD structure features.
+Write how the algorithms described in \Cref{sec:unstructured_text_Retrieval} are modified for IMRaD structure features.

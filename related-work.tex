@@ -539,7 +539,7 @@ where \textit{true positives} are divided by all retrieved (selected) articles (
 \end{align}
 where \textit{true positives} are divided by the number of all documents that are marked as positive (see \Cref{fig:precision_recall}). \textit{Precision} and \textit{Recall} trade off against each other. Therefore, when having a \textit{Recall} of $1$ it is possible to have a low \textit{Precision}. This happens as \textit{Recall} always increasing until all relevant documents are retrieved, but new received documents can be \textit{false positives}. Hence, the \textit{Precision} decreases, and \textit{Recall} stays the same.
 
-bla bla Mean Average Precision:
+Mean Average Precision is one of the most common used evaluation techniques to calculate the quality of an retrieved set of relevant documents according a query. This is done by averaging all precision values after a new relevant document is observed: 
 \begin{align}
   \label{map_of_a_single_query}
   \mathit{MAP}_i = \frac{1}{|R_i|}\sum_{k = 1}^{|R_i|} P(R_i[k]),
