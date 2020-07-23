@@ -32,7 +32,7 @@ Information retrieval for multimedia objects differs according their underlying 
 \section{Unstructured Text Retrieval}
 \label{sec:unstructured_text_Retrieval}
 
-In unstructured text retrieval, documents can be seen as sequence of words. The $3$ classical models are boolean-, vector-, and probabilistic model. First, in the boolean model, documents and queries are represented as sets. Terms are stitched together with boolean operators to formulize user queries. Second, in the vector model, documents and queries are represented as a vector in a t-dimensional space. The size of t is defined by the number of words in the vocabulary of the collection. Third, in the probabilistic model, documents and queries are represented based on probability theory. Specifically by estimating the probability of a term appearing in a relevant document. Gudivada et al. ~\cite{gudivada1997} advice in their work to denote boolean models as set theoretic, vector models as algebraic, and probabilistic models as probabilistic.
+In unstructured text retrieval, documents can be seen as sequence of words. The $3$ classical models are boolean-, vector-, and probabilistic model. First, in the boolean model, documents and queries are represented as sets. Terms are stitched together with boolean operators to formulate user queries. Second, in the vector model, documents and queries are represented as a vector in a t-dimensional space. The size of t is defined by the number of words in the vocabulary of the collection. Third, in the probabilistic model, documents and queries are represented based on probability theory. Specifically by estimating the probability of a term appearing in a relevant document. Gudivada et al. ~\cite{gudivada1997} advice in their work to denote boolean models as set theoretic, vector models as algebraic, and probabilistic models as probabilistic.
 
 \subsection{The Boolean Model}
 \label{sec:the_boolean_model}
@@ -47,7 +47,7 @@ The boolean model is a well-known information retrieval model in the area of uns
 
 The classic boolean model can only decide if a document is relevant for the user, or not. It does not provide a rank, which is used to sort the documents. Salton et al. introduce in their work ~\cite{Salton-Extended-1983} an extension where documents are sorted according their relevance.
 
-Index terms are combined with the $3$ boolean operators NOT($\neg$), AND($\wedge$), OR($\vee$) to formulize user queries. The disjunctive normal form of the query shows which areas of the sets are relevant. For example, for query $q=t_1 \wedge (t_2 \vee \neg t_3)$, and vocabulary V = \{$t_1$, $t_2$, $t_3$\}, $q_{DNF}$ is:
+Index terms are combined with the $3$ boolean operators NOT($\neg$), AND($\wedge$), OR($\vee$) to formulate user queries. The disjunctive normal form of the query shows which areas of the sets are relevant. For example, for query $q=t_1 \wedge (t_2 \vee \neg t_3)$, and vocabulary V = \{$t_1$, $t_2$, $t_3$\}, $q_{DNF}$ is:
 \begin{equation}
 q_{DNF} = (t_1 \wedge t_2 \wedge t_3) \vee (t_1 \wedge t_2 \wedge \neg t_3) \vee (t_1 \wedge \neg t_2 \wedge \neg t_3)
 \end{equation}
@@ -524,7 +524,7 @@ The effectivity of an information retrieval system is strongly depending on the 
       {Document collection split according their relevance.}
       {fig:precision_recall}
 
-To archive this $2$ information retrieval basic measures known as \textit{Precision} and \textit{Recall} are needed. \textit{Precision} is a measurement of retrieved documents that are relevant for the user:
+To analyze an information retrieval system the returned set of relevant documents is checked. To evaluate a set without any ranking (unordered) $2$ information retrieval basic measures known as \textit{Precision} and \textit{Recall} are used. \textit{Precision} is a measurement of retrieved documents that are relevant for the user:
 \begin{align}
   \label{precision}
   \text{Precision} = & \frac{\text{\# relevant items retrieved}}{\text{\# retrieved items}} \nonumber \\
@@ -539,7 +539,7 @@ where \textit{true positives} are divided by all retrieved (selected) articles (
 \end{align}
 where \textit{true positives} are divided by the number of all documents that are marked as positive (see \Cref{fig:precision_recall}). \textit{Precision} and \textit{Recall} trade off against each other. Therefore, when having a \textit{Recall} of $1$ it is possible to have a low \textit{Precision}. This happens as \textit{Recall} always increasing until all relevant documents are retrieved, but new received documents can be \textit{false positives}. Hence, the \textit{Precision} decreases, and \textit{Recall} stays the same.
 
-Mean Average Precision is one of the most common used evaluation techniques to calculate the quality of an retrieved set of relevant documents according a query. This is done by averaging all precision values after a new relevant document is observed: 
+There exists many different metrics to evaluate sets with ranking (ordered). Mean Average Precision is one of the most common used evaluation techniques. It calculates the average of all precision values after a new relevant document is observed:
 \begin{align}
   \label{map_of_a_single_query}
   \mathit{MAP}_i = \frac{1}{|R_i|}\sum_{k = 1}^{|R_i|} P(R_i[k]),
@@ -548,7 +548,7 @@ where $R_i$ is the set of relevant documents according query $q_i$. $R_i[k]$ rep
 \begin{align}
   \mathit{MAP} = \frac{1}{N_q}\sum_{i = 1}^{|N_q|} \mathit{MAP}_i,
 \end{align}
-where $N_q$ is the total number of queries.
+where $N_q$ is the total number of queries. Mean Average Precision is widely used as it is simple, easy to implement, versatilely, and stable.
 
 \myfig{map}
       {width=1.00\textwidth}
