@@ -1,16 +1,23 @@
 \chapter{Evaluation}
 \label{cha:evaluation}
-Mean Average Precision is used to compare the search algorithms.
+
+In this chapter we discuss the results of our information retrieval model. For our evaluation we took a self generated dataset with $821$ scientific articles. Each document in the dataset was stored with its logical structure (title, headings, chapters, sections, subsections, subsubsections). Additionally, sections contains information about their IMRaD-Types. Normally a section has only one IMRaD-Type, but some of them have more (e.g. Results and Discussion has IMRaD-Type Result and IMRaD-Type Discussion). Furthermore, the articles was linked according their citations. For more information about the creation of our used dataset see ~\Cref{sec:dataset}.
+
+We used Mean Average Precision to compare the ranking algorithms. It captures a comparative value for a set of queries. Information retrieval models return a ranked set of relevant documents for each query. For each of these results the Average Precision was calculated. Finally, the mean of all Average Precision results was computed. For more information ...
 
 \section{Leveraging IMRaD Structure Features}
 
+First, we compare IMRaD Structure Features according unstructured text retrieval...
+
 \subsection{Explicit Search using N-Grams}
+
+experimental setup, describe results afterwards
 
 \begin{table}[b]
   \begin{adjustwidth}{-2cm}{}
     \begin{tabular}{ c C{1.5cm} C{2.1cm} C{2.1cm} C{2.1cm} C{2.1cm} C{2.1cm} C{2.1cm} }
       \toprule
-      \textbf{n} & \textbf{\# queries} & \textbf{Using IMRaD Chapter Features} & \textbf{Term Frequency} & \textbf{Tf-idf} & \textbf{Ranked Boolean Retrieval} & \textbf{Okapi BM25} & \textbf{Divergence from Randomness} \\ \midrule
+      \textbf{n} & \textbf{\# queries} & \textbf{Using IMRaD Chapter Features} & \textbf{Term Frequency} & \textbf{TF-IDF} & \textbf{Ranked Boolean Retrieval} & \textbf{Okapi BM25} & \textbf{Divergence from Randomness} \\ \midrule
       \multirow{2}{*}{$2$} & \multirow{2}{*}{$8770$} & No  & $0.0882$ & $0.1128$ & $0.1035$ & $0.0442$ & $0.0498$  \\
                                                     && Yes & $0.0696$ & $0.0897$ & $0.0638$ & $0.045$  & $0.0379$  \\ \midrule
       \multirow{2}{*}{$3$} & \multirow{2}{*}{$7070$} & No  & $0.1038$ & $0.1382$ & $0.1198$ & $0.064$  & $0.046$   \\
@@ -56,7 +63,7 @@ Number of scientific articles: 714
     \centering
     \begin{tabular}{ C{2.1cm} C{2.1cm} C{2.1cm} C{2.1cm} C{2.1cm} C{2.1cm} }
       \toprule
-      \textbf{Using IMRaD Chapter Features} & \textbf{Term Frequency} & \textbf{Tf-idf} & \textbf{Ranked Boolean Retrieval} & \textbf{Okapi BM25} & \textbf{Divergence from Randomness} \\ \midrule
+      \textbf{Using IMRaD Chapter Features} & \textbf{Term Frequency} & \textbf{TF-IDF} & \textbf{Ranked Boolean Retrieval} & \textbf{Okapi BM25} & \textbf{Divergence from Randomness} \\ \midrule
       No  & $0.1186$ & $0.1163$ & $0.0466$ & $0.0554$ & $0.0137$ \\
       Yes & $0.1463$ & $0.1613$ & $0.0506$ & $0.0882$ & $0.0137$ \\
       \bottomrule
