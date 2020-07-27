@@ -247,6 +247,7 @@ The third variant is the most common used form in the vector space model. Ribeir
 The TF-IDF weighting scheme can also be used as a ranking function with limited knowledge about vectors. Manning et. al ~\cite{manning2008} describe in their work such a TF-IDF ranking function:
 \begin{align}
   \begin{split}
+    \label{tiidf_ranking_manning}
     \text{Score}(q, d) & = \sum_{i \in q} \text{tf-idf}_{i, d} \\
     \text{tf-idf}_{i, d} & = f_{i, q} \times \log \frac{N}{n_i},
   \end{split}
@@ -325,7 +326,7 @@ As a result, the term of the sum is zero if the index term occurs in each docume
 
 In theory, the probabilistic model is optimal, as documents are ordered by the probability of being relevant for the user. In practice the system is affected by external factors. Therefore, finding the ideal answer set is only theoretically possible. An additional disadvantages is that the initial relevant-, and not-relevant sets have to be estimated. Furthermore, term frequency is not used, as document weights are binary. More advanced extensions of the probabilistic model tackle some of the outlined issues. For example, BM$25$, which will be discussed in the text.
 
-\subsubsection{Okapi BM25}
+\subsubsection{Okapi BM$25$}
 \label{sec:okapi_bm25}
 
 Okapi BM$25$ is the result of several experiments by Robertson et. al ~\cite{RobertsonWHGL92, RobertsonWJHG93, RobertsonWJHG94}. The idea is to transfer the strengths of the vector space model to the probabilistic model. These advantages are inverse document frequency, term frequency, and document length normalization. As foundation the classic probabilistic ranking equation (see \Cref{similarity_porbabilistic_no_relevant}) is used. The equation already covers the usage of the inverse document frequency, and is known as BM$1$.
@@ -405,27 +406,33 @@ where $F_i$ is the frequency of a term $k_i$ over all documents in the collectio
 
 The first part of the term weight (see \Cref{dfr_term_weight}) represents the amount of information of a term over the entire document collection. Amati and Rijsbergen ~\cite{AmatiR02} propose in their work $2$ approximations:
 \begin{align}
-    - \log P(k_i | C) \approx & f_{i, j} \log \Bigl( \frac{f_{i, j}}{\lambda_i} \Bigr) + \Bigl( \lambda_i + \frac{1}{12 f_{i, j} + 1} - f_{i, j}\Bigr) \log e \\
+  \label{dvr_part1_1}
+  - \log P(k_i | C) \approx & f_{i, j} \log \Bigl( \frac{f_{i, j}}{\lambda_i} \Bigr) + \Bigl( \lambda_i + \frac{1}{12 f_{i, j} + 1} - f_{i, j}\Bigr) \log e \\
     & + \frac{1}{2} \log(2 \pi f_{i, j}) \nonumber \\
+  \label{dvr_part1_2}
   - \log P(k_i | C) \approx & - \log \left( \frac{1}{1 + \lambda_i} \right) - f_{i, j} \times \log \left( \frac{\lambda_i}{1 + \lambda_i} \right),
 \end{align}
 where $f_{i, j}$ is the frequency of term $k_i$ in document $d_j$. For the second approximation $p = 1/(1 + \lambda_i)$.
 
 The second part of the term weight (see \Cref{dfr_term_weight}) represents the amount of information of a term with respect to the elite set, which is calculated by:
 \begin{align}
+  \label{dvr_part2_1}
   1 - P(k_i | d_j) & = \frac{1}{f_{i, j} + 1} \\
+  \label{dvr_part2_2}
   1 - P(k_i | d_j) & = \frac{F_i + 1}{n_i \times (f_{i, j} + 1)},
 \end{align}
 where $n_i$ is the number of documents that contain term $k_i$.
 
 The basic form of the Divergence from Randomness model does not take document length normalization into account. Therefore, there exist 2 extensions for the term frequency $f_{i, j}$. Each of them can be used to add document length normalization:
 \begin{align}
+  \label{dfv_avg_doclen_1}
   f^{\prime}_{i, j} & = f_{i, j} \times \frac{avg\_doclen}{len(d_j)} \\
+  \label{dfv_avg_doclen_2}
   f^{\prime}_{i, j} & = f_{i, j} \times \log \left(1 + \frac{avg\_doclen}{len(d_j)} \right),
 \end{align}
 where $avg\_doclen$ is the average document length over the entire collection, and $len(d_j)$ is the number of terms inside document $d_j$.
 
-For a practical implementation of Divergence from Randomness the previously discussed alternatives of the individual parts of the equation (see equation A nd B) can arbitrary be combined. Therefore, the best performing variant depends on the given document collection. % TODO link equation
+For a practical implementation of Divergence from Randomness the previously discussed alternatives of the individual parts of the equation (see \Cref{dvr_part1_1}, \Cref{dvr_part1_2}, \Cref{dvr_part2_1}, \Cref{dvr_part2_2}, \Cref{dfv_avg_doclen_1}, and \Cref{dfv_avg_doclen_2}) can arbitrary be combined. Therefore, the best performing variant depends on the given document collection.
 
 \section{Structured Text Retrieval}
 \label{sec:structured_text_Retrieval}
@@ -511,49 +518,6 @@ There exist many more strategies to rank structured text. Some of them require s
 %\label{sec:text_similarities}
 
 %Describe Text Similarities and common techniques. ~\cite{ModernInvormationRetrieval1999} page 222
-
-\section{Evaluation of Ranking Algorithms}
-\label{sec:evaluation_of_ranking_algorithms}
-
-The effectivity of an information retrieval system (IRS) is lean on the underlying ranking function. Therefore, it is important to measure the performance of these ranking functions to make them comparable.
-
-\myfig{precision_recall}
-      {width=0.50\textwidth}
-      {\textbf{Document collection split according their relevance.} During the evaluation of an ranking algorithm the document collection is split into $4$ subsets. First, the \textit{true positive} documents are retrieved as relevant for the user, and are relevant. Second, the \textit{false positive} documents are retrieved as relevant, but are not relevant. Third, the \textit{true negatives} documents were correctly received as not relevant. Forth, the \textit{false negatives} documents were wrongly received as not relevant. The \textit{true positive} set, and \textit{true negative} set should be as large as possible as it is directly related to the effectivity of the ranking algorithm.}
-      {Document collection split according their relevance.}
-      {fig:precision_recall}
-
-Evaluation of a IRS is based on the set of relevant documents provided by the system. To evaluate a generated set without any ranking (unordered) $2$ information retrieval basic measures known as \textit{Precision} and \textit{Recall} are used. \textit{Precision} is a measurement of retrieved documents (see \Cref{fig:precision_recall} for sets in the document collection split according their relevance) that are relevant for the user:
-\begin{align}
-  \label{precision}
-  \text{Precision} = & \frac{\text{\# relevant items retrieved}}{\text{\# retrieved items}} \nonumber \\
-    = & P(\text{relevant} | \text{retrieved}) \nonumber \\
-    = & \frac{\text{true positives}}{\text{true positives} + \text{false positives}}.
-\end{align}
-\textit{Recall} represents the fraction of relevant documents that are received:
-\begin{align}
-  \text{Recall} = & \frac{\text{\# relevant items retrieved}}{\text{\# relevant items}} \nonumber \\
-    = & P(\text{retrieved} | \text{relevant}) \nonumber \\
-    = & \frac{\text{true positives}}{\text{true positives} + \text{false negatives}}.
-\end{align}
-There is a trade-off between the two measures. Therefore, when having a \textit{Recall} of $1$ it is possible to have a low \textit{Precision}. This happens as \textit{Recall} always increasing until all relevant documents are retrieved, but new received documents can be \textit{false positives}. Hence, the \textit{Precision} decreases, and \textit{Recall} stays the same.
-
-There exist many different metrics to evaluate generated sets with ranking (ordered). Mean Average Precision is one of the most commonly used evaluation techniques. It is defined as the average of all precision values after a new relevant document is observed:
-\begin{align}
-  \label{map_of_a_single_query}
-  \mathit{MAP}_i = \frac{1}{|R_i|}\sum_{k = 1}^{|R_i|} P(R_i[k]),
-\end{align}
-where $R_i$ is the set of relevant documents with respect to query $q_i$. $R_i[k]$ represents the reference of the $k$th document in $R_i$, and $P(R_i[k])$ is the \textit{Precision} of the document (see \Cref{precision}). If $R_i[k]$ belongs to a \textit{false positive} document $P(R_i[k]) = 0$ (for an example see \Cref{fig:map}). Furthermore, the Mean Average Precision over a set of queries is defined as:
-\begin{align}
-  \mathit{MAP} = \frac{1}{N_q}\sum_{i = 1}^{|N_q|} \mathit{MAP}_i,
-\end{align}
-where $N_q$ is the total number of queries. Mean Average Precision is widely used as it is simple, easy to implement, versatile, and stable.
-
-\myfig{map}
-      {width=1.00\textwidth}
-      {\textbf{Example for Mean Average Precision of a single query.} The Precision values are calculated according the retrieved set of relevant documents. Documents with a green hook are \textit{true positives} (TP), and documents with a red cross are \textit{false positives} (FP). The precision values down the FP are ignored, as they are not counted. In the example $R_1 =$ \{TP, FP, TP, TP, FP, TP\}, and therefore $|R_1| = 6$. Inserting these values into the Mean Average Precision formula of a single query (see \Cref{map_of_a_single_query}) results with $\mathit{MAP}_1 = 1/6 \times (1 + (2/3) + (3/4) + (4/6)) = 0,513\overline{8}$.}
-      {Example for Mean Average Precision of a single query}
-      {fig:map}
 
 \section{IMRaD Structure}
 \label{sec:imrad_structure}
