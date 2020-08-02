@@ -67,7 +67,29 @@ Second, we discuss implicit search using entire scientific articles to search fo
 
 \subsection{Explicit Search using N-Grams}
 
-experimental setup (extract citations), describe results afterwards, ranked boolean setup
+To search with information provided by the user is called explicit search. For our information retrieval model this is done by formalizing user queries. These queries can be seen as a sequence of keywords.
+
+Our generated dataset consists of scientific articles, and links between them. We extracted citations in order to get queries that are used for testing. Our assumption was that citations describe the content of referenced articles. Therefore, a referenced article gets represented by the citation.
+
+We store each citation as a set of terms. An important addition was that the order of the terms within the set was not lost. Additionally, we assume that a typical user searches by stringing together keywords. Therefore, we removed stopwords from the set, but terms was not stemmed. For each citation set we stored information about the refereed article, and the IMRaD-Types of the section. For example, "\textit{The authors of [$1$] present a comprehensive system for the structure extraction of PDF books, which is used within a commercial e-book software.}" is in the \textit{Introduction} of scientific article $A$. Furthermore, "\textit{[$1$]}" is the reference to the refereed scientific article $B$. The resulting citation set looks as follows: $cs_{A1} =$ \{"\textit{authors}", "\textit{present}", "\textit{comprehensive}", "\textit{system}", "\textit{structure}", "\textit{extraction}", "\textit{PDF}", "\textit{books}", "\textit{commercial}", "\textit{e-book}", "\textit{software}"\}, and additionally the reference to article $B$, and the IMRaD-Type \textit{Introduction} is stored for $cs_{A1}$.
+
+Queries are produced as $N$-Grams with the citation sets. This means the citation sets are split into subsets of size $N$. Furthermore, the order of the terms is also important for these subsets. For example, $cs_{A1}$ is split into $N$-Grams and $N = 5$. The $7$ resulting subsets are:
+\begin{align*}
+  NG_{cs_{A1}, 1} &= \{"\textit{authors}", "\textit{present}", "\textit{comprehensive}", "\textit{system}", "\textit{structure}"\} \nonumber \\
+  NG_{cs_{A1}, 2} &= \{"\textit{present}", "\textit{comprehensive}", "\textit{system}", "\textit{structure}", "\textit{extraction}"\} \nonumber \\
+  NG_{cs_{A1}, 3} &= \{"\textit{comprehensive}", "\textit{system}", "\textit{structure}", "\textit{extraction}", "\textit{PDF}"\} \nonumber \\
+  NG_{cs_{A1}, 4} &= \{"\textit{system}", "\textit{structure}", "\textit{extraction}", "\textit{PDF}", "\textit{books}"\} \nonumber \\
+  NG_{cs_{A1}, 5} &= \{"\textit{structure}", "\textit{extraction}", "\textit{PDF}", "\textit{books}", "\textit{commercial}",\} \nonumber \\
+  NG_{cs_{A1}, 6} &= \{"\textit{extraction}", "\textit{PDF}", "\textit{books}", "\textit{commercial}", "\textit{e-book}"\} \nonumber \\
+  NG_{cs_{A1}, 7} &= \{"\textit{PDF}", "\textit{books}", "\textit{commercial}", "\textit{e-book}", "\textit{software}"\} \nonumber \\
+\end{align*}
+In general, the number of subsets that can be generated from a citation set $cs$ is defined as:
+\begin{align}
+  l = len(cs) - N + 1,
+\end{align}
+where $len(cs)$ is the number of terms in $cs$. 
+
+The last step is to bring the query set together with the IMRaD-type in our query structure. For example, the resulting query compiled by $NG_{cs_{A1}, 1}$ looks as follows: $q_1=$"\textit{authors}, \textit{present}, \textit{comprehensive}, \textit{system}, \textit{structure} IN \texttt{Introduction}". In our system IN-statements of queries are ignored for unstructured text retrieval.
 
 \begin{table}[b]
   \begin{adjustwidth}{-2cm}{}
@@ -106,6 +128,14 @@ experimental setup (extract citations), describe results afterwards, ranked bool
   \label{tbl:ranking_result_explicit}
   \end{adjustwidth}
 \end{table}
+
+Mean Average Precision (see \Cref{sec:evaluation_of_ranking_algorithms}) is used to evaluate our proposed ranking algorithms. Therefore, we passed the query into our information retrieval model. The Average Precision is determined according to the position of the refereed article in the generated ranked list.
+
+In \Cref{tbl:ranking_result_explicit} the performance results of our ranking algorithms are proposed. %Using IMRaD Chapter Features represents... n represents... \# queries represents...
+
+% The best performing algorithm is.... maybe state settings again... 
+
+describe results afterwards, ranked boolean setup
 
 \subsection{Implicit Search using Scientific Articles}
 
