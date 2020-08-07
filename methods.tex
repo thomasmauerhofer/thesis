@@ -94,7 +94,6 @@ M. Kas ~\cite{kas2011} defined the basic properties of citation networks in thei
 The network is directed and acyclic because each article has a publication date and can only cite previously published articles. Due to these properties edges can only point back in time. The edges of the network have to be permanent because the references of the existing articles never change. When a new node is added it generates edges to existing articles. This means that all other nodes and edges stays constant.
 
 \begin{table}[!b]
-  \caption[General Properties about the citation network]{\textbf{General Properties about the citation network.} The citation network represents the relationship between our used scientific articles. The number of nodes indicates the number of articles, and the number of edges citations between those articles. There are no cycles inside the graph, and the longest citation chain consists of $12$ articles. There are $107$ articles which has no outgoing edges. That means that none of their referred articles are part of our dataset.}
   \centering
   \begin{tabular}{ l c }
     \toprule
@@ -104,6 +103,7 @@ The network is directed and acyclic because each article has a publication date 
     \textbf{Number of Root Nodes} & $107$  \\
     \bottomrule
   \end{tabular}
+  \caption[General Properties about the citation network]{\textbf{General Properties about the citation network.} The citation network represents the relationship between our used scientific articles. The number of nodes indicates the number of articles, and the number of edges citations between those articles. There are no cycles inside the graph, and the longest citation chain consists of $12$ articles. There are $107$ articles which has no outgoing edges. That means that none of their referred articles are part of our dataset.}
   \label{tbl:general_properties_about_the_graph}
 \end{table}
 
