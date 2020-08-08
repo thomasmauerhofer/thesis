@@ -58,6 +58,7 @@ where $N_q$ is the total number of queries.
  Mean Average Precision is widely used as it is simple, easy to implement, versatile, and stable. Therefore, we apply it to compare the generated ranked lists of our proposed ranking algorithms (for an example see \Cref{fig:map}).
 
 \section{Leveraging IMRaD Structure Features}
+\label{sec:leveraging_imrad_structure_features}
 
 In our first experiments we compare unstructured text retrieval with structured text retrieval. For structured text retrieval, we focus on the underlying IMRaD structure. Therefore, each document of the dataset contains a set of all index terms. In addition, they contain $5$ sets for each IMRaD-type. The union of the $5$ sets differs from the set with all index terms as there exists areas that cannot be assigned to an IMRaD-type (e.g., Abstract). 
 
@@ -89,13 +90,13 @@ In general, the number of subsets that can be generated from a citation set $cs$
 \end{align}
 where $len(cs)$ is the number of terms in $cs$. 
 
-The last step is to bring the query set together with the IMRaD-type in our query structure. For example, the resulting query compiled by $NG_{cs_{A1}, 1}$ looks as follows: $q_1=$"\textit{authors}, \textit{present}, \textit{comprehensive}, \textit{system}, \textit{structure} IN \texttt{Introduction}". In our system IN-statements of queries are ignored for unstructured text retrieval.
+The last step is to bring the query set together with the IMRaD-type in our query structure. For example, the resulting query compiled by $NG_{cs_{A1}, 1}$ looks as follows: $q_1=$"\textit{authors}, \textit{present}, \textit{comprehensive}, \textit{system}, \textit{structure} IN \texttt{Introduction}". In our system IN-statements of queries are ignored if IMRaD chapter features are disabled.
 
-Mean Average Precision (see \Cref{sec:evaluation_of_ranking_algorithms}) is used to evaluate our proposed ranking algorithms. Therefore, we passed the query into our information retrieval model. The Average Precision is determined with respect to the position of the refereed article in the generated ranked list.
+Mean Average Precision (see \Cref{sec:evaluation_of_ranking_algorithms}) is used to evaluate our proposed ranking algorithms. Therefore, we passed the query into our information retrieval system. The Average Precision is determined with respect to the position of the refereed article in the generated ranked list.
 
 In \Cref{tbl:ranking_result_explicit} the performance results of our ranking algorithms are proposed. We evaluated different query lengths, where the length is defined by the number of terms in the query. Our query length varying in the range between $2$ to $14$. Furthermore, we compared the algorithms with respect to the usage of IMRaD chapter features, where disabled features denote unstructured text retrieval and enabled features represent structured text retrieval. The best results with enabled features are highlighted in violet and with disabled features are highlighted in blue for every algorithm.
 
-All $5$ algorithms obtain higher results without IMRaD chapter features. The best performing algorithm is \textit{TF-IDF}. It archives a MAP of $0.2199$ with disabled features, where the query consists of $11$ terms. In addition, the MAP is $0.1642$ with enabled features, and a query length of $12$. Therefore, the comparison of the highest accuracies is $5.57$ percent better for unstructured text retrieval. 
+All $5$ algorithms obtain higher results without IMRaD chapter features. Therefore, the ranking was generated with respect to their achieved accuracy when IMRaD chapter features are disabled. The best performing algorithm is \textit{TF-IDF}. It archives a MAP of $0.2199$ with disabled features, where the query consists of $11$ terms. In addition, the MAP is $0.1642$ with enabled features, and a query length of $12$. Therefore, the comparison of the highest accuracies is $5.57$ percent better for unstructured text retrieval. 
 
 The second best algorithm is \textit{TF}. It has an accuracy of $0.1966$ with disabled features, and a query length of $11$. Furthermore the accuracy is $0.1293$ with enabled features, and a query length of $12$. In comparison with \textit{TF-IDF} the archived accuracy is $2.33$ percent worse for disabled features, and $3.49$ percent worse for enabled features. The best performing query lengths are the same as for \textit{TF-IDF}. The highest accuracy is $6.73$ better for unstructured text retrieval than for structured text retrieval.
 
@@ -140,21 +141,25 @@ The third best algorithm is \textit{Ranked Boolean Retrieval}. Zone scores $zs$ 
 \end{table}
 \clearpage
 
-\textit{Ranked Boolean Retrieval} archives an accuracy of $0.1921$ with disabled features, and a query length of $11$. Therefore, in the context of unstructured text retrieval the best performing query length is the same as for \textit{TF-IDF} and \textit{TF}. Additionally, the accuracy is $0.1015$ with enabled features, and a query length of $9$. In comparison with \textit{TF-IDF} the archived accuracy is $2.78$ percent worse for disabled features, and $6.27$ percent worse for enabled features. Furthermore, when comparing with \textit{TF} the MAP is $0.45$ percent worse for disabled features, and $2.78$ percent worse for enabled features. The highest accuracy is $9.06$ better for unstructured text retrieval than for structured text retrieval.
+\textit{Ranked Boolean Retrieval} archives an accuracy of $0.1921$ with disabled features, and a query length of $11$. Therefore, in the context of unstructured text retrieval the best performing query length is the same as for \textit{TF-IDF} and \textit{TF}. Additionally, the accuracy is $0.1015$ with enabled features, and a query length of $9$. In comparison with \textit{TF-IDF} the archived accuracy is $2.78$ percent worse for disabled features, and $6.27$ percent worse for enabled features. Furthermore, when comparing with \textit{TF} the accuracy is $0.45$ percent worse for disabled features, and $2.78$ percent worse for enabled features. The highest accuracy is $9.06$ better for unstructured text retrieval than for structured text retrieval.
 
-The forth best algorithm is \textit{Okapi BM$25$}.
+The forth best algorithm is \textit{Okapi BM$25$}. It has a accuracy of $0.1207$ with disabled features. The associated best performing query length is $14$, which was the upper bound of the query length. It was not possible to further increase the query length as the upper bound of the query length comes with the number of queries. Furthermore, the accuracy is $0.1058$ with enabled features, and a query length of $13$. In comparison with \textit{TF-IDF} the archived accuracy is $9.92$ percent worse for disabled features, and $5.84$ percent worse for enabled features. Furthermore, when comparing with \textit{Ranked Boolean Retrieval} the accuracy is $7.14$ percent worse for disabled features, and $0.43$ percent better for enabled features. The highest accuracy is $1.49$ better for unstructured text retrieval than for structured text retrieval.
+
+The fifth best algorithm is \textit{Divergence from Randomness}. It has an accuracy of $0.0498$ with disabled features, and an accuracy of $0.0379$ with enabled features. Both configurations had a best performing query length of $2$. In comparison with \textit{TF-IDF} the archived accuracy is $17.01$ percent worse for disabled features, and $12.63$ percent worse for enabled features. Furthermore, when comparing with \textit{Okapi BM$25$} the accuracy is $7.09$ percent worse for disabled features, and $6.79$ percent worse for enabled features. The highest accuracy is $1.19$ better for unstructured text retrieval than for structured text retrieval.
 
 \subsection{Implicit Search using Scientific Articles}
 
-Number of scientific articles: $821$
+In common information retrieval models there is information available that was not explicitly provided by the user. Leveraging this type of information in addition is denoted implicit search. In our model we use explicit and implicit information of scientific articles to search for other articles. This approach is called \textit{more like this}.
 
-... more like this. describe evaluation, ranked boolean setup
+In our experiment we transformed scientific articles into user queries. Therefore, queries contain information about index terms and the IMRaD sections they occurred. For example, $q_1=$"\textit{structure}, \textit{present} IN \texttt{Introduction} AND \textit{system}, \textit{structure} IN \texttt{Methods}" is a query that can be executed by our system. IN-statements are used to define where the terms occurred, and AND-statements are used to combine subqueries. In our system IN-statements of queries are ignored if IMRaD chapter features are disabled.
+
+We used a generated dataset with $821$ scientific articles to evaluate our proposed ranking algorithms. Therefore, we assumed that the content of a scientific article has to be similar to its refereed articles. As a result, the Mean Average Precision (see \Cref{sec:evaluation_of_ranking_algorithms}) is calculated with respect to the position of the refereed articles in the generated ranked list.
 
 \begin{table}[b!]
     \centering
     \begin{tabular}{ C{2.1cm} C{2.1cm} C{2.1cm} C{2.1cm} C{2.1cm} C{2.1cm} }
       \toprule
-      \textbf{Using IMRaD Chapter Features} & \textbf{Term Frequency} & \textbf{TF-IDF} & \textbf{Ranked Boolean Retrieval} & \textbf{Okapi BM25} & \textbf{Divergence from Randomness} \\ \midrule
+      \textbf{Using IMRaD Chapter Features} & \textbf{Term Frequency} & \textbf{TF-IDF} & \textbf{Ranked Boolean Retrieval} & \textbf{Okapi BM$25$} & \textbf{Divergence from Randomness} \\ \midrule
       No  & $0.1186$ & $0.1163$ & $0.0466$ & $0.0554$ & $0.0137$ \\
       Yes & $0.1463$ & $0.1613$ & $0.0506$ & $0.0882$ & $0.0137$ \\
       \bottomrule
@@ -163,6 +168,7 @@ Number of scientific articles: $821$
   \label{tbl:ranking_result_full}
 \end{table}
 
+In table \Cref{tbl:ranking_result_full} the performance results of our ranking algorithms are proposed. %describe evaluation, ranked boolean setup
 
 \section{Chapter Based Search}
 
