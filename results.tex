@@ -164,11 +164,25 @@ We used a generated dataset with $821$ scientific articles to evaluate our propo
       Yes & $0.1463$ & $0.1613$ & $0.0506$ & $0.0882$ & $0.0137$ \\
       \bottomrule
     \end{tabular}
-  \caption[Ranking results using scientific articles]{Ranking results of the used weighting schemes using scientific articles}
+  \caption[Ranking results using scientific articles]{\textbf{Ranking results of the used weighting schemes using scientific articles.} We compared our proposed ranking algorithms with respect to the underlying structure. Therefore, we used scientific articles unstructured and structured to search for other scientific articles. For structured articles, we focus on the underlying IMRaD structure.}
   \label{tbl:ranking_result_full}
 \end{table}
 
-In table \Cref{tbl:ranking_result_full} the performance results of our ranking algorithms are proposed. %describe evaluation, ranked boolean setup
+In table \Cref{tbl:ranking_result_full} the performance results of our ranking algorithms are proposed. \textit{TF}, \textit{TF-IDF}, \textit{Ranked Boolean Retrieval}, and \textit{Okapi BM$25$} obtain higher results with the usage of IMRaD chapter features. \textit{Divergence from Randomness} performs with features as well as without features.
+
+Zone scores $zs$ have to be defined to configure \textit{Ranked Boolean Retrieval}. For the experiments the zones scores are determined through a param search, and defined as follows:
+\begin{align*}
+  zs_{\text{Title}} & = 0.2                \nonumber \\
+  zs_{\text{Section Title}} & = 0.3        \nonumber \\
+  zs_{\text{Section Text}} & = 0.2         \nonumber \\
+  zs_{\text{Subsection Title}} & = 0.18    \nonumber \\
+  zs_{\text{Subsection Text}} & = 0.05     \nonumber \\
+  zs_{\text{Subsubsection Title}} & =0.05  \nonumber \\
+  zs_{\text{Subsubsection Text}} & = 0.02, \nonumber
+\end{align*}
+where "Title" defines the header of the document component, "Text" the text area of the of the document component. Fur further information about structured text retrieval, document components, and \textit{Ranked Boolean Retrieval} see \Cref{sec:structured_text_Retrieval}.
+
+The ranking of the proposed ranking algorithms was generated with respect to their achieved accuracy when IMRaD chapter features are enabled. The best performing algorithm is \textit{TF-IDF} with a accuracy of $0.1613$ with enabled features, and $0.1163$ with disabled features.
 
 \section{Chapter Based Search}
 
@@ -192,8 +206,8 @@ Methods,      0.0947, 0.0857, 0.1017, 0.0897, 0.0668
 Results,      0.0877, 0.0783, 0.0815, 0.0783, 0.0631
 Discussion,   0.1188, 0.1078, 0.0957, 0.0914, 0.084
 }\vrule
-  \caption[Chapter based Search using Tf-idf]{Chapter based Search using Tf-idf}
-  \label{tbl:ranking_result_full}
+  \caption[Chapter based Search using TF-IDF]{\textbf{Chapter based Search using TF-IDF.} Describe me...}
+  \label{tbl:chapter_based_tfidf}
 \end{table}
 
 \begin{table}[b!]
@@ -212,6 +226,6 @@ Methods,      0.0565, 0.0417, 0.0593, 0.0379, 0.0403
 Results,      0.0438, 0.0426, 0.0433, 0.0461, 0.0443
 Discussion,   0.0799, 0.0682, 0.0587, 0.0595, 0.0616
 }\vrule
-  \caption[Chapter based Search using Okapi BM$25$]{Chapter based Search using Okapi BM$25$}
-  \label{tbl:ranking_result_full}
+  \caption[Chapter based Search using Okapi BM$25$]{\textbf{Chapter based Search using Okapi BM$25$.}  Describe me...}
+  \label{tbl:chapter_based_okapi}
 \end{table}
