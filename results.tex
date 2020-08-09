@@ -12,6 +12,7 @@ In our experiments we compare $5$ common ranking algorithms:
   \item Fifth, \textit{Ranked Boolean Retrieval} is a ranking method that combines zone scores with boolean expressions. The score is applied to the ranking if terms occur in the zone. The configuration of the algorithm depends on the experiment (cf. \Cref{sec:ranking_strategies_in_xml_retrieval}).
 \end{enumerate}
 
+
 \section{Evaluation of Ranking Algorithms}
 \label{sec:evaluation_of_ranking_algorithms}
 
@@ -57,6 +58,7 @@ where $N_q$ is the total number of queries.
 
  Mean Average Precision is widely used as it is simple, easy to implement, versatile, and stable. Therefore, we apply it to compare the generated ranked lists of our proposed ranking algorithms (for an example see \Cref{fig:map}).
 
+
 \section{Leveraging IMRaD Structure Features}
 \label{sec:leveraging_imrad_structure_features}
 
@@ -65,6 +67,7 @@ In our first experiments we compare unstructured text retrieval with structured 
 First, we evaluate explicit search where query terms have to be formulated explicitly. For example, given a query $q_1=$"\textit{network} IN \texttt{Methods}" the system leverages different sets to search for the term. For structured text retrieval the Methods-set is used as it was specified in the query. In our system IN-statements of queries are ignored for unstructured text retrieval as all terms are searched in the set with all index terms.
 
 Second, we discuss implicit search using entire scientific articles to search for other articles. For structured text retrieval we split the input paper according to its IMRaD-structure. We generate a query that is similar to the query of the explicit variant with the extracted terms. For unstructured text retrieval the same process is used to create the query, but IN-statements are ignored here as well.
+
 
 \subsection{Explicit Search using N-Grams}
 
@@ -147,6 +150,11 @@ The forth best algorithm is \textit{Okapi BM$25$}. It has an accuracy of $0.1207
 
 The fifth best algorithm is \textit{Divergence from Randomness}. It has an accuracy of $0.0498$ with disabled features, and an accuracy of $0.0379$ with enabled features. Both configurations had a best performing query length of $2$. In comparison with \textit{TF-IDF} the archived accuracy is $17.01$ percent worse for disabled features, and $12.63$ percent worse for enabled features. Furthermore, when comparing with \textit{Okapi BM$25$} the accuracy is $7.09$ percent worse for disabled features, and $6.79$ percent worse for enabled features. The highest accuracy is $1.19$ percent better for unstructured text retrieval than for structured text retrieval.
 
+When only a few keywords are used to search for scientific articles it is not necessary to have the overhead of IMRaD chapter features. This happens as the keywords define content that should occur anywhere in the articles. Additional constraints where terms should appear are rather obstructive as they tend to hinder the finding of relevant articles.
+
+It was unsurprisingly that \textit{TF-IDF} has a high accuracy. We used \textit{Okapi BM$25$} only with recommended parameters. A more precised parameter search would be necessary to suite our generated dataset. In comparison with the other ranking algorithms \textit{Divergence from Randomness} always had a bad performance. This bad performance is probably related to the used dataset. The good performance of \textit{Ranked Boolean Retrieval} was surprising. This probably happens as the zone scores are leveraging to hide unnecessary article areas, and mark important article areas.
+
+
 \subsection{Implicit Search using Scientific Articles}
 \label{sec:implicit_search_results}
 
@@ -193,13 +201,12 @@ where "Title" defines the header of the document component, and "Text" the text 
 
 The fifth best performing algorithm is \textit{Divergence from Randomness}. It has an accuracy of $0.0137$ with enabled and disabled features. In comparison with \textit{TF-IDF} the archived accuracy is $14.76$ percent worse for enabled features, and $10.26$ percent worse for disabled features. Furthermore, when comparing with \textit{Ranked Boolean Retrieval} the accuracy is $3.69$ percent worse for enabled features, and $3.29$ percent worse for disabled features. 
 
+When articles are used to search for other articles they can be seen as large and precised queries. IMRaD chapter features are leveraging to define these queries. This happens as constraints where terms should appear are helpful to describe the expected content of articles.
+
+It was unsurprisingly that \textit{TF-IDF} has a high accuracy. We used \textit{Okapi BM$25$} only with recommended parameters. A more precised parameter search would be necessary to suite our generated dataset. In comparison with the other ranking algorithms \textit{Divergence from Randomness} always had a bad performance. This bad performance is probably related to the used dataset. In this experiments it can be seen that the zone scores of \textit{Ranked Boolean Retrieval} are not enough to fit the complexity of large queries. 
+
+
 \section{Chapter Based Search}
-
-When searching with entire scientific articles we obtain better results with the usage of IMRaD chapter features in our previous experiments. Therefore, we focus on structured text retrieval and the influence of single chapters on the search result. The idea is that keywords of a chapter can be used to search in in other chapters. For example, the Methods section of one paper would be referenced in the Related Work of another paper.
-
-We used the same dataset and evaluation process as for our implicit search evaluation (see \Cref{sec:implicit_search_results}). In our used dataset the background chapter was available in addition to the IMRaD chapters. The evaluation was done for \textit{TF-IDF} and \textit{Okapi BM$25$} as they are foundational ranking algorithms.
-
-The chapter of the article that is used to search for other articles is defined as input chapter. Furthermore, the chapter that is searched in the articles of the collection is defined as search chapter. For example, the introduction of an article is used to search in the discussion of articles in the collection. The introduction is called input chapter and the discussion is called search chapter.  
 
 \begin{table}[b!]
 \vrule\pgfplotstabletypeset[%
@@ -220,6 +227,12 @@ Discussion,   0.1188, 0.1078, 0.0957, 0.0914, 0.084
   \caption[Chapter based Search using TF-IDF]{\textbf{Chapter based Search using TF-IDF.} Keywords of a single chapter are used to search in single chapters of other articles. This input chapters are represented as rows, and the search chapters are represented as columns. Mean average precision was used to evaluate the results of the TF-IDF ranking algorithm.}
   \label{tbl:chapter_based_tfidf}
 \end{table}
+
+When searching with entire scientific articles we obtain better results with the usage of IMRaD chapter features in our previous experiments. Therefore, we focus on structured text retrieval and the influence of single chapters on the search result. The idea is that keywords of a chapter can be used to search in in other chapters. For example, the Methods section of one paper would be referenced in the Related Work of another paper.
+
+We used the same dataset and evaluation process as for our implicit search evaluation (see \Cref{sec:implicit_search_results}). In our used dataset the background chapter was available in addition to the IMRaD chapters. The evaluation was done for \textit{TF-IDF} and \textit{Okapi BM$25$} as they are foundational ranking algorithms.
+
+The chapter of the article that is used to search for other articles is defined as input chapter. Furthermore, the chapter that is searched in the articles of the collection is defined as search chapter. For example, the introduction of an article is used to search in the discussion of articles in the collection. The introduction is called input chapter and the discussion is called search chapter.
 
 In \Cref{tbl:chapter_based_tfidf} the performance results of the \textit{TF-IDF} ranking algorithm is proposed. When \textit{Introduction}, \textit{Background}, \textit{Results}, or \textit{Discussion} is the input chapter the best results are obtained when \textit{Introduction} is the search chapter. Furthermore, when \textit{Methods} is the input chapter then the best performance is given if \textit{Methods} is also the search chapter. The highest accuracy is $0.1454$, where \textit{Background} is the input chapter, and \textit{Introduction} the search chapter. When summing up accuracies \textit{Background} is the best performing input chapter, and \textit{Introduction} the best performing search chapter.
 
@@ -245,6 +258,6 @@ Discussion,   0.0799, 0.0682, 0.0587, 0.0595, 0.0616
 
 In \Cref{tbl:chapter_based_okapi} the performance results of the \textit{Okapi BM$25$} ranking algorithm is proposed. When \textit{Introduction}, \textit{Background}, or \textit{Discussion} is the input chapter the best results are obtained when \textit{Introduction} is the search chapter. For \textit{Methods} and \textit{Results} the best results are obtained when they are used as input chapter as well as search chapter. The highest accuracy is $0.0909$, where \textit{Background} is the input chapter, and \textit{Introduction} the search chapter. When summing up accuracies \textit{Background} is the best performing input chapter, and \textit{Introduction} the best performing search chapter.
 
-\textit{TF-IDF} archives better results than \textit{Okapi BM$25$} when comparing the performance results. Both ranking algorithms have \textit{Background} as their best performing input chapter, and \textit{Introduction} as their best performing search chapter. When comparing their highest accuracy \textit{TF-IDF} is $5.45$ percent better than \textit{Okapi BM$25$}. This reflects also
-approximately the performance of the other input chapters and search chapters.
+\textit{TF-IDF} archives better results than \textit{Okapi BM$25$} when comparing the performance results. Both ranking algorithms have \textit{Background} as their best performing input chapter, and \textit{Introduction} as their best performing search chapter. When comparing their highest accuracy \textit{TF-IDF} is $5.45$ percent better than \textit{Okapi BM$25$}. This reflects also approximately the performance of the other input chapters and search chapters.
 
+The accuracy of implicit search with enables IMRaD chapter Features is $1.59$ percent better that the highest accuracy of search with single chapters. One interesting point is that queries for single chapters are approximately a factor of $5$ smaller than queries of implicit search, but have almost the same performance. We used \textit{Okapi BM$25$} only with recommended parameters. A more precised parameter search would be necessary to suite our generated dataset.
