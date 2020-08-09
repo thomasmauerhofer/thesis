@@ -1,5 +1,5 @@
-\chapter{Evaluation}
-\label{cha:evaluation}
+\chapter{Results and Discussion}
+\label{cha:results_discussion}
 
 In this chapter we discuss the results of our information retrieval model. For our evaluation, we generated a dataset with $821$ scientific articles. Each document in the dataset was stored with its logical structure (title, headings, chapters, sections, subsections, subsubsections). Additionally, sections contain information about their IMRaD-Types. Usually a section has only one IMRaD-Type, but some of them have more (e.g., Results and Discussion are assigned the IMRaD-Types Result and Discussion). Furthermore, the articles are linked according their citations. For more information about the creation of our dataset see ~\Cref{sec:dataset}.
 
@@ -148,6 +148,7 @@ The forth best algorithm is \textit{Okapi BM$25$}. It has an accuracy of $0.1207
 The fifth best algorithm is \textit{Divergence from Randomness}. It has an accuracy of $0.0498$ with disabled features, and an accuracy of $0.0379$ with enabled features. Both configurations had a best performing query length of $2$. In comparison with \textit{TF-IDF} the archived accuracy is $17.01$ percent worse for disabled features, and $12.63$ percent worse for enabled features. Furthermore, when comparing with \textit{Okapi BM$25$} the accuracy is $7.09$ percent worse for disabled features, and $6.79$ percent worse for enabled features. The highest accuracy is $1.19$ percent better for unstructured text retrieval than for structured text retrieval.
 
 \subsection{Implicit Search using Scientific Articles}
+\label{sec:implicit_search_results}
 
 In common information retrieval models there is information available that was not explicitly provided by the user. Leveraging this type of information in addition is denoted implicit search. In our model we use explicit and implicit information of scientific articles to search for other articles. This approach is called \textit{more like this}.
 
@@ -164,7 +165,7 @@ We used a generated dataset with $821$ scientific articles to evaluate our propo
       Yes & $0.1463$ & $0.1613$ & $0.0506$ & $0.0882$ & $0.0137$ \\
       \bottomrule
     \end{tabular}
-  \caption[Ranking results using scientific articles]{\textbf{Ranking results of the used weighting schemes using scientific articles.} We compared our proposed ranking algorithms with respect to the underlying structure. Therefore, we used scientific articles unstructured and structured to search for other scientific articles. For structured articles, we focus on the underlying IMRaD structure.}
+  \caption[Ranking results using scientific articles]{\textbf{Ranking results of the used weighting schemes using scientific articles.} We compared our proposed ranking algorithms with respect to the underlying structure. Therefore, we used scientific articles unstructured and structured to search for other scientific articles. For structured articles, we focus on the underlying IMRaD structure. Mean average precision was used to evaluate the results.}
   \label{tbl:ranking_result_full}
 \end{table}
 
@@ -194,9 +195,11 @@ The fifth best performing algorithm is \textit{Divergence from Randomness}. It h
 
 \section{Chapter Based Search}
 
-Number of scientific articles: $821$
+When searching with entire scientific articles we obtain better results with the usage of IMRaD chapter features in our previous experiments. Therefore, we focus on structured text retrieval and the influence of single chapters on the search result. The idea is that keywords of a chapter can be used to search in in other chapters. For example, the Methods section of one paper would be referenced in the Related Work of another paper.
 
-describe evaluation, ranked boolean setup
+We used the same dataset and evaluation process as for our implicit search evaluation (see \Cref{sec:implicit_search_results}). In our used dataset the background chapter was available in addition to the IMRaD chapters. The evaluation was done for \textit{TF-IDF} and \textit{Okapi BM$25$} as they are foundational ranking algorithms.
+
+The chapter of the article that is used to search for other articles is defined as input chapter. Furthermore, the chapter that is searched in the articles of the collection is defined as search chapter. For example, the introduction of an article is used to search in the discussion of articles in the collection. The introduction is called input chapter and the discussion is called search chapter.  
 
 \begin{table}[b!]
 \vrule\pgfplotstabletypeset[%
@@ -214,13 +217,15 @@ Methods,      0.0947, 0.0857, 0.1017, 0.0897, 0.0668
 Results,      0.0877, 0.0783, 0.0815, 0.0783, 0.0631
 Discussion,   0.1188, 0.1078, 0.0957, 0.0914, 0.084
 }\vrule
-  \caption[Chapter based Search using TF-IDF]{\textbf{Chapter based Search using TF-IDF.} Describe me...}
+  \caption[Chapter based Search using TF-IDF]{\textbf{Chapter based Search using TF-IDF.} Keywords of a single chapter are used to search in single chapters of other articles. This input chapters are represented as rows, and the search chapters are represented as columns. Mean average precision was used to evaluate the results of the TF-IDF ranking algorithm.}
   \label{tbl:chapter_based_tfidf}
 \end{table}
 
+In \Cref{tbl:chapter_based_tfidf} the performance results of the \textit{TF-IDF} ranking algorithm is proposed. When \textit{Introduction}, \textit{Background}, \textit{Results}, or \textit{Discussion} is the input chapter the best results are obtained when \textit{Introduction} is the search chapter. Furthermore, when \textit{Methods} is the input chapter then the best performance is given if \textit{Methods} is also the search chapter. The highest accuracy is $0.1454$, where \textit{Background} is the input chapter, and \textit{Introduction} the search chapter. When summing up accuracies \textit{Background} is the best performing input chapter, and \textit{Introduction} the best performing search chapter.
+
 \begin{table}[b!]
 \vrule\pgfplotstabletypeset[%
-     color cells={min=0,max=0.1,textcolor=black},
+     color cells={min=0.0,max=0.1,textcolor=black},
      /pgfplots/colormap={blackwhite}{rgb255=(255,170,0) color=(white) rgb255=(255,170,0)},
     /pgf/number format/fixed,
     /pgf/number format/precision=4,
@@ -234,6 +239,12 @@ Methods,      0.0565, 0.0417, 0.0593, 0.0379, 0.0403
 Results,      0.0438, 0.0426, 0.0433, 0.0461, 0.0443
 Discussion,   0.0799, 0.0682, 0.0587, 0.0595, 0.0616
 }\vrule
-  \caption[Chapter based Search using Okapi BM$25$]{\textbf{Chapter based Search using Okapi BM$25$.}  Describe me...}
+  \caption[Chapter based Search using Okapi BM$25$]{\textbf{Chapter based Search using Okapi BM$25$.} Keywords of a single chapter are used to search in single chapters of other articles. This input chapters are represented as rows, and the search chapters are represented as columns. Mean average precision was used to evaluate the results of the Okapi BM$25$ ranking algorithm.}
   \label{tbl:chapter_based_okapi}
 \end{table}
+
+In \Cref{tbl:chapter_based_okapi} the performance results of the \textit{Okapi BM$25$} ranking algorithm is proposed. When \textit{Introduction}, \textit{Background}, or \textit{Discussion} is the input chapter the best results are obtained when \textit{Introduction} is the search chapter. For \textit{Methods} and \textit{Results} the best results are obtained when they are used as input chapter as well as search chapter. The highest accuracy is $0.0909$, where \textit{Background} is the input chapter, and \textit{Introduction} the search chapter. When summing up accuracies \textit{Background} is the best performing input chapter, and \textit{Introduction} the best performing search chapter.
+
+\textit{TF-IDF} archives better results than \textit{Okapi BM$25$} when comparing the performance results. Both ranking algorithms have \textit{Background} as their best performing input chapter, and \textit{Introduction} as their best performing search chapter. When comparing their highest accuracy \textit{TF-IDF} is $5.45$ percent better than \textit{Okapi BM$25$}. This reflects also
+approximately the performance of the other input chapters and search chapters.
+
