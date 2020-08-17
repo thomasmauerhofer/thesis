@@ -235,8 +235,6 @@ We use the same dataset and evaluation process as for our implicit search evalua
 
 The chapter of the article that is used to search for other articles is defined as input chapter. Furthermore, the chapter that is searched in the articles of the collection is defined as search chapter. For example, the introduction of an article is used to search in the discussion of articles in the collection. In this example the introduction is the input chapter and the discussion is the search chapter.
 
-\Cref{tbl:chapter_based_tfidf} highlights the performance results of \textit{TF-IDF}. When \textit{Introduction}, \textit{Background}, \textit{Results}, or \textit{Discussion} is the input chapter the best results are obtained when \textit{Introduction} is the search chapter. Furthermore, when \textit{Methods} is the input chapter then the best performance is given if \textit{Methods} is also the search chapter. The highest accuracy is $0.1454$, where \textit{Background} is the input chapter, and \textit{Introduction} the search chapter. When summing up accuracies \textit{Background} is the best performing input chapter, and \textit{Introduction} the best performing search chapter.
-
 \begin{table}[b!]
 \vrule\pgfplotstabletypeset[%
      color cells={min=0.0,max=0.1,textcolor=black},
@@ -256,6 +254,8 @@ Discussion,   0.0799, 0.0682, 0.0587, 0.0595, 0.0616
   \caption[Chapter based Search using Okapi BM$25$]{\textbf{Chapter based Search using Okapi BM$25$.} Keywords of a single chapter are used to search in individual chapters of other articles. These input chapters are represented as rows, and the search chapters are represented as columns. Mean average precision was used to evaluate the results of the Okapi BM$25$ ranking algorithm.}
   \label{tbl:chapter_based_okapi}
 \end{table}
+
+\Cref{tbl:chapter_based_tfidf} highlights the performance results of \textit{TF-IDF}. When \textit{Introduction}, \textit{Background}, \textit{Results}, or \textit{Discussion} is the input chapter the best results are obtained when \textit{Introduction} is the search chapter. Furthermore, when \textit{Methods} is the input chapter then the best performance is given if \textit{Methods} is also the search chapter. The highest accuracy is $0.1454$, where \textit{Background} is the input chapter, and \textit{Introduction} the search chapter. When summing up accuracies \textit{Background} is the best performing input chapter, and \textit{Introduction} the best performing search chapter.
 
 \Cref{tbl:chapter_based_okapi} highlights the performance results of \textit{Okapi BM$25$}. When \textit{Introduction}, \textit{Background}, or \textit{Discussion} is the input chapter the best results are obtained when \textit{Introduction} is the search chapter. For \textit{Methods} and \textit{Results} the best results are obtained when they are used as input chapter as well as search chapter. The highest accuracy is $0.0909$, where \textit{Background} is the input chapter, and \textit{Introduction} the search chapter. When summing up accuracies \textit{Background} is the best performing input chapter, and \textit{Introduction} the best performing search chapter.
 
