@@ -70,6 +70,7 @@ Second, we discuss implicit search were we use entire scientific articles to sea
 
 
 \subsection{Explicit Search using N-Grams}
+\label{sec:explicit_search_ngrams}
 
 Searching with information provided by the user is denoted as explicit search. For our information retrieval model this is done by formalizing user queries. These queries can be seen as a sequence of keywords.
 
@@ -229,7 +230,7 @@ Discussion,   0.1188, 0.1078, 0.0957, 0.0914, 0.084
   \label{tbl:chapter_based_tfidf}
 \end{table}
 
-When searching with entire scientific articles (see \Cref{sec:implicit_search_results}) we obtain better results with the usage of IMRaD chapter features compared to the experiments in \Cref{sec:leveraging_imrad_structure_features}. Therefore, we focus on structured text retrieval and the influence of single chapters on the search result. The idea is that keywords of a chapter can be used to search in other chapters. For example, the Methods section of one paper can be referenced in the Related Work of another paper.
+When searching with entire scientific articles (see \Cref{sec:implicit_search_results}) we obtain better results with the usage of IMRaD chapter features compared to the experiments in \Cref{sec:explicit_search_ngrams}. Therefore, we focus on structured text retrieval and the influence of single chapters on the search result. The idea is that keywords of a chapter can be used to search in other chapters. For example, the Methods section of one paper can be referenced in the Related Work of another paper.
 
 We use the same dataset and evaluation process as for our implicit search evaluation (see \Cref{sec:implicit_search_results}). In our dataset the background chapter is available in addition to the IMRaD chapters. The evaluation was done for \textit{TF-IDF} and \textit{Okapi BM$25$} as they are state-of-the-art ranking algorithms.
 
