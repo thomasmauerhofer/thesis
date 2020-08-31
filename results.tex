@@ -62,7 +62,7 @@ where $N_q$ is the total number of queries.
 \section{Leveraging IMRaD Structure Features}
 \label{sec:leveraging_imrad_structure_features}
 
-In our first experiments we compare unstructured text retrieval with structured text retrieval. Therefore, each document in the dataset contains multiple sets of index terms (see \Cref{sec:model} for the definition of the document). For structured text retrieval, we focus on the underlying IMRaD structure.
+In our first experiments we compare unstructured text retrieval with structured text retrieval. Therefore, each document in the document collection contains multiple sets of index terms (see \Cref{sec:model} for the definition of the document). For structured text retrieval, we focus on the underlying IMRaD structure.
 
 First, we evaluate explicit search for which query terms have to be formulated explicitly. For example, given a query $q_1=$"\textit{network} IN \texttt{Methods}" the system leverages different sets to search for the term. For structured text retrieval the Methods-set is used as it was specified in the query. In our system IN-statements of queries are ignored for unstructured text retrieval, as all terms are searched in the set containing all index terms.
 
