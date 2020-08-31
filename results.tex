@@ -24,7 +24,7 @@ The effectivity of an information retrieval system (IRS) is lean on the underlyi
       {Document collection split according their relevance.}
       {fig:precision_recall}
 
-Evaluation of a IRS is based on the set of relevant documents provided by the system. To evaluate a generated set without any ranking (unordered) $2$ information retrieval basic measures known as \textit{Precision} and \textit{Recall} are used. \textit{Precision} is a measurement of retrieved documents (see \Cref{fig:precision_recall} for sets in the document collection split according their relevance) that are relevant for the user:
+Evaluation of a IRS is based on the set of relevant documents provided by the system. To evaluate a generated set $2$ information retrieval basic measures known as \textit{Precision} and \textit{Recall} are used. Both measures do not take any ranking of the relevant documents into account. \textit{Precision} is a measurement of retrieved documents (see \Cref{fig:precision_recall} for sets in the document collection split according their relevance) that are relevant for the user:
 \begin{align}
   \label{precision}
   \text{Precision} = & \frac{\text{\# relevant items retrieved}}{\text{\# retrieved items}} \nonumber \\
@@ -39,14 +39,14 @@ Evaluation of a IRS is based on the set of relevant documents provided by the sy
 \end{align}
 There is a trade-off between the two measures. Therefore, when having a \textit{Recall} of $1$ it is possible to have a low \textit{Precision}. This happens as \textit{Recall} always increasing until all relevant documents are retrieved, but new received documents can be \textit{false positives}. Hence, the \textit{Precision} decreases, and \textit{Recall} stays the same.
 
-There exist many different metrics to evaluate generated sets with ranking (ordered). Mean Average Precision is one of the most commonly used evaluation techniques. It is defined as the average of all precision values after a new relevant document is observed:
+There exist many different metrics to evaluate generated sets with ranking (ordered). Average Precision is one of the most commonly used evaluation techniques. It is defined as the average of all precision values after a new relevant document is observed:
 \begin{align}
   \label{map_of_a_single_query}
-  \mathit{MAP}_i = \frac{1}{|R_i|}\sum_{k = 1}^{|R_i|} P(R_i[k]),
+  \mathit{AP}_i = \frac{1}{|R_i|}\sum_{k = 1}^{|R_i|} P(R_i[k]),
 \end{align}
 where $R_i$ is the set of relevant documents with respect to query $q_i$. $R_i[k]$ represents the reference of the $k$th document in $R_i$, and $P(R_i[k])$ is the \textit{Precision} of the document (see \Cref{precision}). If $R_i[k]$ belongs to a \textit{false positive} document $P(R_i[k]) = 0$. Furthermore, the Mean Average Precision over a set of queries is defined as:
 \begin{align}
-  \mathit{MAP} = \frac{1}{N_q}\sum_{i = 1}^{|N_q|} \mathit{MAP}_i,
+  \mathit{MAP} = \frac{1}{N_q}\sum_{i = 1}^{|N_q|} \mathit{AP}_i,
 \end{align}
 where $N_q$ is the total number of queries.
 
@@ -62,14 +62,26 @@ where $N_q$ is the total number of queries.
 \section{Leveraging IMRaD Structure Features}
 \label{sec:leveraging_imrad_structure_features}
 
-In our first experiments we compare unstructured text retrieval with structured text retrieval. For structured text retrieval, we focus on the underlying IMRaD structure. Therefore, each document in the dataset contains a set of all index terms. In addition, they contain $5$ sets for each IMRaD-type. The union of the $5$ sets differs from the set containing all index terms, as there exist areas in the document that cannot be assigned to an IMRaD-type (e.g., Abstract). 
+In our first experiments we compare unstructured text retrieval with structured text retrieval. For structured text retrieval, we focus on the underlying IMRaD structure. Therefore, each document in the dataset contains a set of all index terms ($DS_{\textit{All}}$). In addition, they contain $5$ sets for each IMRaD-type ($DS_\textit{Introduction}$, $DS_\textit{Background}$, $DS_\textit{Methods}$, $DS_\textit{Results}$, $DS_\textit{Discussion}$). The union of the $5$ sets differs from the set containing all index terms, as there exist areas in the document that cannot be assigned to an IMRaD-type (e.g., Abstract).
+
+To generate index terms stopwords are removed and words are stemmed during the indexing process of an article. Afterwards, the index terms are assigned to document sets. For example, "\textit{I love deadlines.}" is in the \textit{Introduction} and "\textit{I like the whooshing sound they make as they fly by.}" is in the \textit{Methods} of an article. The underlying document sets are given by $DS_{\textit{All}}$ = \{"\textit{love}", "\textit{deadlin}", "\textit{whoosh}", "\textit{sound}", "\textit{fly}"\}, $DS_{\textit{Introduction}}$ = \{"\textit{love}", "\textit{deadlin}"\}, and $DS_{\textit{Methods}}$ = \{"\textit{whoosh}", "\textit{sound}", "\textit{fly}"\}.
+%\lstset{language=XML}
+%\begin{lstlisting}
+%<document>
+%  <h1>Introduction</h1>
+%  <p>I love deadlines.</p>
+%  <h1>Methods</h1>
+%  <p>I like the whooshing sound they make as they fly 
+%     by.</p>
+%</document>
+%\end{lstlisting}
 
 First, we evaluate explicit search for which query terms have to be formulated explicitly. For example, given a query $q_1=$"\textit{network} IN \texttt{Methods}" the system leverages different sets to search for the term. For structured text retrieval the Methods-set is used as it was specified in the query. In our system IN-statements of queries are ignored for unstructured text retrieval, as all terms are searched in the set containing all index terms.
 
 Second, we discuss implicit search were we use entire scientific articles to search for other articles. For structured text retrieval, we split the input paper according to its IMRaD-structure. We generate a query that is similar to the query of the explicit variant with the extracted terms. For unstructured text retrieval the same process is used to create the query, however IN-statements are ignored here as well.
 
 
-\subsection{Explicit Search using N-Grams}
+\subsection{Explicit Search using Word N-Grams}
 \label{sec:explicit_search_ngrams}
 
 Searching with information provided by the user is denoted as explicit search. For our information retrieval model this is done by formalizing user queries. These queries can be seen as a sequence of keywords.
@@ -102,8 +114,8 @@ Mean Average Precision (see \Cref{sec:evaluation_of_ranking_algorithms}) is used
 
 All $5$ algorithms achieve better performance results without IMRaD chapter features. Therefore, the ranking is generated with respect to their achieved accuracy when IMRaD chapter features are disabled. The best performing algorithm is \textit{TF-IDF}. It achieves a MAP of $0.2199$ with disabled features, where the query consists of $11$ terms. In contrast, the same algorithm achieves a MAP of $0.1642$ with enabled features and a query length of $12$. Therefore, unstructured text retrieval is $5.57 \%$ better than structured text retrieval for this configuration.
 
-The second best algorithm is \textit{TF}. It achieves an accuracy of $0.1966$ with disabled features and a query length of $11$. In contrast, the same algorithm achieves a MAP of $0.1293$ with enabled features and a query length of $12$. Therefore, unstructured text retrieval is $6.73 \%$ better than structured text retrieval for this configuration. In comparison to \textit{TF-IDF} the achieved accuracy is $2.33 \%$ lower with disabled features, and $3.49 \%$ lower with enabled features. The best performing query lengths are the same as for \textit{TF-IDF}.
-
+The second best algorithm is \textit{TF}. It achieves an accuracy of $0.1966$ with disabled features and a query length of $11$. In contrast, the same algorithm achieves a MAP of $0.1293$ with enabled features and a query length of $12$.
+% split paragraph to prevent formatting issues of the big table
 \begin{table}[h]
   \begin{adjustwidth}{-2cm}{}
     \begin{tabular}{ C{1cm} C{1cm} C{2.1cm}|C{2.1cm} C{2.1cm} C{2.1cm} C{2.1cm} C{2.1cm} }
@@ -144,6 +156,8 @@ The second best algorithm is \textit{TF}. It achieves an accuracy of $0.1966$ wi
 \end{table}
 \clearpage
 
+Therefore, unstructured text retrieval is $6.73 \%$ better than structured text retrieval for this configuration. In comparison to \textit{TF-IDF} the achieved accuracy is $2.33 \%$ lower with disabled features, and $3.49 \%$ lower with enabled features. The best performing query lengths are the same as for \textit{TF-IDF}.
+
 The third best algorithm is \textit{Ranked Boolean Retrieval}. Zone scores $zs$ have to be defined to configure the algorithm (cf. \Cref{sec:ranking_strategies_in_xml_retrieval}). For the experiments only zones that contain text areas are set to a value greater zero. This is done as all citations were extracted from text areas. In our model, these are text areas of sections, subsections, and subsubsections. Therefore, the constant zone scores are $zs_{\text{Section}} = 0.34$, $zs_{\text{Subsection}} = 0.33$, and $zs_{\text{Subsubsection}} = 0.33$.
 
 \textit{Ranked Boolean Retrieval} achieves an accuracy of $0.1921$ with disabled features and a query length of $11$. Hence, in the context of unstructured text retrieval the best performing query length is the same as for \textit{TF-IDF} and \textit{TF}. In contrast, the same algorithm achieves a MAP of $0.1015$ with enabled features and a query length of $9$. Therefore, unstructured text retrieval is $9.06 \%$ better than structured text retrieval for this configuration. In comparison to \textit{TF-IDF} the achieved accuracy is $2.78 \%$ lower with disabled features and $6.27 \%$ lower with enabled features. Furthermore, in comparison to \textit{TF} the accuracy is $0.45 \%$ lower with disabled features, and $2.78 \%$ lower with enabled features.
@@ -154,7 +168,7 @@ The fifth best algorithm is \textit{Divergence from Randomness}. It achieves an 
 
 An interpretation of the results captures that it is not necessary to have the overhead of IMRaD chapter features when only a few keywords are used to search for scientific articles. This happens as the keywords define content that should occur anywhere in the articles. Additional constraints that restrict where terms can appear are rather obstructive as they tend to prevent the retrieval of relevant articles.
 
-Furthermore, the results of each ranking algorithm were interpreted. There it was unsurprisingly that \textit{TF-IDF} outperforms the other algorithms. We used \textit{Okapi BM$25$} only with recommended parameters. An exhaustive parameter search would be necessary to fit our generated dataset. In comparison to the other ranking algorithms \textit{Divergence from Randomness} was always outperformed by all other algorithms. This bad performance is probably related to our dataset. The good performance of \textit{Ranked Boolean Retrieval} was surprising. We can probably attribute this to the zone scores, as they are hiding irrelevant areas, and mark important article areas.
+Furthermore, the results of each ranking algorithm were interpreted. \textit{TF-IDF} outperforms the other algorithms, which was unsurprisingly as good results are often observed for this algorithm. During our research we found \textit{Okapi BM$25$} with similar good results, but only when an exhaustive parameter search was done. We used \textit{Okapi BM$25$} with recommended parameters, which resulted with lower results. In comparison to the other ranking algorithms \textit{Divergence from Randomness} was always outperformed by all other algorithms. This bad performance is probably related to our dataset. The good performance of \textit{Ranked Boolean Retrieval} was surprising. We can probably attribute this to the zone scores, as they are hiding irrelevant areas, and mark important article areas.
 
 
 \subsection{Implicit Search using Scientific Articles}
