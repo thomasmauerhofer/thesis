@@ -164,12 +164,16 @@ The out-degree distribution and their properties are displayed in \Cref{fig:outd
 \section{Model}
 \label{sec:model}
 
-Write general about the implemented information retrieval model ...
+An information retrieval model is defined by the quadruple $[\textbf{D}, \textbf{Q}, \mathcal{F}, \mathcal{R}(q_i, d_j)]$ that contains the design of documents in the document collection, queries, the framework, and the ranking function (cf. \Cref{sec:information_retrieval_models}). We designed our system to compare various common ranking algorithms. Therefore we generated a model where ranking algorithm can easily be changed by a config parameter.
 
-\subsection{Query Structure}
+The document definition was one of the most challenging parts, as our evaluated ranking algorithms need various data sources. Furthermore, 
 
-Write how a query looks like - explicit and implicit
 
-\subsection{Introducing IMRaD Structure Features into Weighing Schemes}
 
-Write how the algorithms described in \Cref{sec:unstructured_text_Retrieval} are modified for IMRaD structure features.
+%\subsection{Query Structure}
+
+%Write how a query looks like - explicit and implicit
+
+%\subsection{Introducing IMRaD Structure Features into Weighing Schemes}
+
+%Write how the algorithms described in \Cref{sec:unstructured_text_Retrieval} are modified for IMRaD structure features.
