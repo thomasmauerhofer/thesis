@@ -18,7 +18,7 @@ We used a text mining pre-processing technique as introduced by Vijayarani et al
     & \multicolumn{3}{c}{\textbf{per Section}} & \multicolumn{2}{c}{\textbf{Overall}} \\
     \textbf{IMRaD Type} & \textbf{Section Title} & \textbf{\# Paper} & \textbf{Percent} & \textbf{\# Paper} & \textbf{Percent} \\ \midrule
     Introduction & Introduction & $822$ & $100\%$ & $822$ & $100\%$ \\ \midrule
-    Related Work & Related Work & $465$ & $56.57\%$ & $465$ & $56.57\%$ \\ \midrule
+    Background & Related Work & $465$ & $56.57\%$ & $465$ & $56.57\%$ \\ \midrule
     \multirow{3}{*}{Methods} & Method & $97$ & $11.8\%$ & \multirow{3}{*}{$312$} & \multirow{3}{*}{$37.96\%$} \\
     & Model & 134 & $16.3\%$ \\
     & Approach & 81 & $9.85\%$ \\ \midrule
@@ -34,7 +34,7 @@ We used a text mining pre-processing technique as introduced by Vijayarani et al
   \label{tbl:mapping_section_names}
 \end{table}
 
-One additional information we had to add was IMRaD structure. The IMRaD structure maps Related Work to be part of the Introduction. Since most of our papers had an own section titled Related Work we introduce an additional type for it. We were able to classify the IMRaD structure with simple keyword detection in the section titles. \Cref{tbl:mapping_section_names} shows the mapping between IMRaD-Types and these titles. Because it was not really possible to identify Method sections by using the section titles we used information about their position in the article. We manage that by using the Related Work as upper bound, and the Result section as lower bound. We classify all sections between these two bounds as a Method section. If the Related Work section was not available, we use the Introduction section as upper bound, or if the Result section was not available, we use the Discussion section as lower bound. If one of the two bounds could not be set, we discarded the scientific article. Note that, chapters can have several IMRaD-Types. For example, if a section was titled \textit{"Results and Discussion"} it belongs to the types result and discussion.
+One additional information we had to add was IMRaD structure (see \Cref{sec:imrad_structure}). The IMRaD structure maps \textit{Related Work} to be part of the \textit{Introduction}. Since most of our papers had an own section titled \textit{Related Work} we introduce an additional type called \textit{Background} for it. We were able to classify the IMRaD structure with simple keyword detection in the section titles. \Cref{tbl:mapping_section_names} shows the mapping between IMRaD-Types and these titles. Because it was not really possible to identify \textit{Method} sections by using the section titles we used information about their position in the article. We manage that by using the \textit{Background} section as upper bound, and the \textit{Result} section as lower bound. We classify all sections between these two bounds as a \textit{Method} section. When the \textit{Background} section was not available, we set the \textit{Introduction} section as upper bound. Additionally, when the \textit{Result} section was not available, we set the \textit{Discussion} section as lower bound. If one of the two bounds could not be set, we discarded the scientific article. Note that, chapters can have several IMRaD-Types. For example, if a section was titled \textit{"Results and Discussion"} it belongs to the types \textit{Result} and \textit{Discussion}.
 
 Another additional detail we had to add were links between the scientific articles. For this we performed a semi-automated annotation. Thereby similarities about the references of an article and the titles of all other articles are compared, and if they exceed a given threshold a recommendation to create a link between the two was given.
 
@@ -164,16 +164,31 @@ The out-degree distribution and their properties are displayed in \Cref{fig:outd
 \section{Model}
 \label{sec:model}
 
-An information retrieval model is defined by the quadruple $[\textbf{D}, \textbf{Q}, \mathcal{F}, \mathcal{R}(q_i, d_j)]$ that contains the design of documents in the document collection, queries, the framework, and the ranking function (cf. \Cref{sec:information_retrieval_models}). We designed our system to compare various common ranking algorithms. Therefore we generated a model where ranking algorithm can easily be changed by a config parameter.
+An information retrieval model is defined by the quadruple $[\textbf{D}, \textbf{Q}, \mathcal{F}, \mathcal{R}(q_i, d_j)]$ that contains the design of documents in the document collection, queries, the framework, and the ranking function (cf. \Cref{sec:information_retrieval_models}). We design our system to compare various common ranking algorithms. Therefore we generated a model where ranking algorithm can easily be changed by a config parameter. Additionally, our model was designed to work with unstructured as well as structured data. This is reflected by the query language. 
 
-The document definition was one of the most challenging parts, as our evaluated ranking algorithms need various data sources. Furthermore, 
+For structured text retrieval, we structure the documents according to their IMRaD sections (see \Cref{sec:imrad_structure}). In our dataset the background chapter is available in addition to the IMRaD chapters. Therefore, it was introduced as an additional IMRaD type.
 
+The challenge of the document definition was to provide data unstructured and structured. Hence, each document in the dataset contains a set of all index terms ($DS_{\textit{All}}$). In addition, they contain $5$ sets for each IMRaD-type ($DS_\textit{Introduction}$, $DS_\textit{Background}$, $DS_\textit{Methods}$, $DS_\textit{Results}$, $DS_\textit{Discussion}$). The union of the $5$ sets differs from the set containing all index terms, as there exist areas in the document that cannot be assigned to an IMRaD-type (e.g., Abstract).
 
+%\lstset{language=XML}
+%\begin{lstlisting}
+%<document>
+%  <h1>Introduction</h1>
+%  <p>I love deadlines.</p>
+%  <h1>Methods</h1>
+%  <p>I like the whooshing sound they make as they fly 
+%     by.</p>
+%</document>
+%\end{lstlisting}
 
-%\subsection{Query Structure}
+To generate index terms stopwords are removed and words are stemmed during the indexing process of a document. Afterwards, the index terms are assigned to document sets. For example, "\textit{I love deadlines.}" is in the \textit{Introduction} and "\textit{I like the whooshing sound they make as they fly by.}" is in the \textit{Methods} of a document. The underlying document sets are given by $DS_{\textit{All}}$ = \{"\textit{love}", "\textit{deadlin}", "\textit{whoosh}", "\textit{sound}", "\textit{fly}"\}, $DS_{\textit{Introduction}}$ = \{"\textit{love}", "\textit{deadlin}"\}, and $DS_{\textit{Methods}}$ = \{"\textit{whoosh}", "\textit{sound}", "\textit{fly}"\}.
 
+% query definition
 %Write how a query looks like - explicit and implicit
 
-%\subsection{Introducing IMRaD Structure Features into Weighing Schemes}
+% framework
+% write about: additional stored values. e.g. idf...
 
-%Write how the algorithms described in \Cref{sec:unstructured_text_Retrieval} are modified for IMRaD structure features.
+% ranking algorithm
+% unstructured, unstructured etc.
+% Write how the algorithms described in \Cref{sec:unstructured_text_Retrieval} are modified for IMRaD structure features.
