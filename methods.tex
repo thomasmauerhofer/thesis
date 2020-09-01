@@ -168,7 +168,12 @@ An information retrieval model is defined by the quadruple $[\textbf{D}, \textbf
 
 For structured text retrieval, we structure the documents according to their IMRaD sections (see \Cref{sec:imrad_structure}). In our dataset the background chapter is available in addition to the IMRaD chapters. Therefore, it was introduced as an additional IMRaD type.
 
-The challenge of the document definition was to provide data unstructured and structured. Hence, each document in the dataset contains a set of all index terms ($DS_{\textit{All}}$). In addition, they contain $5$ sets for each IMRaD-type ($DS_\textit{Introduction}$, $DS_\textit{Background}$, $DS_\textit{Methods}$, $DS_\textit{Results}$, $DS_\textit{Discussion}$). The union of the $5$ sets differs from the set containing all index terms, as there exist areas in the document that cannot be assigned to an IMRaD-type (e.g., Abstract).
+The challenge of the document definition was to provide data unstructured and structured. Hence, each document in the dataset contains a bag of words where all index terms of its text content ($DBW_{\textit{All}}$) are stored. In a bag of words each term is represented as a pair of term and term frequency. Additionally, the documents contain $5$ bag of words for each IMRaD-type ($DBW_\textit{Introduction}$, $DBW_\textit{Background}$, $DBW_\textit{Methods}$, $DBW_\textit{Results}$, $DBW_\textit{Discussion}$), where: 
+\begin{align}
+  DBW_\textit{IMRaD} = &DBW_\textit{Introduction} \cup DBW_\textit{Background} \cup DBW_\textit{Methods} \nonumber \\
+                       &\cup DBW_\textit{Results} \cup DBW_\textit{Discussion}.
+\end{align}
+$DBW_\textit{IMRaD}$ differs from $DBW_{\textit{All}}$, as there exist areas in the document that cannot be assigned to an IMRaD-type (e.g., Abstract).
 
 %\lstset{language=XML}
 %\begin{lstlisting}
@@ -181,10 +186,27 @@ The challenge of the document definition was to provide data unstructured and st
 %</document>
 %\end{lstlisting}
 
-To generate index terms stopwords are removed and words are stemmed during the indexing process of a document. Afterwards, the index terms are assigned to document sets. For example, "\textit{I love deadlines.}" is in the \textit{Introduction} and "\textit{I like the whooshing sound they make as they fly by.}" is in the \textit{Methods} of a document. The underlying document sets are given by $DS_{\textit{All}}$ = \{"\textit{love}", "\textit{deadlin}", "\textit{whoosh}", "\textit{sound}", "\textit{fly}"\}, $DS_{\textit{Introduction}}$ = \{"\textit{love}", "\textit{deadlin}"\}, and $DS_{\textit{Methods}}$ = \{"\textit{whoosh}", "\textit{sound}", "\textit{fly}"\}.
+To generate index terms stopwords are removed and words are stemmed during the indexing process of a document. Afterwards, the index terms are assigned to bag of words of a document. For example, "\textit{I love deadlines.}" is in the \textit{Introduction} and "\textit{I like the whooshing sound they make as they fly by.}" is in the \textit{Methods} of a document $A$. The underlying bag of words in the document are given by:
+\begin{equation}
+  \label{bag_of_words_example_A}
+  \begin{split}
+  DBW_{\textit{All}} &= \{"\textit{love}": 1, "\textit{deadlin}" : 1, "\textit{whoosh}" : 1, "\textit{sound}": 1, "\textit{fly}": 1\} \\ 
+  DBW_{\textit{Introduction}} &= \{"\textit{love}": 1, "\textit{deadlin}": 1\} \\
+  DBW_{\textit{Methods}} &= \{"\textit{whoosh}": 1, "\textit{sound}": 1, "\textit{fly}": 1\}.
+  \end{split}
+\end{equation}
+IMRaD sections that do not occur in the document are reflected by an empty bag of words. In this example the union of $DBW_{\textit{Introduction}}$ and $DBW_{\textit{Methods}}$ is similar to $DBW_{\textit{All}}$. When we define $A$ to additionally contain "\textit{I love music.}" in the \textit{Abstract} then $DBW_{\textit{All}}$ changes, but $DBW_{\textit{Introduction}}$ and $DBW_{\textit{Methods}}$ stay the same.
 
-% query definition
-%Write how a query looks like - explicit and implicit
+We define our query in a way that the user can choose if unstructured or structured text retrieval is used. Therefore, we design an IN-statement that connects query terms and IMRaD-Types. For example, with the query "\textit{local}, \textit{network} IN \texttt{Methods}" a user can specify that the terms \textit{local} and \textit{network} should occur in the \texttt{Methods} section of a document. The left part of the IN-statement is a set of query terms. Hence, multiple occurrences of a single term in the query does not affect the outcome. The right part of the IN-statement defines which bag of words has to be searched to find the term.
+
+When a query contains terms without any IN-statement it denotes that unstructured text retrieval has to be used. Therefore, the terms are searched in $DBW_{\textit{All}}$. As a result query terms are searched in $DBW_{\textit{All}}$ or $DBW_\textit{IMRaD}$, but never in both of them. This query structure avoids the usage of unstructured and structured text retrieval with a single request.
+
+We introduce an AND-statement to combine multiple IN-statements. For example, "\textit{area} IN \texttt{Background}" AND "\textit{local}, \textit{network} IN \texttt{Methods}" denotes that \textit{area} should occur in \texttt{Background} section and the terms \textit{local} and \textit{network} should occur in the \texttt{Methods} section of a document. The definition of the AND-statement leverages the possibility to search multiple bags of words with a single request. When an IMRaD type appears in multiple IN-statements the sets on the left part of the statement are combined at query time. The same holds when unstructured text retrieval is used (e.g. "\textit{area}" AND "\textit{local}, \textit{network}").
+
+Only one query term has to occur in the specified bag of words to mark a document as relevant. This increases the number of relevant documents in the resulting ranked list. For example, a query is given by "\textit{plane} IN \texttt{Introduction}" AND "\textit{fly} IN \texttt{Methods}". When document $A$ of the previous example (see \Cref{bag_of_words_example_A}) is searched with respect to the defined query it will be marked as relevant. This happens as \textit{fly} appears in $DBW_{\textit{Methods}}$. The maximum number of relevant documents in a generated ranked list can be set via a configuration parameter. Per default this setting is disabled.   
+
+
+% search with papers....
 
 % framework
 % write about: additional stored values. e.g. idf...

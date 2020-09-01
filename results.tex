@@ -62,9 +62,9 @@ where $N_q$ is the total number of queries.
 \section{Leveraging IMRaD Structure Features}
 \label{sec:leveraging_imrad_structure_features}
 
-In our first experiments we compare unstructured text retrieval with structured text retrieval. Therefore, each document in the document collection contains multiple sets of index terms (see \Cref{sec:model} for the definition of the document). For structured text retrieval, we focus on the underlying IMRaD structure.
+In our first experiments we compare unstructured text retrieval with structured text retrieval. Therefore, each document in the document collection contains multiple bag of words. In a bag of words each index term is represented as a pair of term and term frequency (see \Cref{sec:model} for the definition of the document). For structured text retrieval, we focus on the underlying IMRaD structure.
 
-First, we evaluate explicit search for which query terms have to be formulated explicitly. For example, given a query $q_1=$"\textit{network} IN \texttt{Methods}" the system leverages different sets to search for the term. For structured text retrieval the Methods-set is used as it was specified in the query. In our system IN-statements of queries are ignored for unstructured text retrieval, as all terms are searched in the set containing all index terms.
+First, we evaluate explicit search for which query terms have to be formulated explicitly. For example, given a query $q_1=$"\textit{network} IN \texttt{Methods}" the system leverages different bag of words to search for the term. For structured text retrieval the Methods-bag of words is used as it was specified in the query. In our system IN-statements of queries are ignored for unstructured text retrieval, as all terms are searched in the bag of words containing all index terms of a document.
 
 Second, we discuss implicit search were we use entire scientific articles to search for other articles. For structured text retrieval, we split the input paper according to its IMRaD-structure. We generate a query that is similar to the query of the explicit variant with the extracted terms. For unstructured text retrieval the same process is used to create the query, however IN-statements are ignored here as well.
 
@@ -104,8 +104,8 @@ All $5$ algorithms achieve better performance results without IMRaD chapter feat
 
 The second best algorithm is \textit{TF}. It achieves an accuracy of $0.1966$ with disabled features and a query length of $11$. In contrast, the same algorithm achieves a MAP of $0.1293$ with enabled features and a query length of $12$. Therefore, unstructured text retrieval is $6.73 \%$ better than structured text retrieval for this configuration. In comparison to \textit{TF-IDF} the achieved accuracy is $2.33 \%$ lower with disabled features, and $3.49 \%$ lower with enabled features. The best performing query lengths are the same as for \textit{TF-IDF}.
 
-The third best algorithm is \textit{Ranked Boolean Retrieval}. Zone scores $zs$ have to be defined to configure the algorithm (cf. \Cref{sec:ranking_strategies_in_xml_retrieval}). For the experiments only zones that contain text areas are set to a value greater zero. This is done as all citations were extracted from text areas. In our model, these are text areas of sections, subsections, and subsubsections. Therefore, the constant zone scores are $zs_{\text{Section}} = 0.34$, $zs_{\text{Subsection}} = 0.33$, and $zs_{\text{Subsubsection}} = 0.33$.
-
+The third best algorithm is \textit{Ranked Boolean Retrieval}. Zone scores $zs$ have to be defined to configure the algorithm (cf. \Cref{sec:ranking_strategies_in_xml_retrieval}). For the experiments only zones that contain text areas are set to a value greater zero. This is done as all citations were extracted from text areas. 
+% split paragraph
 \begin{table}[h]
   \begin{adjustwidth}{-2cm}{}
     \begin{tabular}{ C{1cm} C{1cm} C{2.1cm}|C{2.1cm} C{2.1cm} C{2.1cm} C{2.1cm} C{2.1cm} }
@@ -145,6 +145,8 @@ The third best algorithm is \textit{Ranked Boolean Retrieval}. Zone scores $zs$ 
   \thisfloatpagestyle{empty}
 \end{table}
 \clearpage
+
+In our model, these are text areas of sections, subsections, and subsubsections. Therefore, the constant zone scores are $zs_{\text{Section}} = 0.34$, $zs_{\text{Subsection}} = 0.33$, and $zs_{\text{Subsubsection}} = 0.33$.
 
 \textit{Ranked Boolean Retrieval} achieves an accuracy of $0.1921$ with disabled features and a query length of $11$. Hence, in the context of unstructured text retrieval the best performing query length is the same as for \textit{TF-IDF} and \textit{TF}. In contrast, the same algorithm achieves a MAP of $0.1015$ with enabled features and a query length of $9$. Therefore, unstructured text retrieval is $9.06 \%$ better than structured text retrieval for this configuration. In comparison to \textit{TF-IDF} the achieved accuracy is $2.78 \%$ lower with disabled features and $6.27 \%$ lower with enabled features. Furthermore, in comparison to \textit{TF} the accuracy is $0.45 \%$ lower with disabled features, and $2.78 \%$ lower with enabled features.
 
