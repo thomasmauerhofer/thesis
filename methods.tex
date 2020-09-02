@@ -241,8 +241,14 @@ Furthermore, \textit{TF} is configured as ranking algorithm and a query is given
 
 Another example would be to use the same document $B$ and \textit{TF} as ranking algorithm, but the query is given by "\textit{love} IN \texttt{Introduction}" AND "\textit{whoosh} IN \texttt{Methods}". Therefore, the underlying query sets are $QS_{\textit{Introduction}} = \{"\textit{love}"\}$ and $QS_{\textit{Methods}} = \{"\textit{whoosh}"\}$. As IMRaD structure features are used the ranking is based on \Cref{imrad_formula}. The rank of $B$ is $1$ as counts are taken from $DBW_{\textit{Introduction}}$ and $DBW_{\textit{Methods}}$, and are divided by the number of IMRaD-types. There exist different variants to calculate the term frequency, as they are discussed in \Cref{sec:tfidf}.
 
-\textit{TF-IDF} and \textit{BM$25$} need the inverted document frequency in addition to the term frequency. The inverse document frequency represents the importance of a term regarding the whole document collection.
-% define 5 ranking algorithm - state where data comes from...
+\textit{RBR} is also a simple ranking algorithm as it combines zone scores with boolean expressions. The score is applied to the ranking if terms occur in the zone (cf. \Cref{sec:ranking_strategies_in_xml_retrieval}). \textit{TF} and \textit{RBR} do not have any external data sources that have to be provided by the framework. Therefore, the entire calculation of the rank can be done with the document and the query that are passed into the ranking function.
 
-% framework
-% write about: additional stored values. e.g. idf...
+To calculate a rank \textit{TF-IDF} and \textit{BM$25$} require the number of documents, where a term occurs in the document collection. This term occurrence is precalculated for all terms of the alphabet to increase the performance. We store multiple term occurrences for each term as we assumed that the distribution of words change over different IMRaD sections. Hence, we generate them as bags of words with respect to entire documents, and additionally for each IMRaD-type ($TO_{All}$, $TO_{Introduction}$, $TO_{Background}$, $TO_{Methods}$, $TO_{Results}$, $TO_{Discussion}$). For unstructured text retrieval $TO_{All}$, and for structured text retrieval the bag of words according to the IMRaD-type, denotes the term occurrence. 
+
+For \textit{TF-IDF} and \textit{BM$25$} the term occurrence is related to the calculation of the inverted document frequency. The inverted document frequency represents the importance of a term regarding the whole document collection. There exist different variants to calculate the inverted document frequency, as they are discussed in \Cref{sec:tfidf}.
+
+Term frequencies over the entire document collection are required to calculate rankings with \textit{DfR}. Therefore, they are precalculated the same way as the term occurrence for \textit{TF-IDF} and \textit{BM$25$}.
+
+Our proposed ranking algorithms require additional variables like the average document length, and the number of documents in the collection. The calculation of them is not described in detail as they can be computed with negligible effort. All precalculated values are bound by the document collection. Therefore, they have to be recalculated when the document collection changes.
+
+% abschluss...
