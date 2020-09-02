@@ -164,7 +164,7 @@ The out-degree distribution and their properties are displayed in \Cref{fig:outd
 \section{Model}
 \label{sec:model}
 
-An information retrieval model is defined by the quadruple $[\textbf{D}, \textbf{Q}, \mathcal{F}, \mathcal{R}(q_i, d_j)]$ that contains the design of documents in the document collection, queries, the framework, and the ranking function (cf. \Cref{sec:information_retrieval_models}). We design our system to compare various common ranking algorithms. Therefore we generated a model where ranking algorithm can easily be changed by a config parameter. Additionally, our model was designed to work with unstructured as well as structured data. This is reflected by the query language. 
+An information retrieval model is defined by the quadruple $[\textbf{D}, \textbf{Q}, \mathcal{F}, \mathcal{R}(q_i, d_j)]$ that contains the design of documents in the document collection, queries, the framework, and the ranking function (cf. \Cref{sec:information_retrieval_models}). We design our system to compare various common ranking algorithms. Therefore we generated a model where ranking algorithm can easily be changed by a configuration parameter. Additionally, our model was designed to work with unstructured as well as structured data. This is reflected by the query language. 
 
 For structured text retrieval, we structure the documents according to their IMRaD sections (see \Cref{sec:imrad_structure}). In our dataset the background chapter is available in addition to the IMRaD chapters. Therefore, it was introduced as an additional IMRaD type.
 
@@ -221,12 +221,27 @@ Finally, the system searches for other documents with the usage of the generated
 
 To take the IMRaD structure into account the calculation of the rank has to be changed for structured text retrieval:
 \begin{align}
+  \label{imrad_formula}
   sim(d_j, q) = \frac{1}{|\text{IMRaD-TYPES}|} \times \sum_{k \in \text{IMRaD-TYPES}} sim(d_{j, k}, q_k), 
 \end{align}
-where IMRaD-TYPES is an array containing all IMRaD-Types. ... %describe formula... d_j + d_{j, k} and q + q_k
+where IMRaD-TYPES is an array containing all IMRaD-Types. The document $d_j$ is a dictionary that contains all IMRaD bags of words, and $d_{j, k}$ is the bag of words of IMRaD-type $k$. Furthermore, $q$ is a dictionary containing all query sets, and $q_k$ is the query set of IMRaD-type $k$. However, for structured text retrieval the mean rank over all IMRaD-types is assigned to be the documents rank.
 
+In our system \textit{Term Frequency (TF)}, \textit{Term Frequency - Inverse Document Frequency (TF-IDF)}, \textit{BM$25$}, \textit{Divergence from Randomness (DfR)}, and \textit{Ranked Boolean Retrieval (RBR)} are available as ranking algorithms. A configuration parameter defines which ranking algorithm is used. Additional parameters of the ranking algorithm (e.g., $b$ and $K_1$ for BM$25$) are also added to the configuration. 
 
-%In our system \textit{Term Frequency (TF)}, \textit{Term Frequency - Inverse Document Frequency (TF-IDF)}, \textit{BM$25$}, \textit{Divergence from Randomness (DfR)}, and \textit{Ranked Boolean Retrieval (RBR)} are available as ranking algorithms. 
+The simplest ranking algorithm is \textit{TF}. It sums the frequencies given in a bag of words, for all terms in a query set. For example, document $B$ is given by:
+\begin{equation}
+  \label{bag_of_words_example_B}
+  \begin{split}
+  DBW_{\textit{All}} &= \{"\textit{love}": 5, "\textit{deadlin}" : 1, "\textit{whoosh}" : 2 \} \\ 
+  DBW_{\textit{Introduction}} &= \{"\textit{love}": 3, "\textit{deadlin}": 1\} \\
+  DBW_{\textit{Methods}} &= \{"\textit{love}": 2, "\textit{whoosh}": 2 \}.
+  \end{split}
+\end{equation}
+Furthermore, \textit{TF} is configured as ranking algorithm and a query is given by "\textit{love}, \textit{whoosh}". Hence, $QS_{\textit{All}} = \{"\textit{love}", "\textit{whoosh}"\}$ and the rank of $B$ is $7$ as the counts of $DBW_{\textit{All}}$ are taken.
+
+Another example would be to use the same document $B$ and \textit{TF} as ranking algorithm, but the query is given by "\textit{love} IN \texttt{Introduction}" AND "\textit{whoosh} IN \texttt{Methods}". Therefore, the underlying query sets are $QS_{\textit{Introduction}} = \{"\textit{love}"\}$ and $QS_{\textit{Methods}} = \{"\textit{whoosh}"\}$. As IMRaD structure features are used the ranking is based on \Cref{imrad_formula}. The rank of $B$ is $1$ as counts are taken from $DBW_{\textit{Introduction}}$ and $DBW_{\textit{Methods}}$, and are divided by the number of IMRaD-types. There exist different variants to calculate the term frequency, as they are discussed in \Cref{sec:tfidf}.
+
+\textit{TF-IDF} and \textit{BM$25$} need the inverted document frequency in addition to the term frequency. The inverse document frequency represents the importance of a term regarding the whole document collection.
 % define 5 ranking algorithm - state where data comes from...
 
 % framework
