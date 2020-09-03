@@ -40,11 +40,13 @@ Finally, we list our study results, and interpret them. This was divided into $3
 
 In this chapter we give a short recap of the results obtained in \Cref{cha:results_discussion}. Afterward, these results are discussed against each other to generate an overarching view of them.
 
-In our first experiments we compare unstructured text retrieval with structured text retrieval according queries. The results of the $3$ best performing algorithms are between $0.1921\%$ and $0.2199\%$ for unstructured text retrieval, and between $0.1015\%$ and $0.1642\%$ for IMRaD structured text retrieval. We only take the best $3$ results as others have less meaning to the best performing results. Based on the results unstructured text retrieval outperforms the IMRaD structured text retrieval. This happens as terms in a short query define content that should occur anywhere in the articles. Additional constraints that restrict where terms can appear are rather obstructive as they tend to prevent the retrieval of relevant articles.
+In our first experiments we compare unstructured text retrieval with structured text retrieval according queries. The results of the $3$ best performing algorithms are between $0.1921\%$ and $0.2199\%$ for unstructured text retrieval, and between $0.1015\%$ and $0.1642\%$ for IMRaD structured text retrieval. We only take the best $3$ results as others have less meaning to the best performing results. Based on the results unstructured text retrieval outperforms IMRaD structured text retrieval. This happens as terms in a short query define content that should occur anywhere in the articles. Additional constraints that restrict where terms can appear are rather obstructive as they tend to prevent the retrieval of relevant articles.
+
+In our second experiments we compare unstructured text retrieval with structured text retrieval according entire documents. The results of the $3$ best performing algorithms are between $0.0554\%$ and $0.1186\%$ for unstructured text retrieval, and between $0.0882\%$ and $0.1613\%$ for IMRaD structured text retrieval. Based on the results IMRaD structured text retrieval outperforms unstructured text retrieval. This happens as documents can be seen as large and precise queries when searching for other documents. IMRaD chapter features are leveraged to define these queries. These are helpful as they introduce constraints that describe the expected content of articles.
+
+The comparison of the accuracies in the $2$ experiments leads to the assumption that searches with queries lead to more relevant papers than searches with documents. This assumption is misleading as the $2$ experiments covers different requirements of an user. On one hand, when a short query is used to search for other articles a user expects a lot of documents, as he does not know exactly what he searches for. On the other hand, when the user searches with the usage of a document he expects other documents that are related to it.
 
 
-
-% 1 + 2 not combareable as user has different requirements... 
 
 % summarize discussion of single results
 % discuss overall results
