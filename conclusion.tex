@@ -28,12 +28,16 @@ Afterwards, we describe our introduced system and the underlying model. There we
 
 In the results and discussion section we describe a measurement for the performance of ranking algorithms. This measurement is required to compare our proposed ranking algorithms.
 
-Next, we list our study results, and discuss a first interpretation. 
+Finally, we list our study results, and interpret them. This was divided into $3$ parts, which is reflected by our research questions:
+\begin{enumerate}[label=(\alph*)]
+  \item First, we compare unstructured text retrieval with structured text retrieval according queries. An interpretation of the results captures that it is not necessary to have the overhead of IMRaD chapter features when only a few keywords are used to search for scientific articles. This happens as the keywords define content that should occur anywhere in the articles. Additional constraints that restrict where terms can appear are rather obstructive as they tend to prevent the retrieval of relevant articles.
+  \item Second, we discuss implicit search were we use entire scientific articles to search for other articles. When articles are used to search for other articles they can be seen as large and precise queries. IMRaD chapter features are leveraged to define these queries. These are helpful as they introduce constraints that describe the expected content of articles.
+  \item Third, we focus on structured text retrieval and the influence of single chapters on the search result. Implicit search with enabled IMRaD chapter features performs a bit better than the highest accuracy of search with single chapters. The highest accuracy was obtained when the Background section is used to search in Introduction sections. One interesting point is that queries for single chapters are one fifth of queries of implicit search, but have almost the same performance.
+\end{enumerate}
 
-% research questions iterrieren
+\section{Overarching results}
+\label{sec:overarching_results}
 
-
-% new chapter
 % summarize discussion of single results
 % discuss overall results
 
