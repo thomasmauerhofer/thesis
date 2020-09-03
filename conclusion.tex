@@ -55,12 +55,10 @@ In comparison with the first experiment the accuracies are lower, but also they 
 \section{Future Work}
 \label{sec:future_work}
 
-% dataset increase + assumptions check (maybe other datasets like PLOS)
+The implemented information retrieval system, and the generated dataset provides various opportunities for possible extensions and experiments. The following examples should give ideas of what can be done.
 
-% bm25 better param search
+For IMRaD structured text retrieval we calculate the rank based on the mean over all IMRaD chapters. As discussed in \Cref{sec:ranking_strategies_in_xml_retrieval} there exist other ranking strategy as well. They can be added as extensions to our system. Afterwards, different combinations of ranking algorithms and ranking strategies are evaluated. Another improvement for the system would be a parameter search for BM$25$. Robertson et. al ~\cite{RobertsonWJHG94} proposed in their work a general configuration that suites for many cases. We obtained in our experiments that BM$25$ always performs worse than TF-IDF with this configuration. Normally their performance should be almost equally.
 
-% idf... imrad based bzw.. not wenn umgedreht
+We used a generated dataset that consists of $821$ scientific articles. One improvement would be to add additional articles. However, we assumed that citations describe the content of referenced articles for our query evaluation. Afterward, queries was auto generated based on this assumption. These queries require to be verified, and queries where the assumption does not hold needs to be removed. Another possibility is to create document collections from journals of the Public Library of Science (PLOS). This journals consists of thousands of articles which increases the expressiveness of experiments.
 
-% performance improve (db, serach with document..)
-
-% other dechnoligies of structured text retrieval (not mean over all imrad types)
+An additional extension for our system would be to calculate similarities based on article clusters. Therefore, the user can provide a set of articles, which are clustered with the articles in the document collection. This clusters are generated based on different properties (e.g., based on the Introduction of the articles). Afterwards a ranked list is generated regarding distances in the cluster. 
